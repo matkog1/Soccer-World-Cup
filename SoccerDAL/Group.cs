@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -10,7 +11,9 @@ namespace SoccerDAL
 
     public class Group
     {
+        [JsonProperty(PropertyName = "id")]
         public int id { get; set; }
+        [JsonProperty(PropertyName = "letter")]
         public string letter { get; set; }
         public Ordered_Teams[] ordered_teams { get; set; }
 

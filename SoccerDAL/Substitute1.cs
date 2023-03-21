@@ -11,8 +11,6 @@ namespace SoccerDAL
 
         public override string ToString()
         {
-            // napomena: refleksija radi na konzolu kroz ConsoleWriteline
-            // za ostale klase postaviti isto
             PropertyInfo[] properties = this.GetType().GetProperties();
             string result = "";
 

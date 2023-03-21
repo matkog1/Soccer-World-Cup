@@ -1,18 +1,23 @@
-﻿using System.Reflection;
+﻿using Newtonsoft.Json;
+using System.Reflection;
 
 namespace SoccerDAL
 {
     public class Away_Team
         {
-            public string country { get; set; }
-            public string code { get; set; }
-            public int goals { get; set; }
-            public int penalties { get; set; }
+       
+        [JsonProperty(PropertyName = "country")]
+        public string country { get; set; }
+        [JsonProperty(PropertyName = "code")]
+        public string code { get; set; }
+        [JsonProperty(PropertyName = "goals")]
+        public int goals { get; set; }
+        [JsonProperty(PropertyName = "penalties")]
+        public int penalties { get; set; }
 
         public override string ToString()
         {
-            // napomena: refleksija radi na konzolu kroz ConsoleWriteline
-            // za ostale klase postaviti isto
+       
             PropertyInfo[] properties = this.GetType().GetProperties();
             string result = "";
 
