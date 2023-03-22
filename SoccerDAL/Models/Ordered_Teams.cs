@@ -1,37 +1,33 @@
 ﻿using Newtonsoft.Json;
 using System.Reflection;
 
-namespace SoccerDAL
+namespace SoccerDAL.Models
 {
-    public class TeamResults : Team
+    public class Ordered_Teams
     {
-        public TeamResults(int id, string country, string alternate_name, string fifa_code, int group_id, string group_letter, int wins, int draws, int losses, int games_played, int points, int goals_for, int goals_against, int goal_differential) : base(id, country, alternate_name, fifa_code, group_id, group_letter)
-        {
-            this.wins = wins;
-            this.draws = draws;
-            this.losses = losses;
-            this.games_played = games_played;
-            this.points = points;
-            this.goals_for = goals_for;
-            this.goals_against = goals_against;
-            this.goal_differential = goal_differential;
-        }
+        [JsonProperty(PropertyName = "id")]
+        public int id { get; set; }
+        [JsonProperty(PropertyName = "country")]
+        public string country { get; set; }
+        [JsonProperty(PropertyName = "alternate_name")]
+        public object alternate_name { get; set; }
+        [JsonProperty(PropertyName = "fifa_code")]
+        public string fifa_code { get; set; }
+        [JsonProperty(PropertyName = "group_id")]
+        public int group_id { get; set; }
 
+        [JsonProperty(PropertyName = "group_letter")]
+        public string group_letter { get; set; }
         [JsonProperty(PropertyName = "wins")]
         public int wins { get; set; }
-
         [JsonProperty(PropertyName = "draws")]
         public int draws { get; set; }
-
         [JsonProperty(PropertyName = "losses")]
         public int losses { get; set; }
-
         [JsonProperty(PropertyName = "games_played")]
         public int games_played { get; set; }
-
         [JsonProperty(PropertyName = "points")]
         public int points { get; set; }
-
         [JsonProperty(PropertyName = "goals_for")]
         public int goals_for { get; set; }
 
@@ -43,8 +39,8 @@ namespace SoccerDAL
 
         public override string ToString()
         {
-           
-            PropertyInfo[] properties = this.GetType().GetProperties();
+
+            PropertyInfo[] properties = GetType().GetProperties();
             string result = "";
 
             foreach (PropertyInfo property in properties)
@@ -55,6 +51,6 @@ namespace SoccerDAL
 
             return result;
         }
-
     }
+
 }

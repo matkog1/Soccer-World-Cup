@@ -1,17 +1,19 @@
 ﻿using System.Reflection;
 
-namespace SoccerDAL
+namespace SoccerDAL.Models
 {
-    public class Substitute1
+    public class Weather
     {
-            public string name { get; set; }
-            public bool captain { get; set; }
-            public int shirt_number { get; set; }
-            public string position { get; set; }
+        public string humidity { get; set; }
+        public string temp_celsius { get; set; }
+        public string temp_farenheit { get; set; }
+        public string wind_speed { get; set; }
+        public string description { get; set; }
 
         public override string ToString()
         {
-            PropertyInfo[] properties = this.GetType().GetProperties();
+
+            PropertyInfo[] properties = GetType().GetProperties();
             string result = "";
 
             foreach (PropertyInfo property in properties)

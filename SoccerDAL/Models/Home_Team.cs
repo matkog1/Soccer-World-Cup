@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System.Reflection;
 
-namespace SoccerDAL
+namespace SoccerDAL.Models
 {
     public class Home_Team
-        {
+    {
         [JsonProperty(PropertyName = "country")]
         public string country { get; set; }
         [JsonProperty(PropertyName = "code")]
@@ -16,8 +16,8 @@ namespace SoccerDAL
 
         public override string ToString()
         {
-         
-            PropertyInfo[] properties = this.GetType().GetProperties();
+
+            PropertyInfo[] properties = GetType().GetProperties();
             string result = "";
 
             foreach (PropertyInfo property in properties)

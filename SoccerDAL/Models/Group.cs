@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoccerDAL
+namespace SoccerDAL.Models
 {
 
     public class Group
@@ -15,13 +15,14 @@ namespace SoccerDAL
         public int id { get; set; }
         [JsonProperty(PropertyName = "letter")]
         public string letter { get; set; }
-        public Ordered_Teams[] ordered_teams { get; set; }
+        [JsonProperty(PropertyName = "ordered_teams")]
+        public IList<Ordered_Teams> ordered_teams { get; set; }
 
         public override string ToString()
         {
             // napomena: refleksija radi na konzolu kroz ConsoleWriteline
             // za ostale klase postaviti isto
-            PropertyInfo[] properties = this.GetType().GetProperties();
+            PropertyInfo[] properties = GetType().GetProperties();
             string result = "";
 
             foreach (PropertyInfo property in properties)
