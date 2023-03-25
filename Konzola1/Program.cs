@@ -13,7 +13,7 @@ internal class Program
 {
     private static async Task Main(string[] args)
     {
-        /*
+       
         //GetTeamResults sa Api
         ApiRequests api = new ApiRequests();
  
@@ -33,7 +33,7 @@ internal class Program
         {
             await Console.Out.WriteLineAsync(team.ToString());
         }
-        */
+        
 
         ApiRequests apiGetGroupResults = new ApiRequests();
         IList<Group> GetGroupResults = await apiGetGroupResults.GetGroupResults();
