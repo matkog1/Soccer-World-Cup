@@ -6,71 +6,72 @@ namespace SoccerDAL.Models
 {
     public class Away_Team_Statistics
     {
-        public Away_Team_Statistics(string country, int attempts_on_goal, int on_target, int off_target, int blocked, int woodwork, int corners, int offsides, int ball_possession, int pass_accuracy, int num_passes, int passes_completed, int distance_covered, int balls_recovered, int tackles, int clearances, int yellow_cards, int red_cards, int? fouls_committed, string tactics, Starting_Eleven1[] starting_eleven, Substitute1[] substitutes)
+        public Away_Team_Statistics(string country, int? attempts_on_goal, int? on_target, int? off_target, int? blocked, int? woodwork, int? corners, int? offsides, int? ball_possession, int? pass_accuracy, int? num_passes, int? passes_completed, int? distance_covered, int? balls_recovered, int? tackles, int? clearances, int? yellow_cards, int? red_cards, int? fouls_committed, string? tactics, Starting_Eleven1[] starting_eleven, Substitute1[] substitutes)
         {
-            this.country = country;
-            this.attempts_on_goal = attempts_on_goal;
-            this.on_target = on_target;
-            this.off_target = off_target;
-            this.blocked = blocked;
-            this.woodwork = woodwork;
-            this.corners = corners;
-            this.offsides = offsides;
-            this.ball_possession = ball_possession;
-            this.pass_accuracy = pass_accuracy;
-            this.num_passes = num_passes;
-            this.passes_completed = passes_completed;
-            this.distance_covered = distance_covered;
-            this.balls_recovered = balls_recovered;
-            this.tackles = tackles;
-            this.clearances = clearances;
-            this.yellow_cards = yellow_cards;
-            this.red_cards = red_cards;
-            this.fouls_committed = fouls_committed;
-            this.tactics = tactics;
-            this.starting_eleven = starting_eleven;
-            this.substitutes = substitutes;
+            this.country = country ?? throw new ArgumentNullException(nameof(country));
+            this.attempts_on_goal = attempts_on_goal ?? 0;
+            this.on_target = on_target ?? 0;
+            this.off_target = off_target ?? 0;
+            this.blocked = blocked ?? 0;
+            this.woodwork = woodwork ?? 0;
+            this.corners = corners ?? 0;
+            this.offsides = offsides ?? 0;
+            this.ball_possession = ball_possession ?? 0;
+            this.pass_accuracy = pass_accuracy ?? 0;
+            this.num_passes = num_passes ?? 0;
+            this.passes_completed = passes_completed ?? 0;
+            this.distance_covered = distance_covered ?? 0;
+            this.balls_recovered = balls_recovered ?? 0;
+            this.tackles = tackles ?? 0;
+            this.clearances = clearances ?? 0;
+            this.yellow_cards = yellow_cards ?? 0;
+            this.red_cards = red_cards ?? 0;
+            this.fouls_committed = fouls_committed ?? 0;
+            this.tactics = tactics ?? throw new ArgumentNullException(nameof(tactics));
+            this.starting_eleven = starting_eleven ?? throw new ArgumentNullException(nameof(starting_eleven));
+            this.substitutes = substitutes ?? throw new ArgumentNullException(nameof(substitutes));
         }
+
         [JsonProperty(PropertyName = "country")]
         public string country { get; set; }
         [JsonProperty(PropertyName = "attempts_on_goal")]
-        public int attempts_on_goal { get; set; }
+        public int? attempts_on_goal { get; set; }
         [JsonProperty(PropertyName = "on_target")]
-        public int on_target { get; set; }
+        public int? on_target { get; set; }
         [JsonProperty(PropertyName = "off_target")]
-        public int off_target { get; set; }
+        public int? off_target { get; set; }
         [JsonProperty(PropertyName = "blocked")]
-        public int blocked { get; set; }
+        public int? blocked { get; set; }
         [JsonProperty(PropertyName = "woodwork")]
-        public int woodwork { get; set; }
+        public int? woodwork { get; set; }
         [JsonProperty(PropertyName = "corners")]
-        public int corners { get; set; }
+        public int? corners { get; set; }
         [JsonProperty(PropertyName = "offsides")]
-        public int offsides { get; set; }
+        public int? offsides { get; set; }
         [JsonProperty(PropertyName = "ball_possesion")]
-        public int ball_possession { get; set; }
+        public int? ball_possession { get; set; }
         [JsonProperty(PropertyName = "pass_accuracy")]
-        public int pass_accuracy { get; set; }
+        public int? pass_accuracy { get; set; }
         [JsonProperty(PropertyName = "num_passes")]
-        public int num_passes { get; set; }
+        public int? num_passes { get; set; }
         [JsonProperty(PropertyName = "passes_completed")]
-        public int passes_completed { get; set; }
+        public int? passes_completed { get; set; }
         [JsonProperty(PropertyName = "distance_cocered")]
-        public int distance_covered { get; set; }
+        public int? distance_covered { get; set; }
         [JsonProperty(PropertyName = "balls_recovered")]
-        public int balls_recovered { get; set; }
+        public int? balls_recovered { get; set; }
         [JsonProperty(PropertyName = "tackles")]
-        public int tackles { get; set; }
+        public int? tackles { get; set; }
         [JsonProperty(PropertyName = "clearances")]
-        public int clearances { get; set; }
+        public int? clearances { get; set; }
         [JsonProperty(PropertyName = "yellow_cards")]
-        public int yellow_cards { get; set; }
+        public int? yellow_cards { get; set; }
         [JsonProperty(PropertyName = "red_cards")]
-        public int red_cards { get; set; }
+        public int? red_cards { get; set; }
         [JsonProperty(PropertyName = "fouls_committed")]
         public int? fouls_committed { get; set; }
         [JsonProperty(PropertyName = "tactics")]
-        public string tactics { get; set; }
+        public string? tactics { get; set; }
         [JsonProperty(PropertyName = "starting_eleven")]
         public Starting_Eleven1[] starting_eleven { get; set; }
         [JsonProperty(PropertyName = "substitutes")]
@@ -115,6 +116,6 @@ namespace SoccerDAL.Models
             return sb.ToString();
         }
 
-
     }
 }
+

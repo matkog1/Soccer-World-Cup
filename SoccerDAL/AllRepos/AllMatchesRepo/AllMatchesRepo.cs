@@ -13,23 +13,23 @@ namespace SoccerDAL.AllRepos.AllMatchesRepo
     internal class AllMatchesRepo : IRepoAllMatches
     {
 
-        private readonly string _apiGetMatchesForCountry = "https://worldcup-vua.nullbit.hr/men/matches";
+        private readonly string _apiGetMatchesForCountry = "https://worldcup-vua.nullbit.hr/women/matches";
         private readonly HttpClient _client;
-        private IList<Matches>? _matchesByTeams = new List<Matches>();
+        private List<Matches>? _matchesByTeams = new List<Matches>();
 
         public AllMatchesRepo(HttpClient client)
         {
             _client = client;
         }
 
-        public async Task<IList<Matches>> GetAllMatches()
+        public async Task<List<Matches>> GetAllMatches()
         {
             try
             {
                 using var response = await _client.GetAsync(_apiGetMatchesForCountry);
                 await ApiErrorHandler.HandleErrorAsync(response);
                 var json = await response.Content.ReadAsStringAsync();
-                _matchesByTeams = JsonConvert.DeserializeObject<IList<Matches>>(json);
+                _matchesByTeams = JsonConvert.DeserializeObject<List<Matches>>(json);
                 return _matchesByTeams ?? new List<Matches>();
             }
             catch (Exception ex)

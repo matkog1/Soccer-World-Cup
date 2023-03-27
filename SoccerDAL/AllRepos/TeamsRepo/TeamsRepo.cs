@@ -12,9 +12,9 @@ namespace SoccerDAL.AllRepos.TeamsRepo
 {
     internal class TeamsRepo : IRepoTeams
     {
-        private readonly string _apiGetTeams = "https://worldcup-vua.nullbit.hr/men/teams";
+        private readonly string _apiGetTeams = "https://worldcup-vua.nullbit.hr/women/teams";
         private readonly HttpClient _client;
-        private IList<Team>? _teams = new List<Team>();
+        private List<Team>? _teams = new List<Team>();
 
         public TeamsRepo(HttpClient httpClient)
         {
@@ -22,7 +22,7 @@ namespace SoccerDAL.AllRepos.TeamsRepo
         }
 
 
-        public async Task<IList<Team>> GetAllTeams()
+        public async Task<List<Team>> GetAllTeams()
         {
 
             try
@@ -30,7 +30,7 @@ namespace SoccerDAL.AllRepos.TeamsRepo
                 using var response = await _client.GetAsync(_apiGetTeams);
                 await ApiErrorHandler.HandleErrorAsync(response);
                 var json = await response.Content.ReadAsStringAsync();
-                _teams = JsonConvert.DeserializeObject<IList<Team>>(json);
+                _teams = JsonConvert.DeserializeObject<List<Team>>(json);
                 return _teams ?? new List<Team>();
 
             }

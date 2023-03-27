@@ -5,16 +5,16 @@ namespace SoccerDAL.Models
 {
     public class Home_Team_Events
     {
-        public Home_Team_Events(int id, string type_of_event, string player, string time)
+        public Home_Team_Events(int? id, string type_of_event, string player, string time)
         {
             this.id = id;
-            this.type_of_event = type_of_event;
-            this.player = player;
-            this.time = time;
+            this.type_of_event = type_of_event ?? throw new ArgumentNullException(nameof(type_of_event));
+            this.player = player ?? throw new ArgumentNullException(nameof(player));
+            this.time = time ?? throw new ArgumentNullException(nameof(time));
         }
 
         [JsonProperty(PropertyName = "id")]
-        public int id { get; set; }
+        public int? id { get; set; }
 
         [JsonProperty(PropertyName = "type_of_event")]
         public string type_of_event { get; set; }

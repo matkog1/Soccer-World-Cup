@@ -10,23 +10,21 @@ using System.Threading.Tasks;
 namespace SoccerDAL.Models
 {
 
-    public class Group : IComparable<Group>
+    public class Group
     {
-        public Group(int id, string letter, IList<Ordered_Teams> ordered_teams)
+        public Group(int id, string letter, List<Ordered_Teams> ordered_teams)
         {
             this.id = id;
-            this.letter = letter;
-            this.ordered_teams = ordered_teams;
+            this.letter = letter ?? throw new ArgumentNullException(nameof(letter));
+            this.ordered_teams = ordered_teams ?? throw new ArgumentNullException(nameof(ordered_teams));
         }
 
         [JsonProperty(PropertyName = "id")]
-        public int id { get; set; }
+        public int? id { get; set; }
         [JsonProperty(PropertyName = "letter")]
         public string letter { get; set; }
         [JsonProperty(PropertyName = "ordered_teams")]
-        public IList<Ordered_Teams> ordered_teams { get; set; }
-
-        public int CompareTo(Group? other) => id.CompareTo(other?.id);
+        public List<Ordered_Teams> ordered_teams { get; set; }
 
         public override bool Equals(object? obj)
         {

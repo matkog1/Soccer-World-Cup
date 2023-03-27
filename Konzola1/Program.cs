@@ -1,5 +1,4 @@
-﻿
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SoccerDAL.AllRepos;
 using SoccerDAL.Utility;
@@ -12,39 +11,41 @@ using SoccerDAL.AllRepos.GroupResultsRepo;
 using SoccerDAL.AllRepos.TeamsResultsRepo;
 using SoccerDAL.AllRepos.TeamsRepo;
 using SoccerDAL.AllRepos.AllMatchesByCountryRepo;
+using SoccerDAL.Comparer;
 
 internal class Program
 {
     private static async Task Main(string[] args)
     {
 
-        /* //Print all matches
+        /*//Print all matches
         IRepoAllMatches matchesRepo = RepoFactoryMatches.GetRepo();
-        IList<Matches> matches = await matchesRepo.GetAllMatches();
+        List<Matches> matches = await matchesRepo.GetAllMatches();
         Utility.Print(matches);
-        */
-        
-        /* //Print all matches by country
+
+
+         //Print all matches by country
         IRepoAllMatchesByCountry matchesRepoByCountry = RepoFactoryMatchesCountry.GetRepo();
-        IList<Matches> matchesCountry = await matchesRepoByCountry.MatchesByCountry("CRO");
+        List<Matches> matchesCountry = await matchesRepoByCountry.MatchesByCountry("ENG");
         Utility.Print(matchesCountry);
         */
-        
-        /* //Print all teams
+
+         //Print all teams
         IRepoTeams teamsRepo = RepoFactoryTeams.GetRepo();
-        IList<Team> teamsList = await teamsRepo.GetAllTeams();
+        List<Team> teamsList = await teamsRepo.GetAllTeams();
+        teamsList.Sort(new PropertyComparer<Team>("country"));
         Utility.Print(teamsList);
-        */
         
-         /* //Print all teams results
+        /*
+          //Print all teams results
         IRepoTeamsResults repoTeamsResults = RepoFactoryTeamsResults.GetRepo();
-        IList<TeamResults> teamResults = await repoTeamsResults.GetTeamsResults();
+        List<TeamResults> teamResults = await repoTeamsResults.GetTeamsResults();
         Utility.Print(teamResults);
-        */
         
-        /* /Print all group results
+
+        //Print all group results
         IRepoGroupResults repoGroupResults = RepoFactoryGroupResults.GetRepo();
-        IList<Group> groupsResults = await repoGroupResults.GetGroupResults();
+        List<Group> groupsResults = await repoGroupResults.GetGroupResults();
         Utility.Print(groupsResults);
         */
 

@@ -9,6 +9,6 @@ namespace SoccerDAL.AllRepos.TeamsResultsRepo
 {
     public interface IRepoTeamsResults
     {
-        Task<IList<TeamResults>> GetTeamsResults();
+        Task<List<TeamResults>> GetTeamsResults();
     }
 }

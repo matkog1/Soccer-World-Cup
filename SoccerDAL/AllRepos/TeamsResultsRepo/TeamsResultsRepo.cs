@@ -11,23 +11,23 @@ namespace SoccerDAL.AllRepos.TeamsResultsRepo
 {
     internal class TeamsResultsRepo : IRepoTeamsResults
     {
-        private readonly string _apiGetTeamsResults = "https://worldcup-vua.nullbit.hr/men/teams/results";
+        private readonly string _apiGetTeamsResults = "https://worldcup-vua.nullbit.hr/women/teams/results";
         private readonly HttpClient _client;
-        private IList<TeamResults>? _teamResults = new List<TeamResults>();
+        private List<TeamResults>? _teamResults = new List<TeamResults>();
 
         public TeamsResultsRepo(HttpClient client)
         {
             _client = client;
         }
 
-        public async Task<IList<TeamResults>> GetTeamsResults()
+        public async Task<List<TeamResults>> GetTeamsResults()
         {
             try
             {
                 using var response = await _client.GetAsync(_apiGetTeamsResults);
                 await ApiErrorHandler.HandleErrorAsync(response);
                 var json = await response.Content.ReadAsStringAsync();
-                _teamResults = JsonConvert.DeserializeObject<IList<TeamResults>>(json);
+                _teamResults = JsonConvert.DeserializeObject<List<TeamResults>>(json);
                 return _teamResults ?? new List<TeamResults>();
 
             }

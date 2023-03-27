@@ -10,7 +10,7 @@ namespace SoccerDAL.AllRepos.AllMatchesByCountryRepo
 {
     public interface IRepoAllMatchesByCountry
     {
-        Task<IList<Matches>> MatchesByCountry(string fifa_code);
+        Task<List<Matches>> MatchesByCountry(string fifa_code);
 
     }
 }
