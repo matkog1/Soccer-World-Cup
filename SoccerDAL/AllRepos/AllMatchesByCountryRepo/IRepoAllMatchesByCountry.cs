@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoccerDAL.TeamsRepo
+namespace SoccerDAL.AllRepos.AllMatchesByCountryRepo
 {
-    public interface IRepoTeams
+    public interface IRepoAllMatchesByCountry
     {
-        public Task<IList<Team>> GetAllTeams();
+        Task<IList<Matches>> MatchesByCountry(string fifa_code);
 
     }
 }

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoccerDAL.TeamsResultsRepo
+namespace SoccerDAL.AllRepos.TeamsResultsRepo
 {
     public static class RepoFactoryTeamsResults
     {
-        public static IRepoTeamsResults GetRepo() => new TeamsResultsRepo();
+        public static IRepoTeamsResults GetRepo() => new TeamsResultsRepo(new HttpClient());
     }
 }

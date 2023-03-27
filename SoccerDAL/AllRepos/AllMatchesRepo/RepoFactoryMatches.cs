@@ -6,10 +6,10 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoccerDAL.Repo
+namespace SoccerDAL.AllRepos.AllMatchesRepo
 {
     public static class RepoFactoryMatches
     {
-        public static IRepoAllMatches GetRepo() => new MatchesRepo();
+        public static IRepoAllMatches GetRepo() => new AllMatchesRepo(new HttpClient());
     }
 }
