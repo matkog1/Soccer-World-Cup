@@ -1,8 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SoccerDAL.GroupResultsRepo;
 using SoccerDAL.Models;
 using SoccerDAL.Repo;
+using SoccerDAL.TeamsRepo;
+using SoccerDAL.TeamsResultsRepo;
 using SoccerDAL.Utility;
 using System;
 using System.Collections.Immutable;
@@ -13,58 +16,31 @@ internal class Program
 {
     private static async Task Main(string[] args)
     {
+
         /*
-         //GetTeamResults sa Api
-         ApiRequests api = new ApiRequests();
-
-         IList<TeamResults>? teamResults = await api.GetAllMatchesAsync();
-
-         foreach (var item in teamResults)
-         {
-             await Console.Out.WriteAsync(item.ToString());
-         }
+        IRepoAllMatches matchesRepo = RepoFactoryMatches.GetRepo();
+        IList<Matches> matches = await matchesRepo.GetAllMatches();
+        Utility.Print(matches);
+        */
+        /*
+        IRepoAllMatchesByCountry matchesRepo = RepoFactoryMatchesCountry.GetRepo();
+        IList<Matches> matchesCountry = await matchesRepo.MatchesByCountry("GER");
+        Utility.Print(matchesCountry);
+        */
+        /*
+        IRepoTeams teamsRepo = RepoFactoryTeams.GetTeams();
+        IList<Team> teamsList = await teamsRepo.GetAllTeams();
+        Utility.Print(teamsList);
+        */
+        /*
+        IRepoTeamsResults repoTeamsResults = RepoFactoryTeamsResults.GetRepo();
+        IList<TeamResults> teamResults = await repoTeamsResults.GetTeamsResults();
+        Utility.Print(teamResults);
         */
 
-        /*
-         //GetAllTeams sa apija
-         ApiRequests apiGetTeams = new ApiRequests();
-         IList<Team> teams = await apiGetTeams.GetAllTeams();
-
-         foreach (Team team in teams)
-         {
-             await Console.Out.WriteLineAsync(team.ToString());
-         }
-        */
-
-        /*
-         ApiRequests apiGetGroupResults = new ApiRequests();
-         IList<Group> GetGroupResults = await apiGetGroupResults.GetGroupResults();
-
-         foreach (var item in GetGroupResults)
-         {
-             await Console.Out.WriteLineAsync(item.ToString());
-         }
-       */
-        /*
-         ApiRequests apiGetMatchesByCountry = new ApiRequests();
-         IList<Matches> GetGroupResults = await apiGetMatchesByCountry.MatchesByCountry("CRO");
-
-         foreach (var item in GetGroupResults)
-         {
-             await Console.Out.WriteLineAsync(item.ToString());
-         }
-         */
-
- 
-            ApiRequests apiGetAllMatches = new ApiRequests();
-            IList<Matches> getMatches = await apiGetAllMatches.GetAllMatches();
-
-            foreach (var item in getMatches)
-            {
-                await Console.Out.WriteLineAsync(item.ToString());
-            }
-
-    
+        IRepoGroupResults repoGroupResults = RepoFactoryGroupResults.GetRepo();
+        IList<Group> groupsResults = await repoGroupResults.GetGroupResults();
+        Utility.Print(groupsResults);
     }
 
 }

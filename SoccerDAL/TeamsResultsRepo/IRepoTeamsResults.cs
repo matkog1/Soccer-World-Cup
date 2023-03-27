@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoccerDAL.Repo
+namespace SoccerDAL.TeamsResultsRepo
 {
-    public static class RepoFactory
+    public interface IRepoTeamsResults
     {
-        public static IRepo GetRepo() => new TeamRepo();
+       Task<IList<TeamResults>> GetTeamsResults();
     }
 }
