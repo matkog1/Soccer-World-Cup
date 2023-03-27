@@ -9,6 +9,6 @@ namespace SoccerDAL.AllRepos.AllMatchesRepo
 {
     public interface IRepoAllMatches
     {
-        Task<List<Matches>> GetAllMatches();
+        Task<IList<Matches>> GetAllMatches();
     }
 }

@@ -9,6 +9,6 @@ namespace SoccerDAL.AllRepos.GroupResultsRepo
 {
     public interface IRepoGroupResults
     {
-        Task<List<Group>> GetGroupResults();
+        Task<IList<Group>> GetGroupResults();
     }
 }

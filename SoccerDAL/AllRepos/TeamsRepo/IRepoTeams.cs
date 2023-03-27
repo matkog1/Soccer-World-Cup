@@ -10,7 +10,7 @@ namespace SoccerDAL.AllRepos.TeamsRepo
 {
     public interface IRepoTeams
     {
-        Task<List<Team>> GetAllTeams();
+        Task<IList<Team>> GetAllTeams();
 
     }
 }

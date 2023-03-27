@@ -32,9 +32,12 @@ internal class Program
 
          //Print all teams
         IRepoTeams teamsRepo = RepoFactoryTeams.GetRepo();
-        List<Team> teamsList = await teamsRepo.GetAllTeams();
-        teamsList.Sort(new PropertyComparer<Team>("country"));
-        Utility.Print(teamsList);
+        IList<Team> teamsList = await teamsRepo.GetAllTeams();
+        
+        List<Team> sortedList = new List<Team>(teamsList);
+        sortedList.Sort(new PropertyComparer<Team>("id"));
+       
+        Utility.Print(sortedList);
         
         /*
           //Print all teams results

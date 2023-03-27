@@ -15,21 +15,21 @@ namespace SoccerDAL.AllRepos.AllMatchesRepo
 
         private readonly string _apiGetMatchesForCountry = "https://worldcup-vua.nullbit.hr/women/matches";
         private readonly HttpClient _client;
-        private List<Matches>? _matchesByTeams = new List<Matches>();
+        private IList<Matches>? _matchesByTeams = new List<Matches>();
 
         public AllMatchesRepo(HttpClient client)
         {
             _client = client;
         }
 
-        public async Task<List<Matches>> GetAllMatches()
+        public async Task<IList<Matches>> GetAllMatches()
         {
             try
             {
                 using var response = await _client.GetAsync(_apiGetMatchesForCountry);
                 await ApiErrorHandler.HandleErrorAsync(response);
                 var json = await response.Content.ReadAsStringAsync();
-                _matchesByTeams = JsonConvert.DeserializeObject<List<Matches>>(json);
+                _matchesByTeams = JsonConvert.DeserializeObject<IList<Matches>>(json);
                 return _matchesByTeams ?? new List<Matches>();
             }
             catch (Exception ex)
