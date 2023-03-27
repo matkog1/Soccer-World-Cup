@@ -21,6 +21,17 @@ namespace SoccerDAL.Models
         [JsonProperty(PropertyName = "position")]
         public string position { get; set; }
 
+        public override bool Equals(object? obj)
+        {
+            return obj is Substitute1 substitute &&
+                   name == substitute.name;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(name);
+        }
+
         public override string ToString()
         {
             PropertyInfo[] properties = GetType().GetProperties();

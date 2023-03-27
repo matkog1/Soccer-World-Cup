@@ -40,6 +40,20 @@ namespace SoccerDAL.Models
 
         public int CompareTo(Team? other) => id.CompareTo(other.id);
 
+        public override bool Equals(object? obj)
+        {
+            return obj is Team team &&
+                   id == team.id &&
+                   fifa_code == team.fifa_code &&
+                   group_id == team.group_id &&
+                   group_letter == team.group_letter;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(id, fifa_code, group_id, group_letter);
+        }
+
         public override string ToString()
         {
 

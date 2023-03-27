@@ -67,6 +67,17 @@ namespace SoccerDAL.Models
 
         public int CompareTo(TeamResults? other) => id.CompareTo(other.id);
 
+        public override bool Equals(object? obj)
+        {
+            return obj is TeamResults results &&
+                   id == results.id;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(id);
+        }
+
         public override string ToString()
         {
 

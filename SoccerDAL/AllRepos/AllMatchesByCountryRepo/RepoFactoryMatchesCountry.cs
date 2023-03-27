@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoccerDAL.AllMatchesByCountryRepo
+namespace SoccerDAL.AllRepos.AllMatchesByCountryRepo
 {
     public static class RepoFactoryMatchesCountry
     {
-        public static IRepoAllMatchesByCountry GetRepo() => new MatchesRepo();
+        public static IRepoAllMatchesByCountry GetRepo() => new AllMatchesByCountryRepo(new HttpClient());
     }
 }

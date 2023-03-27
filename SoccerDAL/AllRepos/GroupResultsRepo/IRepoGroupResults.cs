@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoccerDAL.Repo
+namespace SoccerDAL.AllRepos.GroupResultsRepo
 {
-    public interface IRepoAllMatches
+    public interface IRepoGroupResults
     {
-        Task<IList<Matches>> GetAllMatches();
+        Task<IList<Group>> GetGroupResults();
     }
 }

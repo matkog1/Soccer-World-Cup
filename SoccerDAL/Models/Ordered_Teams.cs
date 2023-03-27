@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace SoccerDAL.Models
 {
-    public class Ordered_Teams
+    public class Ordered_Teams : IComparable<Ordered_Teams>
     {
         public Ordered_Teams(int id, string country, object alternate_name, string fifa_code, int group_id, string group_letter, int wins, int draws, int losses, int games_played, int points, int goals_for, int goals_against, int goal_differential)
         {
@@ -54,6 +54,20 @@ namespace SoccerDAL.Models
 
         [JsonProperty(PropertyName = "goal_differential")]
         public int goal_differential { get; set; }
+
+        public int CompareTo(Ordered_Teams? other) => id.CompareTo(other.id);
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Ordered_Teams teams &&
+                   id == teams.id &&
+                   country == teams.country;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(id, country);
+        }
 
         public override string ToString()
         {
