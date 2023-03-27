@@ -10,6 +10,15 @@ namespace SoccerDAL.Models
 {
     public class Team : IComparable<Team>
     {
+        public Team(int id, string country, string alternate_name, string fifa_code, int group_id, string group_letter)
+        {
+            this.id = id;
+            this.country = country;
+            this.alternate_name = alternate_name;
+            this.fifa_code = fifa_code;
+            this.group_id = group_id;
+            this.group_letter = group_letter;
+        }
 
         [JsonProperty(PropertyName = "id")]
         public int id { get; set; }

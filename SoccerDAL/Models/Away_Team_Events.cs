@@ -5,6 +5,14 @@ namespace SoccerDAL.Models
 {
     public class Away_Team_Events
     {
+        public Away_Team_Events(int id, string type_of_event, string player, string time)
+        {
+            this.id = id;
+            this.type_of_event = type_of_event;
+            this.player = player;
+            this.time = time;
+        }
+
         [JsonProperty(PropertyName = "id")]
         public int id { get; set; }
         [JsonProperty(PropertyName = "type_of_event")]
