@@ -11,6 +11,13 @@ namespace SoccerDAL.Models
 
     public class Group
     {
+        public Group(int id, string letter, IList<Ordered_Teams> ordered_teams)
+        {
+            this.id = id;
+            this.letter = letter;
+            this.ordered_teams = ordered_teams;
+        }
+
         [JsonProperty(PropertyName = "id")]
         public int id { get; set; }
         [JsonProperty(PropertyName = "letter")]
@@ -20,17 +27,12 @@ namespace SoccerDAL.Models
 
         public override string ToString()
         {
-            // napomena: refleksija radi na konzolu kroz ConsoleWriteline
-            // za ostale klase postaviti isto
-            PropertyInfo[] properties = GetType().GetProperties();
-            string result = "";
 
-            foreach (PropertyInfo property in properties)
+            string result = $"Group {letter.ToUpper()}\n";
+            foreach (var team in ordered_teams)
             {
-                object value = property.GetValue(this, null);
-                result += $"{property.Name}: {value}\n";
+                result += $"{team}\n";
             }
-
             return result;
         }
     }

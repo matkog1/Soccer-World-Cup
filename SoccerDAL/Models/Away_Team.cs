@@ -5,6 +5,13 @@ namespace SoccerDAL.Models
 {
     public class Away_Team
     {
+        public Away_Team(string country, string code, int goals, int penalties)
+        {
+            this.country = country;
+            this.code = code;
+            this.goals = goals;
+            this.penalties = penalties;
+        }
 
         [JsonProperty(PropertyName = "country")]
         public string country { get; set; }

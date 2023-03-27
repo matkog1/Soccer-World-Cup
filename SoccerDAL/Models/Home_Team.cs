@@ -5,6 +5,14 @@ namespace SoccerDAL.Models
 {
     public class Home_Team
     {
+        public Home_Team(string country, string code, int goals, int penalties)
+        {
+            this.country = country;
+            this.code = code;
+            this.goals = goals;
+            this.penalties = penalties;
+        }
+
         [JsonProperty(PropertyName = "country")]
         public string country { get; set; }
         [JsonProperty(PropertyName = "code")]
