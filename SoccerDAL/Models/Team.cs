@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SoccerDAL.Models
 {
-    public class Team : IComparable<Team>
+    public class Team
     {
         public Team(int id, string country, string alternate_name, string fifa_code, int group_id, string group_letter)
         {
@@ -21,7 +21,7 @@ namespace SoccerDAL.Models
         }
 
         [JsonProperty(PropertyName = "id")]
-        public int id { get; set; }
+        public int? id { get; set; }
 
         [JsonProperty(PropertyName = "country")]
         public string country { get; set; }
@@ -33,12 +33,12 @@ namespace SoccerDAL.Models
         public string fifa_code { get; set; }
 
         [JsonProperty(PropertyName = "group_id")]
-        public int group_id { get; set; }
+        public int? group_id { get; set; }
 
         [JsonProperty(PropertyName = "group_letter")]
         public string group_letter { get; set; }
 
-        public int CompareTo(Team? other) => id.CompareTo(other.id);
+        
 
         public override bool Equals(object? obj)
         {

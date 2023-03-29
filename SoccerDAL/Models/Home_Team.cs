@@ -5,10 +5,10 @@ namespace SoccerDAL.Models
 {
     public class Home_Team
     {
-        public Home_Team(string country, string code, int goals, int penalties)
+        public Home_Team(string country, string code, int? goals, int? penalties)
         {
-            this.country = country;
-            this.code = code;
+            this.country = country ?? throw new ArgumentNullException(nameof(country));
+            this.code = code ?? throw new ArgumentNullException(nameof(code));
             this.goals = goals;
             this.penalties = penalties;
         }
@@ -18,9 +18,9 @@ namespace SoccerDAL.Models
         [JsonProperty(PropertyName = "code")]
         public string code { get; set; }
         [JsonProperty(PropertyName = "goals")]
-        public int goals { get; set; }
+        public int? goals { get; set; }
         [JsonProperty(PropertyName = "penalties")]
-        public int penalties { get; set; }
+        public int? penalties { get; set; }
 
         public override string ToString()
         {

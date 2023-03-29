@@ -12,7 +12,7 @@ namespace SoccerDAL.AllRepos.AllMatchesByCountryRepo
 {
     internal class AllMatchesByCountryRepo : IRepoAllMatchesByCountry
     {
-        private readonly string _apiGetMatchesForCountry = "https://worldcup-vua.nullbit.hr/men/matches/country?fifa_code=";
+        private readonly string _apiGetMatchesForCountry = "https://worldcup-vua.nullbit.hr/women/matches/country?fifa_code=";
         private readonly HttpClient _client;
         private IList<Matches>? _matchesByTeams = new List<Matches>();
 

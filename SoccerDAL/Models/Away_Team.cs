@@ -7,8 +7,8 @@ namespace SoccerDAL.Models
     {
         public Away_Team(string country, string code, int goals, int penalties)
         {
-            this.country = country;
-            this.code = code;
+            this.country = country ?? throw new ArgumentNullException(nameof(country));
+            this.code = code ?? throw new ArgumentNullException(nameof(code));
             this.goals = goals;
             this.penalties = penalties;
         }

@@ -11,7 +11,7 @@ namespace SoccerDAL.AllRepos.TeamsResultsRepo
 {
     internal class TeamsResultsRepo : IRepoTeamsResults
     {
-        private readonly string _apiGetTeamsResults = "https://worldcup-vua.nullbit.hr/men/teams/results";
+        private readonly string _apiGetTeamsResults = "https://worldcup-vua.nullbit.hr/women/teams/results";
         private readonly HttpClient _client;
         private IList<TeamResults>? _teamResults = new List<TeamResults>();
 
