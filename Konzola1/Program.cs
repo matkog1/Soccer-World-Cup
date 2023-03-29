@@ -11,6 +11,7 @@ using SoccerDAL.AllRepos.GroupResultsRepo;
 using SoccerDAL.AllRepos.TeamsResultsRepo;
 using SoccerDAL.AllRepos.TeamsRepo;
 using SoccerDAL.AllRepos.AllMatchesByCountryRepo;
+using SoccerDAL.AllRepos.PlayerRepo;
 using SoccerDAL.Comparer;
 
 internal class Program
@@ -19,18 +20,18 @@ internal class Program
     {
 
         /*//Print all matches
-        IRepoAllMatches matchesRepo = RepoFactoryMatches.GetRepo();
-        List<Matches> matches = await matchesRepo.GetAllMatches();
-        Utility.Print(matches);
+         IRepoAllMatches matchesRepo = RepoFactoryMatches.GetRepo();
+         List<Matches> matches = await matchesRepo.GetAllMatches();
+         Utility.Print(matches);
 
 
-         //Print all matches by country
-        IRepoAllMatchesByCountry matchesRepoByCountry = RepoFactoryMatchesCountry.GetRepo();
-        List<Matches> matchesCountry = await matchesRepoByCountry.MatchesByCountry("ENG");
-        Utility.Print(matchesCountry);
-        */
+          //Print all matches by country
+         IRepoAllMatchesByCountry matchesRepoByCountry = RepoFactoryMatchesCountry.GetRepo();
+         List<Matches> matchesCountry = await matchesRepoByCountry.MatchesByCountry("ENG");
+         Utility.Print(matchesCountry);
+         */
 
-         //Print all teams
+        /* //Print all teams
         IRepoTeams teamsRepo = RepoFactoryTeams.GetRepo();
         IList<Team> teamsList = await teamsRepo.GetAllTeams();
         
@@ -38,7 +39,7 @@ internal class Program
         sortedList.Sort(new PropertyComparer<Team>("id"));
        
         Utility.Print(sortedList);
-        
+        */
         /*
           //Print all teams results
         IRepoTeamsResults repoTeamsResults = RepoFactoryTeamsResults.GetRepo();
@@ -52,5 +53,10 @@ internal class Program
         Utility.Print(groupsResults);
         */
 
+         //Print all players from jsonfile but not api
+        IRepoPlayer playerRepository = RepoFactoryPlayer.GetRepo();
+        List<Player> players = playerRepository.GetPlayersFromJsonFile();
+        Utility.Print(players);
+        
     }
 }
