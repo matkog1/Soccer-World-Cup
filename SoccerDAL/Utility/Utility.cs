@@ -16,13 +16,6 @@ namespace SoccerDAL.Utility
     {
         public static void Print<T>(IList<T> lista) => lista.ToList().ForEach(item => Console.WriteLine(item));
 
-        public static async Task<IList<Matches>> GetAllMatchesMen()
-        {
-            IRepoAllMatches matchesRepo = MenRepoFactoryAllMatches.GetRepo();
-            IList<Matches> matches = await matchesRepo.GetAllMatches();
-            return matches;
-        }
-
     }
 
 
