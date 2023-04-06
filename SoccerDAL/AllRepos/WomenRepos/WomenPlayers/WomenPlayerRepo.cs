@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using SoccerDAL.AllRepos.PlayerRepo;
 using SoccerDAL.Models;
 using System;
 using System.Collections.Generic;
@@ -6,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoccerDAL.AllRepos.PlayerRepo
+namespace SoccerDAL.AllRepos.WomenRepos.WomenPlayers
 {
-    internal class PlayerRepo : IRepoPlayer
+    internal class WomenPlayerRepo : IRepoPlayer
     {
         private static List<Player> CreatePlayersFromJson(List<JObject>? playerDataList, string country)
         {
@@ -57,5 +58,4 @@ namespace SoccerDAL.AllRepos.PlayerRepo
             return players;
         }
     }
-
 }

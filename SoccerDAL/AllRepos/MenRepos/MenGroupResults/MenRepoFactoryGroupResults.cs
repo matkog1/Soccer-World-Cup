@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace SoccerDAL.AllRepos.GroupResultsRepo
 {
-    public static class RepoFactoryGroupResults
+    public static class MenRepoFactoryGroupResults
     {
-        public static IRepoGroupResults GetRepo() => new GroupResultsRepo(new HttpClient());
+        public static IRepoGroupResults GetRepo() => new GroupResultsRepoMen(new HttpClient());
     }
 }

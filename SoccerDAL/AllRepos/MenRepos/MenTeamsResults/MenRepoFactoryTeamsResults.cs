@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SoccerDAL.AllRepos.TeamsResultsRepo
 {
-    public static class RepoFactoryTeamsResults
+    public static class MenRepoFactoryTeamsResults
     {
-        public static IRepoTeamsResults GetRepo() => new TeamsResultsRepo(new HttpClient());
+        public static IRepoTeamsResults GetRepo() => new MenTeamsResultsRepo(new HttpClient());
     }
 }

@@ -4,34 +4,31 @@ using SoccerDAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoccerDAL.AllRepos.TeamsRepo
+namespace SoccerDAL.AllRepos.TeamsResultsRepo
 {
-    internal class TeamsRepo : IRepoTeams
+    internal class MenTeamsResultsRepo : IRepoTeamsResults
     {
-        private readonly string _apiGetTeams = "https://worldcup-vua.nullbit.hr/women/teams";
+        private readonly string _apiGetTeamsResults = "https://worldcup-vua.nullbit.hr/men/teams/results";
         private readonly HttpClient _client;
-        private IList<Team>? _teams = new List<Team>();
+        private IList<TeamResults>? _teamResults = new List<TeamResults>();
 
-        public TeamsRepo(HttpClient httpClient)
+        public MenTeamsResultsRepo(HttpClient client)
         {
-            _client = httpClient;
+            _client = client;
         }
 
-
-        public async Task<IList<Team>> GetAllTeams()
+        public async Task<IList<TeamResults>> GetTeamsResults()
         {
-
             try
             {
-                using var response = await _client.GetAsync(_apiGetTeams);
+                using var response = await _client.GetAsync(_apiGetTeamsResults);
                 await ApiErrorHandler.HandleErrorAsync(response);
                 var json = await response.Content.ReadAsStringAsync();
-                _teams = JsonConvert.DeserializeObject<IList<Team>>(json);
-                return _teams ?? new List<Team>();
+                _teamResults = JsonConvert.DeserializeObject<IList<TeamResults>>(json);
+                return _teamResults ?? new List<TeamResults>();
 
             }
             catch (Exception ex)
@@ -43,7 +40,5 @@ namespace SoccerDAL.AllRepos.TeamsRepo
 
             finally { _client.Dispose(); }
         }
-
-
     }
 }

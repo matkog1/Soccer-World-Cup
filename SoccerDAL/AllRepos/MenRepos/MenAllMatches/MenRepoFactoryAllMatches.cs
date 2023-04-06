@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace SoccerDAL.AllRepos.AllMatchesRepo
 {
-    public static class RepoFactoryMatches
+    public static class MenRepoFactoryAllMatches
     {
-        public static IRepoAllMatches GetRepo() => new AllMatchesRepo(new HttpClient());
+        public static IRepoAllMatches GetRepo() => new AllMatchesRepoMen(new HttpClient());
     }
 }

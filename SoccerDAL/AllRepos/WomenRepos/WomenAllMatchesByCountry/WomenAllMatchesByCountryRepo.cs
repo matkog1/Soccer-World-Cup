@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using SoccerDAL.AllRepos.AllMatchesRepo;
+using SoccerDAL.AllRepos.AllMatchesByCountryRepo;
 using SoccerDAL.Errors;
 using SoccerDAL.Models;
 using System;
@@ -8,25 +8,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoccerDAL.AllRepos.AllMatchesRepo
+namespace SoccerDAL.AllRepos.WomenRepos.WomenAllMatchesByCountryRepo
 {
-    internal class AllMatchesRepo : IRepoAllMatches
+    internal class WomenAllMatchesByCountryRepo : IRepoAllMatchesByCountry
     {
-
-        private readonly string _apiGetMatchesForCountry = "https://worldcup-vua.nullbit.hr/women/matches";
+        private readonly string _apiGetMatchesForCountry = "https://worldcup-vua.nullbit.hr/women/matches/country?fifa_code=";
         private readonly HttpClient _client;
         private IList<Matches>? _matchesByTeams = new List<Matches>();
 
-        public AllMatchesRepo(HttpClient client)
+        public WomenAllMatchesByCountryRepo(HttpClient client)
         {
             _client = client;
         }
 
-        public async Task<IList<Matches>> GetAllMatches()
+        public async Task<IList<Matches>> MatchesByCountry(string fifa_code)
         {
             try
             {
-                using var response = await _client.GetAsync(_apiGetMatchesForCountry);
+                using var response = await _client.GetAsync(_apiGetMatchesForCountry + fifa_code);
                 await ApiErrorHandler.HandleErrorAsync(response);
                 var json = await response.Content.ReadAsStringAsync();
                 _matchesByTeams = JsonConvert.DeserializeObject<IList<Matches>>(json);
@@ -41,15 +40,7 @@ namespace SoccerDAL.AllRepos.AllMatchesRepo
             {
                 _client.Dispose(); ;
             }
-        }
 
+        }
     }
 }
-
-
-
-
-
-
-
-

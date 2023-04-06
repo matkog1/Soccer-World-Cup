@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SoccerDAL.AllRepos.TeamsResultsRepo;
 using SoccerDAL.Errors;
 using SoccerDAL.Models;
 using System;
@@ -7,15 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoccerDAL.AllRepos.TeamsResultsRepo
+namespace SoccerDAL.AllRepos.WomenRepos.WomenTeamsResults
 {
-    internal class TeamsResultsRepo : IRepoTeamsResults
+    internal class WomenTeamsResultsRepo : IRepoTeamsResults
     {
         private readonly string _apiGetTeamsResults = "https://worldcup-vua.nullbit.hr/women/teams/results";
         private readonly HttpClient _client;
         private IList<TeamResults>? _teamResults = new List<TeamResults>();
 
-        public TeamsResultsRepo(HttpClient client)
+        public WomenTeamsResultsRepo(HttpClient client)
         {
             _client = client;
         }
