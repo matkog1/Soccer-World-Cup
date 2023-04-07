@@ -17,24 +17,26 @@ using SoccerDAL.AllRepos.WomenRepos.WomenPlayers;
 using SoccerDAL.AllRepos.TeamsRepo;
 using SoccerDAL.AllRepos.WomenRepos.WomenTeams;
 using SoccerDAL.AllRepos.WomenRepos.WomenTeamsResults;
+using SoccerDAL.Comparer;
 
 internal class Program
 {
     private static async Task Main(string[] args)
     {
         /*
-        IRepoAllMatches matchesRepo = WomenRepoFactoryAllMatches.GetRepo(); //MenRepoFactoryAllMatches.GetRepo();
-        IList<Matches> matches = await matchesRepo.GetAllMatches();
-        Utility.Print(matches);
+         IRepoAllMatches matchesRepo = WomenRepoFactoryAllMatches.GetRepo(); //MenRepoFactoryAllMatches.GetRepo();
+         IList<Matches> matches = await matchesRepo.GetAllMatches();
+         Utility.Print(matches);
         */
-
-        /*  //Print all matches by country, radi men i women
+        /*
+         //Print all matches by country, radi men i women
          IRepoAllMatchesByCountry matchesRepoByCountry = WomenRepoFactoryMatchesCountry.GetRepo(); //MenRepoFactoryMatchesCountry
          IList<Matches> matchesCountry = await matchesRepoByCountry.MatchesByCountry("ENG");
          Utility.Print(matchesCountry);
         */
 
-        /* //Print all group results, radi men i women
+        /*
+         //Print all group results, radi men i women
          IRepoGroupResults repoGroupResults = WomenRepoFactoryGroupResults.GetRepo();
          IList<Group> groupsResults = await repoGroupResults.GetGroupResults();
          Utility.Print(groupsResults);
@@ -57,13 +59,10 @@ internal class Program
         Utility.Print(sortedList);
         */
 
-          //Print all teams results, radi men i women
+        /*  //Print all teams results, radi men i women
         IRepoTeamsResults repoTeamsResults = WomenRepoFactoryTeamsResults.GetRepo();
         IList<TeamResults> teamResults = await repoTeamsResults.GetTeamsResults();
         Utility.Print(teamResults);
-       
-
-
-    
+        */
     }
 }
