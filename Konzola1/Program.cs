@@ -16,6 +16,7 @@ using SoccerDAL.AllRepos.WomenRepos.WomenGroupResults;
 using SoccerDAL.AllRepos.WomenRepos.WomenPlayers;
 using SoccerDAL.AllRepos.TeamsRepo;
 using SoccerDAL.AllRepos.WomenRepos.WomenTeams;
+using SoccerDAL.AllRepos.WomenRepos.WomenTeamsResults;
 
 internal class Program
 {
@@ -44,11 +45,11 @@ internal class Program
         Utility.Print(players);
         */
 
-         //Print all teams, radi men i women 
+        /* //Print all teams, radi men i women 
         IRepoTeams teamsRepo = WomenRepoFactoryTeams.GetRepo();
         IList<Team> teamsList = await teamsRepo.GetAllTeams();
         Utility.Print(teamsList);
-        
+        */
 
         /*
         List<Team> sortedList = new List<Team>(teamsList);
@@ -56,11 +57,11 @@ internal class Program
         Utility.Print(sortedList);
         */
 
-        /*  //Print all teams results, radi men i women
-        IRepoTeamsResults repoTeamsResults = MenRepoFactoryTeamsResults.GetRepo();
+          //Print all teams results, radi men i women
+        IRepoTeamsResults repoTeamsResults = WomenRepoFactoryTeamsResults.GetRepo();
         IList<TeamResults> teamResults = await repoTeamsResults.GetTeamsResults();
         Utility.Print(teamResults);
-       */
+       
 
 
     
