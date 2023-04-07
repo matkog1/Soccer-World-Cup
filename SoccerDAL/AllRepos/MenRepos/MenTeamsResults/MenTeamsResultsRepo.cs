@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿ using Newtonsoft.Json;
 using SoccerDAL.Errors;
 using SoccerDAL.Models;
 using System;

@@ -65,6 +65,5 @@ internal class Program
         List<Player> players = playerRepository.GetPlayersFromJsonFile();
         Utility.Print(players);
         */
-        await Console.Out.WriteLineAsync("Test");
     }
 }
