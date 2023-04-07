@@ -46,9 +46,9 @@ internal class Program
 
         //Print all players from jsonfile but not api
         //ovo treba prepravit da radi sa json u projektu bez hardkodinga putanje
-        IRepoPlayer playerRepository = MenRepoFactoryPlayer.GetRepo();
+        /*IRepoPlayer playerRepository = MenRepoFactoryPlayer.GetRepo();
         List<Player> players = playerRepository.GetPlayersFromJsonFile();
         Utility.Print(players);
-        
+        */
     }
 }
