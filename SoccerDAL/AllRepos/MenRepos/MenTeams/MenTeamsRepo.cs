@@ -29,6 +29,7 @@ namespace SoccerDAL.AllRepos.TeamsRepo
                 await ApiErrorHandler.HandleErrorAsync(response);
                 var json = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<IList<Team>>(json) ?? new List<Team>();
+
             }
             catch (Exception ex)
             {
