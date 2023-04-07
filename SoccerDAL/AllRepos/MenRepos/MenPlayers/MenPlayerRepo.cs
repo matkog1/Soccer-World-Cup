@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using SoccerDAL.Models;
 using System;
 using System.Collections.Generic;
@@ -30,9 +31,11 @@ namespace SoccerDAL.AllRepos.PlayerRepo
 
         public List<Player> GetPlayersFromJsonFile()
         {
-            string filePath = @"C:\Users\matko\source\repos\matkog1\Soccer-World-Cup\SoccerDAL\JsonFiles\men\matches.json";
+            string dataFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "JsonFiles");
+            string jsonFilePath = Path.Combine(dataFolderPath, "MenMatches.json");
+
             // Read the JSON data from a file
-            string jsonData = File.ReadAllText(filePath);
+            string jsonData = File.ReadAllText(jsonFilePath);
 
             // Parse the JSON data
             JArray matches = JArray.Parse(jsonData);
