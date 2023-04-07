@@ -15,11 +15,11 @@ internal class Program
 {
     private static async Task Main(string[] args)
     {
-
+        /*
         IRepoAllMatches matchesRepo = MenRepoFactoryAllMatches.GetRepo(); //MenRepoFactoryAllMatches.GetRepo();
         IList<Matches> matches = await matchesRepo.GetAllMatches();
         Utility.Print(matches);
-        
+        */
 
         /*  //Print all matches by country, radi men i women
          IRepoAllMatchesByCountry matchesRepoByCountry = WomenRepoFactoryMatchesCountry.GetRepo(); //MenRepoFactoryMatchesCountry
@@ -44,11 +44,11 @@ internal class Program
         Utility.Print(teamResults);
        */
 
-        /*  //Print all group results, radi men i women
+         //Print all group results, radi men i women
          IRepoGroupResults repoGroupResults = MenRepoFactoryGroupResults.GetRepo();
          IList<Group> groupsResults = await repoGroupResults.GetGroupResults();
          Utility.Print(groupsResults);
-         */
+         
 
         //Print all players from jsonfile but not api
         //ovo treba prepravit da radi sa json u projektu bez hardkodinga putanje
