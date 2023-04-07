@@ -16,17 +16,17 @@ internal class Program
 {
     private static async Task Main(string[] args)
     {
-        /*
+        
         IRepoAllMatches matchesRepo = MenRepoFactoryAllMatches.GetRepo(); //MenRepoFactoryAllMatches.GetRepo();
         IList<Matches> matches = await matchesRepo.GetAllMatches();
         Utility.Print(matches);
-        */
+        
 
-          //Print all matches by country, radi men i women
+         /* //Print all matches by country, radi men i women
          IRepoAllMatchesByCountry matchesRepoByCountry = MenRepoFactoryMatchesCountry.GetRepo(); //MenRepoFactoryMatchesCountry
          IList<Matches> matchesCountry = await matchesRepoByCountry.MatchesByCountry("ENG");
          Utility.Print(matchesCountry);
-        
+        */
 
         /* //Print all teams, radi men i women 
         IRepoTeams teamsRepo = MenRepoFactoryTeams.GetRepo();
