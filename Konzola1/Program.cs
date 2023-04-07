@@ -11,22 +11,23 @@ using SoccerDAL.AllRepos.GroupResultsRepo;
 using SoccerDAL.AllRepos.TeamsResultsRepo;
 using SoccerDAL.AllRepos.WomenRepos.WomenAllMatches;
 using SoccerDAL.AllRepos.AllMatchesByCountryRepo;
+using SoccerDAL.AllRepos.WomenRepos.WomenAllMatchesByCountryRepo;
 
 internal class Program
 {
     private static async Task Main(string[] args)
     {
-        
+        /*
         IRepoAllMatches matchesRepo = WomenRepoFactoryAllMatches.GetRepo(); //MenRepoFactoryAllMatches.GetRepo();
         IList<Matches> matches = await matchesRepo.GetAllMatches();
         Utility.Print(matches);
-        
+        */
 
-         /* //Print all matches by country, radi men i women
-         IRepoAllMatchesByCountry matchesRepoByCountry = MenRepoFactoryMatchesCountry.GetRepo(); //MenRepoFactoryMatchesCountry
+          //Print all matches by country, radi men i women
+         IRepoAllMatchesByCountry matchesRepoByCountry = WomenRepoFactoryMatchesCountry.GetRepo(); //MenRepoFactoryMatchesCountry
          IList<Matches> matchesCountry = await matchesRepoByCountry.MatchesByCountry("ENG");
          Utility.Print(matchesCountry);
-        */
+        
 
         /* //Print all teams, radi men i women 
         IRepoTeams teamsRepo = MenRepoFactoryTeams.GetRepo();

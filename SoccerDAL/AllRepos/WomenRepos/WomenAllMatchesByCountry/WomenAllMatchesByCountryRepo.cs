@@ -14,7 +14,6 @@ namespace SoccerDAL.AllRepos.WomenRepos.WomenAllMatchesByCountryRepo
     {
         private readonly string _apiGetMatchesForCountry = "https://worldcup-vua.nullbit.hr/women/matches/country?fifa_code=";
         private readonly HttpClient _client;
-        private IList<Matches>? _matchesByTeams = new List<Matches>();
 
         public WomenAllMatchesByCountryRepo(HttpClient client)
         {
@@ -28,18 +27,29 @@ namespace SoccerDAL.AllRepos.WomenRepos.WomenAllMatchesByCountryRepo
                 using var response = await _client.GetAsync(_apiGetMatchesForCountry + fifa_code);
                 await ApiErrorHandler.HandleErrorAsync(response);
                 var json = await response.Content.ReadAsStringAsync();
-                _matchesByTeams = JsonConvert.DeserializeObject<IList<Matches>>(json);
-                return _matchesByTeams ?? new List<Matches>();
+                return JsonConvert.DeserializeObject<IList<Matches>>(json) ?? new List<Matches>();
             }
             catch (Exception ex)
             {
-                await Console.Out.WriteLineAsync($"Error occured: {ex.Message}");
-                throw;
+                Console.WriteLine($"Error occurred while reading data from API: {ex.Message}");
             }
-            finally
+
+            string dataFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "JsonFiles");
+            string jsonFilePath = Path.Combine(dataFolderPath, "WomenMatches.json");
+
+            try
             {
-                _client.Dispose(); ;
+                string json = File.ReadAllText(jsonFilePath);
+                var allMatches = JsonConvert.DeserializeObject<IList<Matches>>(json) ?? new List<Matches>();
+                var matchesForTeam = allMatches.Where(m => m.home_team.code == fifa_code || m.away_team.code == fifa_code).ToList();
+                return matchesForTeam;
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error occurred while reading data from local JSON file: {ex.Message}");
+            }
+
+            return new List<Matches>();
 
         }
     }
