@@ -12,6 +12,7 @@ using SoccerDAL.AllRepos.TeamsResultsRepo;
 using SoccerDAL.AllRepos.WomenRepos.WomenAllMatches;
 using SoccerDAL.AllRepos.AllMatchesByCountryRepo;
 using SoccerDAL.AllRepos.WomenRepos.WomenAllMatchesByCountryRepo;
+using SoccerDAL.AllRepos.WomenRepos.WomenGroupResults;
 
 internal class Program
 {
@@ -23,11 +24,17 @@ internal class Program
         Utility.Print(matches);
         */
 
-          //Print all matches by country, radi men i women
+        /*  //Print all matches by country, radi men i women
          IRepoAllMatchesByCountry matchesRepoByCountry = WomenRepoFactoryMatchesCountry.GetRepo(); //MenRepoFactoryMatchesCountry
          IList<Matches> matchesCountry = await matchesRepoByCountry.MatchesByCountry("ENG");
          Utility.Print(matchesCountry);
-        
+        */
+
+         //Print all group results, radi men i women
+         IRepoGroupResults repoGroupResults = WomenRepoFactoryGroupResults.GetRepo();
+         IList<Group> groupsResults = await repoGroupResults.GetGroupResults();
+         Utility.Print(groupsResults);
+         
 
         /* //Print all teams, radi men i women 
         IRepoTeams teamsRepo = MenRepoFactoryTeams.GetRepo();
@@ -46,11 +53,6 @@ internal class Program
         Utility.Print(teamResults);
        */
 
-        /* //Print all group results, radi men i women
-         IRepoGroupResults repoGroupResults = MenRepoFactoryGroupResults.GetRepo();
-         IList<Group> groupsResults = await repoGroupResults.GetGroupResults();
-         Utility.Print(groupsResults);
-         */
 
         //Print all players from jsonfile but not api
         //ovo treba prepravit da radi sa json u projektu bez hardkodinga putanje

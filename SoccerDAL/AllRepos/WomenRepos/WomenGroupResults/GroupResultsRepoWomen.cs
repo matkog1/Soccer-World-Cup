@@ -14,7 +14,6 @@ namespace SoccerDAL.AllRepos.WomenRepos.WomenGroupResults
     {
         private readonly string _apiGetGroupResults = "https://worldcup-vua.nullbit.hr/women/teams/group_results";
         private readonly HttpClient _client;
-        private IList<Group>? _groupResults = new List<Group>();
 
         public GroupResultsRepoWomen(HttpClient client)
         {
@@ -28,18 +27,28 @@ namespace SoccerDAL.AllRepos.WomenRepos.WomenGroupResults
                 using var response = await _client.GetAsync(_apiGetGroupResults);
                 await ApiErrorHandler.HandleErrorAsync(response);
                 var json = await response.Content.ReadAsStringAsync();
-                _groupResults = JsonConvert.DeserializeObject<IList<Group>>(json);
-                return _groupResults ?? new List<Group>();
+                return JsonConvert.DeserializeObject<IList<Group>>(json) ?? new List<Group>();
 
             }
             catch (Exception ex)
             {
-
-                await Console.Out.WriteLineAsync($"Error occured: {ex.Message}");
-                throw;
+                Console.WriteLine($"Error occurred while reading data from API: {ex.Message}");
             }
 
-            finally { _client.Dispose(); }
+            string dataFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "JsonFiles");
+            string jsonFilePath = Path.Combine(dataFolderPath, "WomenGroup_results.json");
+
+            try
+            {
+                string json = File.ReadAllText(jsonFilePath);
+                return JsonConvert.DeserializeObject<IList<Group>>(json) ?? new List<Group>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error occurred while reading data from local JSON file: {ex.Message}");
+            }
+
+            return new List<Group>();
         }
     }
 }
