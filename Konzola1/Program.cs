@@ -14,6 +14,8 @@ using SoccerDAL.AllRepos.AllMatchesByCountryRepo;
 using SoccerDAL.AllRepos.WomenRepos.WomenAllMatchesByCountryRepo;
 using SoccerDAL.AllRepos.WomenRepos.WomenGroupResults;
 using SoccerDAL.AllRepos.WomenRepos.WomenPlayers;
+using SoccerDAL.AllRepos.TeamsRepo;
+using SoccerDAL.AllRepos.WomenRepos.WomenTeams;
 
 internal class Program
 {
@@ -36,20 +38,18 @@ internal class Program
          IList<Group> groupsResults = await repoGroupResults.GetGroupResults();
          Utility.Print(groupsResults);
          */
-      
-     
-        
+        /*
         IRepoPlayer playerRepository = WomenRepoFactoryPlayer.GetRepo();
         List<Player> players = playerRepository.GetPlayersFromJsonFile();
         Utility.Print(players);
-        
+        */
 
-
-        /* //Print all teams, radi men i women 
-        IRepoTeams teamsRepo = MenRepoFactoryTeams.GetRepo();
+         //Print all teams, radi men i women 
+        IRepoTeams teamsRepo = WomenRepoFactoryTeams.GetRepo();
         IList<Team> teamsList = await teamsRepo.GetAllTeams();
         Utility.Print(teamsList);
-        */
+        
+
         /*
         List<Team> sortedList = new List<Team>(teamsList);
         sortedList.Sort(new PropertyComparer<Team>("group_id"));
