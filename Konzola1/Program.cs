@@ -1,15 +1,42 @@
 ﻿using SoccerDAL.AllRepos.PlayerRepo;
+using Newtonsoft.Json.Linq;
+using SoccerDAL.AllRepos;
+using SoccerDAL.Utility;
+using System;
+using System.Collections.Immutable;
+using System.Reflection;
+using SoccerDAL.Models;
+using SoccerDAL.AllRepos.AllMatchesRepo;
+using SoccerDAL.AllRepos.GroupResultsRepo;
+using Newtonsoft.Json.Linq;
+using SoccerDAL.AllRepos;
+using SoccerDAL.Utility;
+using System;
+using System.Collections.Immutable;
+using System.Reflection;
+using SoccerDAL.Models;
+using SoccerDAL.AllRepos.AllMatchesRepo;
+using SoccerDAL.AllRepos.GroupResultsRepo;
+using Newtonsoft.Json.Linq;
+using SoccerDAL.AllRepos;
+using SoccerDAL.Utility;
+using System;
+using System.Collections.Immutable;
+using System.Reflection;
+using SoccerDAL.Models;
+using SoccerDAL.AllRepos.AllMatchesRepo;
+using SoccerDAL.AllRepos.GroupResultsRepo;
 using SoccerDAL.AllRepos.TeamsResultsRepo;
 using SoccerDAL.Models;
 using SoccerDAL.Utility;
 
 internal class Program
 {
-    private static async Task Main(string[] args)
+        /*//Print all teams results, radi men i women
     {
 
         //Print all matches, radi men i women
-        /*
+        */
         IRepoAllMatches matchesRepo = WomenRepoFactoryAllMatches.GetRepo(); //MenRepoFactoryAllMatches.GetRepo();
         IList<Matches> matches = await matchesRepo.GetAllMatches();
         Utility.Print(matches);
@@ -32,11 +59,11 @@ internal class Program
         Utility.Print(sortedList);
         */
 
-        /*//Print all teams results, radi men i women
+        /*  //Print all teams results, radi men i women
         IRepoTeamsResults repoTeamsResults = MenRepoFactoryTeamsResults.GetRepo();
         IList<TeamResults> teamResults = await repoTeamsResults.GetTeamsResults();
         Utility.Print(teamResults);
-        */
+       */
 
         /*  //Print all group results, radi men i women
          IRepoGroupResults repoGroupResults = MenRepoFactoryGroupResults.GetRepo();
