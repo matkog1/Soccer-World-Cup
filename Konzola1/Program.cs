@@ -8,39 +8,18 @@ using System.Reflection;
 using SoccerDAL.Models;
 using SoccerDAL.AllRepos.AllMatchesRepo;
 using SoccerDAL.AllRepos.GroupResultsRepo;
-using Newtonsoft.Json.Linq;
-using SoccerDAL.AllRepos;
-using SoccerDAL.Utility;
-using System;
-using System.Collections.Immutable;
-using System.Reflection;
-using SoccerDAL.Models;
-using SoccerDAL.AllRepos.AllMatchesRepo;
-using SoccerDAL.AllRepos.GroupResultsRepo;
-using Newtonsoft.Json.Linq;
-using SoccerDAL.AllRepos;
-using SoccerDAL.Utility;
-using System;
-using System.Collections.Immutable;
-using System.Reflection;
-using SoccerDAL.Models;
-using SoccerDAL.AllRepos.AllMatchesRepo;
-using SoccerDAL.AllRepos.GroupResultsRepo;
 using SoccerDAL.AllRepos.TeamsResultsRepo;
-using SoccerDAL.Models;
-using SoccerDAL.Utility;
+using SoccerDAL.AllRepos.WomenRepos.WomenAllMatches;
 
 internal class Program
 {
-        /*//Print all teams results, radi men i women
+    private static async Task Main(string[] args)
     {
 
-        //Print all matches, radi men i women
-        */
-        IRepoAllMatches matchesRepo = WomenRepoFactoryAllMatches.GetRepo(); //MenRepoFactoryAllMatches.GetRepo();
+        IRepoAllMatches matchesRepo = MenRepoFactoryAllMatches.GetRepo(); //MenRepoFactoryAllMatches.GetRepo();
         IList<Matches> matches = await matchesRepo.GetAllMatches();
         Utility.Print(matches);
-        */
+        
 
         /*  //Print all matches by country, radi men i women
          IRepoAllMatchesByCountry matchesRepoByCountry = WomenRepoFactoryMatchesCountry.GetRepo(); //MenRepoFactoryMatchesCountry
@@ -77,5 +56,6 @@ internal class Program
         List<Player> players = playerRepository.GetPlayersFromJsonFile();
         Utility.Print(players);
         */
+    
     }
 }
