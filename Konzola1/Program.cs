@@ -29,7 +29,7 @@ internal class Program
         IRepoAllMatches matchesRepo = WomenRepoFactoryAllMatches.GetRepo(); //MenRepoFactoryAllMatches.GetRepo();
         IList<Matches> matches = await matchesRepo.GetAllMatches();
         Utility.Print(matches);
-        */ 
+        */
 
         /*  //Print all matches by country, radi men i women
          IRepoAllMatchesByCountry matchesRepoByCountry = WomenRepoFactoryMatchesCountry.GetRepo(); //MenRepoFactoryMatchesCountry
@@ -47,18 +47,18 @@ internal class Program
        
         Utility.Print(sortedList);
         */
-        
+
         /*  //Print all teams results, radi men i women
         IRepoTeamsResults repoTeamsResults = MenRepoFactoryTeamsResults.GetRepo();
         IList<TeamResults> teamResults = await repoTeamsResults.GetTeamsResults();
         Utility.Print(teamResults);
-       */ 
-        
-       /*  //Print all group results, radi men i women
-        IRepoGroupResults repoGroupResults = MenRepoFactoryGroupResults.GetRepo();
-        IList<Group> groupsResults = await repoGroupResults.GetGroupResults();
-        Utility.Print(groupsResults);
-        */
+       */
+
+        /*  //Print all group results, radi men i women
+         IRepoGroupResults repoGroupResults = MenRepoFactoryGroupResults.GetRepo();
+         IList<Group> groupsResults = await repoGroupResults.GetGroupResults();
+         Utility.Print(groupsResults);
+         */
 
         //Print all players from jsonfile but not api
         //ovo treba prepravit da radi sa json u projektu bez hardkodinga putanje
@@ -66,5 +66,6 @@ internal class Program
         List<Player> players = playerRepository.GetPlayersFromJsonFile();
         Utility.Print(players);
         */
+        await Console.Out.WriteLineAsync("Test");
     }
 }
