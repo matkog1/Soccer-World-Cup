@@ -37,14 +37,13 @@ internal class Program
          Utility.Print(matchesCountry);
         */
 
-        /* //Print all teams, radi men i women 
-        IRepoTeams teamsRepo = WomenRepoFactoryTeams.GetRepo();
+         //Print all teams, radi men i women 
+        IRepoTeams teamsRepo = MenRepoFactoryTeams.GetRepo();
         IList<Team> teamsList = await teamsRepo.GetAllTeams();
-        
-        
+        Utility.Print(teamsList);
+        /*
         List<Team> sortedList = new List<Team>(teamsList);
         sortedList.Sort(new PropertyComparer<Team>("group_id"));
-       
         Utility.Print(sortedList);
         */
 
