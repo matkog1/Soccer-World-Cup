@@ -17,7 +17,7 @@ internal class Program
     private static async Task Main(string[] args)
     {
         
-        IRepoAllMatches matchesRepo = MenRepoFactoryAllMatches.GetRepo(); //MenRepoFactoryAllMatches.GetRepo();
+        IRepoAllMatches matchesRepo = WomenRepoFactoryAllMatches.GetRepo(); //MenRepoFactoryAllMatches.GetRepo();
         IList<Matches> matches = await matchesRepo.GetAllMatches();
         Utility.Print(matches);
         
