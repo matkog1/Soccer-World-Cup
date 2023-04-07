@@ -11,28 +11,48 @@ using SoccerDAL.AllRepos.GroupResultsRepo;
 using SoccerDAL.AllRepos.TeamsResultsRepo;
 using SoccerDAL.AllRepos.WomenRepos.WomenAllMatches;
 using SoccerDAL.AllRepos.AllMatchesByCountryRepo;
+using SoccerDAL.AllRepos.WomenRepos.WomenAllMatchesByCountryRepo;
+using SoccerDAL.AllRepos.WomenRepos.WomenGroupResults;
+using SoccerDAL.AllRepos.WomenRepos.WomenPlayers;
+using SoccerDAL.AllRepos.TeamsRepo;
+using SoccerDAL.AllRepos.WomenRepos.WomenTeams;
+using SoccerDAL.AllRepos.WomenRepos.WomenTeamsResults;
+using SoccerDAL.Comparer;
 
 internal class Program
 {
     private static async Task Main(string[] args)
     {
-        
-        IRepoAllMatches matchesRepo = MenRepoFactoryAllMatches.GetRepo(); //MenRepoFactoryAllMatches.GetRepo();
-        IList<Matches> matches = await matchesRepo.GetAllMatches();
-        Utility.Print(matches);
-        
-
-         /* //Print all matches by country, radi men i women
-         IRepoAllMatchesByCountry matchesRepoByCountry = MenRepoFactoryMatchesCountry.GetRepo(); //MenRepoFactoryMatchesCountry
+        /*
+         IRepoAllMatches matchesRepo = WomenRepoFactoryAllMatches.GetRepo(); //MenRepoFactoryAllMatches.GetRepo();
+         IList<Matches> matches = await matchesRepo.GetAllMatches();
+         Utility.Print(matches);
+        */
+        /*
+         //Print all matches by country, radi men i women
+         IRepoAllMatchesByCountry matchesRepoByCountry = WomenRepoFactoryMatchesCountry.GetRepo(); //MenRepoFactoryMatchesCountry
          IList<Matches> matchesCountry = await matchesRepoByCountry.MatchesByCountry("ENG");
          Utility.Print(matchesCountry);
         */
 
+        /*
+         //Print all group results, radi men i women
+         IRepoGroupResults repoGroupResults = WomenRepoFactoryGroupResults.GetRepo();
+         IList<Group> groupsResults = await repoGroupResults.GetGroupResults();
+         Utility.Print(groupsResults);
+         */
+        /*
+        IRepoPlayer playerRepository = WomenRepoFactoryPlayer.GetRepo();
+        List<Player> players = playerRepository.GetPlayersFromJsonFile();
+        Utility.Print(players);
+        */
+
         /* //Print all teams, radi men i women 
-        IRepoTeams teamsRepo = MenRepoFactoryTeams.GetRepo();
+        IRepoTeams teamsRepo = WomenRepoFactoryTeams.GetRepo();
         IList<Team> teamsList = await teamsRepo.GetAllTeams();
         Utility.Print(teamsList);
         */
+
         /*
         List<Team> sortedList = new List<Team>(teamsList);
         sortedList.Sort(new PropertyComparer<Team>("group_id"));
@@ -40,23 +60,9 @@ internal class Program
         */
 
         /*  //Print all teams results, radi men i women
-        IRepoTeamsResults repoTeamsResults = MenRepoFactoryTeamsResults.GetRepo();
+        IRepoTeamsResults repoTeamsResults = WomenRepoFactoryTeamsResults.GetRepo();
         IList<TeamResults> teamResults = await repoTeamsResults.GetTeamsResults();
         Utility.Print(teamResults);
-       */
-
-        /* //Print all group results, radi men i women
-         IRepoGroupResults repoGroupResults = MenRepoFactoryGroupResults.GetRepo();
-         IList<Group> groupsResults = await repoGroupResults.GetGroupResults();
-         Utility.Print(groupsResults);
-         */
-
-        //Print all players from jsonfile but not api
-        //ovo treba prepravit da radi sa json u projektu bez hardkodinga putanje
-        /*IRepoPlayer playerRepository = MenRepoFactoryPlayer.GetRepo();
-        List<Player> players = playerRepository.GetPlayersFromJsonFile();
-        Utility.Print(players);
         */
-    
     }
 }
