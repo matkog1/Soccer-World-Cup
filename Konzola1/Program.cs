@@ -5,7 +5,6 @@ using SoccerDAL.Utility;
 using System;
 using System.Collections.Immutable;
 using System.Reflection;
-using SoccerDAL.Models;
 using SoccerDAL.AllRepos.AllMatchesRepo;
 using SoccerDAL.AllRepos.GroupResultsRepo;
 using SoccerDAL.AllRepos.TeamsResultsRepo;
@@ -18,6 +17,7 @@ using SoccerDAL.AllRepos.TeamsRepo;
 using SoccerDAL.AllRepos.WomenRepos.WomenTeams;
 using SoccerDAL.AllRepos.WomenRepos.WomenTeamsResults;
 using SoccerDAL.Comparer;
+
 
 internal class Program
 {
@@ -66,3 +66,4 @@ internal class Program
         */
     }
 }
+
