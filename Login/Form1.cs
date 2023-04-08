@@ -24,8 +24,12 @@ public partial class Form1 : Form
         string username = tbUsername.Text;
         string password = tbPassword.Text;
 
-        NullCheckTextBox(username, password);
-        RegisterUser(username, password);
+        bool validated = UserValidation(username, password);
+        if (validated)
+        {
+            RegisterUser(username, password);
+        }
+        Console.WriteLine("Account not validated!");
     }
 
 
@@ -35,8 +39,7 @@ public partial class Form1 : Form
         string username = tbUsername.Text;
         string password = tbPassword.Text;
 
-        NullCheckTextBox(username, password);
-
+        UserValidation(username, password);
         UserLogin(username, password);
     }
 
@@ -47,7 +50,6 @@ public partial class Form1 : Form
         if (user != null)
         {
             MessageBox.Show("Login successful.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            // Perform any additional actions after successful login, such as opening a new form.
         }
         else
         {
@@ -68,13 +70,20 @@ public partial class Form1 : Form
             MessageBox.Show("User registration failed. The username may already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
-    private void NullCheckTextBox(string username, string password)
+    private bool UserValidation(string username, string password)
     {
+        if (password.Trim().Length < 6 )
+        {
+            MessageBox.Show("Password must be longer then 6 charachters!");
+            return false;
+        }
+
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
             MessageBox.Show("Please enter both username and password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
+            return false;
         }
+        return true;
     }
 
 }
