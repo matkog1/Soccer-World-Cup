@@ -21,15 +21,15 @@ public partial class Form1 : Form
         PictureBox pictureBox = new PictureBox();
 
         pictureBox = new PictureBox();
-        pictureBox.Location = new Point(50,50); // Set the location on the form
+        pictureBox.Location = new Point(50, 50); // Set the location on the form
         pictureBox.Size = new Size(100, 100); // Set the size of the PictureBox
         pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-        pictureBox.BringToFront();  
-        pbUser.Image = Image.FromFile(Path.Combine(Application.StartupPath,"Images", "User.png"));
+        pictureBox.BringToFront();
+        pbUser.Image = Image.FromFile(Path.Combine(Application.StartupPath, "Images", "User.png"));
 
         // Add the PictureBox control to the form
         this.Controls.Add(pictureBox);
-        
+
     }
 
     private void btnRegister_Click(object sender, EventArgs e)
@@ -97,5 +97,8 @@ public partial class Form1 : Form
         return true;
     }
 
+    private void pbUser_Click(object sender, EventArgs e)
+    {
 
+    }
 }
