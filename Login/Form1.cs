@@ -101,4 +101,19 @@ public partial class Form1 : Form
     {
 
     }
+
+    private void pbExit_Click(object sender, EventArgs e)
+    {
+        Application.Exit();
+    }
+
+    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }
