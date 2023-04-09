@@ -28,50 +28,39 @@ partial class Form1
     /// </summary>
     private void InitializeComponent()
     {
-        label1 = new Label();
-        label2 = new Label();
         tbUsername = new TextBox();
         tbPassword = new TextBox();
         btnRegister = new Button();
         btnLogin = new Button();
+        pnlTop = new Panel();
+        panel1 = new Panel();
+        panel2 = new Panel();
+        panel3 = new Panel();
+        pbUser = new PictureBox();
+        pbPassword = new PictureBox();
+        pnlTop.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)pbUser).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)pbPassword).BeginInit();
         SuspendLayout();
-        // 
-        // label1
-        // 
-        label1.AutoSize = true;
-        label1.Location = new Point(220, 131);
-        label1.Name = "label1";
-        label1.Size = new Size(60, 15);
-        label1.TabIndex = 0;
-        label1.Text = "Username";
-        // 
-        // label2
-        // 
-        label2.AutoSize = true;
-        label2.Location = new Point(220, 197);
-        label2.Name = "label2";
-        label2.Size = new Size(57, 15);
-        label2.TabIndex = 1;
-        label2.Text = "Password";
         // 
         // tbUsername
         // 
-        tbUsername.Location = new Point(296, 131);
+        tbUsername.Location = new Point(395, 171);
         tbUsername.Name = "tbUsername";
-        tbUsername.Size = new Size(253, 23);
+        tbUsername.Size = new Size(310, 23);
         tbUsername.TabIndex = 2;
         // 
         // tbPassword
         // 
-        tbPassword.Location = new Point(296, 189);
+        tbPassword.Location = new Point(395, 223);
         tbPassword.Name = "tbPassword";
-        tbPassword.Size = new Size(253, 23);
+        tbPassword.Size = new Size(310, 23);
         tbPassword.TabIndex = 3;
         tbPassword.UseSystemPasswordChar = true;
         // 
         // btnRegister
         // 
-        btnRegister.Location = new Point(226, 240);
+        btnRegister.Location = new Point(395, 273);
         btnRegister.Name = "btnRegister";
         btnRegister.Size = new Size(152, 43);
         btnRegister.TabIndex = 4;
@@ -81,7 +70,7 @@ partial class Form1
         // 
         // btnLogin
         // 
-        btnLogin.Location = new Point(397, 240);
+        btnLogin.Location = new Point(553, 273);
         btnLogin.Name = "btnLogin";
         btnLogin.Size = new Size(152, 43);
         btnLogin.TabIndex = 5;
@@ -89,29 +78,98 @@ partial class Form1
         btnLogin.UseVisualStyleBackColor = true;
         btnLogin.Click += btnLogin_Click;
         // 
+        // pnlTop
+        // 
+        pnlTop.BackColor = Color.DarkSlateGray;
+        pnlTop.Controls.Add(panel1);
+        pnlTop.Dock = DockStyle.Top;
+        pnlTop.Location = new Point(0, 0);
+        pnlTop.Name = "pnlTop";
+        pnlTop.Size = new Size(800, 46);
+        pnlTop.TabIndex = 6;
+        // 
+        // panel1
+        // 
+        panel1.BackColor = Color.DarkSlateGray;
+        panel1.Dock = DockStyle.Top;
+        panel1.Location = new Point(0, 0);
+        panel1.Name = "panel1";
+        panel1.Size = new Size(800, 377);
+        panel1.TabIndex = 7;
+        // 
+        // panel2
+        // 
+        panel2.BackColor = Color.DarkSlateGray;
+        panel2.Dock = DockStyle.Left;
+        panel2.Location = new Point(0, 46);
+        panel2.Name = "panel2";
+        panel2.Size = new Size(194, 451);
+        panel2.TabIndex = 7;
+        // 
+        // panel3
+        // 
+        panel3.BackColor = Color.DarkSlateGray;
+        panel3.Location = new Point(191, 444);
+        panel3.Name = "panel3";
+        panel3.Size = new Size(609, 53);
+        panel3.TabIndex = 8;
+        // 
+        // pbUser
+        // 
+        pbUser.Image = Properties.Resources.User;
+        pbUser.Location = new Point(327, 161);
+        pbUser.Name = "pbUser";
+        pbUser.Size = new Size(46, 33);
+        pbUser.SizeMode = PictureBoxSizeMode.Zoom;
+        pbUser.TabIndex = 9;
+        pbUser.TabStop = false;
+        // 
+        // pbPassword
+        // 
+        pbPassword.Image = Properties.Resources.padlock1;
+        pbPassword.Location = new Point(323, 219);
+        pbPassword.Name = "pbPassword";
+        pbPassword.Size = new Size(50, 27);
+        pbPassword.SizeMode = PictureBoxSizeMode.Zoom;
+        pbPassword.TabIndex = 10;
+        pbPassword.TabStop = false;
+        // 
         // Form1
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(800, 450);
+        BackColor = Color.DarkGray;
+        ClientSize = new Size(800, 497);
+        ControlBox = false;
+        Controls.Add(pbPassword);
+        Controls.Add(pbUser);
+        Controls.Add(panel3);
+        Controls.Add(panel2);
+        Controls.Add(pnlTop);
         Controls.Add(btnLogin);
         Controls.Add(btnRegister);
         Controls.Add(tbPassword);
         Controls.Add(tbUsername);
-        Controls.Add(label2);
-        Controls.Add(label1);
+        FormBorderStyle = FormBorderStyle.FixedDialog;
         Name = "Form1";
+        StartPosition = FormStartPosition.CenterScreen;
         Text = "Form1";
+        pnlTop.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)pbUser).EndInit();
+        ((System.ComponentModel.ISupportInitialize)pbPassword).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
 
     #endregion
-
-    private Label label1;
-    private Label label2;
     private TextBox tbUsername;
     private TextBox tbPassword;
     private Button btnRegister;
     private Button btnLogin;
+    private Panel pnlTop;
+    private Panel panel1;
+    private Panel panel2;
+    private Panel panel3;
+    private PictureBox pbUser;
+    private PictureBox pbPassword;
 }

@@ -2,13 +2,14 @@ using Microsoft.VisualBasic.ApplicationServices;
 using SoccerDAL.Models;
 using System.Drawing.Text;
 using System.Security.Cryptography.X509Certificates;
+using System.Windows.Forms;
 using User = SoccerDAL.Models.User;
 
 namespace Login;
 
 public partial class Form1 : Form
 {
-     private readonly UserManager userManager;
+    private readonly UserManager userManager;
 
     public Form1()
     {
@@ -16,6 +17,18 @@ public partial class Form1 : Form
         IUserRepositoryFactory userRepositoryFactory = new UserFactory();
         IUserFactory userFactory = new UserFactory();
         userManager = new UserManager(userRepositoryFactory, userFactory);
+
+        PictureBox pictureBox = new PictureBox();
+
+        pictureBox = new PictureBox();
+        pictureBox.Location = new Point(50, 50); // Set the location on the form
+        pictureBox.Size = new Size(100, 100); // Set the size of the PictureBox
+        pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+        pictureBox.BringToFront();
+        pbUser.Image = Image.FromFile(Path.Combine(Application.StartupPath, "Images", "User.png"));
+
+        // Add the PictureBox control to the form
+        this.Controls.Add(pictureBox);
 
     }
 
@@ -31,8 +44,6 @@ public partial class Form1 : Form
         }
         Console.WriteLine("Account not validated!");
     }
-
-
 
     private void btnLogin_Click(object sender, EventArgs e)
     {
@@ -72,7 +83,7 @@ public partial class Form1 : Form
     }
     private bool UserValidation(string username, string password)
     {
-        if (password.Trim().Length < 6 )
+        if (password.Trim().Length < 6)
         {
             MessageBox.Show("Password must be longer then 6 charachters!");
             return false;
@@ -86,4 +97,8 @@ public partial class Form1 : Form
         return true;
     }
 
+    private void pbUser_Click(object sender, EventArgs e)
+    {
+
+    }
 }
