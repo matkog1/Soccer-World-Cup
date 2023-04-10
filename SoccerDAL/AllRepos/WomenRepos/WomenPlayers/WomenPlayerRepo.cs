@@ -11,7 +11,7 @@ namespace SoccerDAL.AllRepos.WomenRepos.WomenPlayers
 {
     internal class WomenPlayerRepo : IRepoPlayer
     {
-        private static List<Player> CreatePlayersFromJson(List<JObject>? playerDataList, string country)
+        private static List<Player> CreatePlayersFromJson(List<JObject>? playerDataList)
         {
             List<Player> players = new List<Player>();
 
@@ -21,12 +21,24 @@ namespace SoccerDAL.AllRepos.WomenRepos.WomenPlayers
                 bool captain = (bool)playerData.SelectToken("captain");
                 int shirt_number = (int)playerData.SelectToken("shirt_number");
                 string position = (string)playerData.SelectToken("position");
+                string country = (string)playerData.SelectToken("country");
 
                 Player player = new Player(name, captain, shirt_number, position, country);
                 players.Add(player);
             }
 
             return players;
+        }
+
+        public Dictionary<string, List<Player>> GetPlayersByCountryFromJsonFile()
+        {
+            List<Player> players = GetPlayersFromJsonFile();
+
+            // Group the players by country and create the dictionary
+            Dictionary<string, List<Player>> playersByCountry = players.GroupBy(p => p.Country)
+                .ToDictionary(g => g.Key, g => g.ToList());
+
+            return playersByCountry;
         }
 
         public List<Player> GetPlayersFromJsonFile()
@@ -52,12 +64,24 @@ namespace SoccerDAL.AllRepos.WomenRepos.WomenPlayers
                 List<JObject>? homePlayers = (homeTeam["starting_eleven"] ?? Enumerable.Empty<JToken>()).Concat(homeTeam["substitutes"] ?? Enumerable.Empty<JToken>()).Select(p => (JObject)p).ToList();
                 List<JObject>? awayPlayers = (awayTeam["starting_eleven"] ?? Enumerable.Empty<JToken>()).Concat(awayTeam["substitutes"] ?? Enumerable.Empty<JToken>()).Select(p => (JObject)p).ToList();
 
+                // Add the country information to each player
+                foreach (JObject player in homePlayers)
+                {
+                    player["country"] = homeTeam["country"]?.ToString()!;
+                }
+
+                foreach (JObject player in awayPlayers)
+                {
+                    player["country"] = awayTeam["country"]?.ToString()!;
+                }
+
                 // Create player objects for each team player and add to list
-                players.AddRange(CreatePlayersFromJson(homePlayers, homeTeam["team"]?["name"]?.ToString()!));
-                players.AddRange(CreatePlayersFromJson(awayPlayers, awayTeam["team"]?["name"]?.ToString()!));
+                players.AddRange(CreatePlayersFromJson(homePlayers));
+                players.AddRange(CreatePlayersFromJson(awayPlayers));
             }
 
             return players;
         }
     }
+
 }

@@ -17,7 +17,9 @@ using SoccerDAL.AllRepos.TeamsRepo;
 using SoccerDAL.AllRepos.WomenRepos.WomenTeams;
 using SoccerDAL.AllRepos.WomenRepos.WomenTeamsResults;
 using SoccerDAL.Comparer;
-
+using SoccerDAL.Models;
+using System.Collections.Generic;
+using System.Net.Http.Headers;
 
 internal class Program
 {
@@ -28,12 +30,12 @@ internal class Program
          IList<Matches> matches = await matchesRepo.GetAllMatches();
          Utility.Print(matches);
         */
-        /*
-         //Print all matches by country, radi men i women
-         IRepoAllMatchesByCountry matchesRepoByCountry = WomenRepoFactoryMatchesCountry.GetRepo(); //MenRepoFactoryMatchesCountry
-         IList<Matches> matchesCountry = await matchesRepoByCountry.MatchesByCountry("ENG");
-         Utility.Print(matchesCountry);
-        */
+
+        /* //Print all matches by country, radi men i women
+        IRepoAllMatchesByCountry matchesRepoByCountry = WomenRepoFactoryMatchesCountry.GetRepo(); //MenRepoFactoryMatchesCountry
+        IList<Matches> matchesCountry = await matchesRepoByCountry.MatchesByCountry("ENG");
+        Utility.Print(matchesCountry);
+       */
 
         /*
          //Print all group results, radi men i women
@@ -42,10 +44,17 @@ internal class Program
          Utility.Print(groupsResults);
          */
         /*
-        IRepoPlayer playerRepository = WomenRepoFactoryPlayer.GetRepo();
-        List<Player> players = playerRepository.GetPlayersFromJsonFile();
+        IRepoPlayer playerRepository = MenRepoFactoryPlayer.GetRepo();
+        var players = playerRepository.GetPlayersFromJsonFile();
         Utility.Print(players);
         */
+        /*Print dicioanry of key= country, value = players
+        IRepoPlayer repo = MenRepoFactoryPlayer.GetRepo();
+        Dictionary<string, List<Player>> pairs = repo.GetPlayersByCountryFromJsonFile();
+
+        Utility.PrintDictionaryPlayers(pairs);
+        */
+
 
         /* //Print all teams, radi men i women 
         IRepoTeams teamsRepo = WomenRepoFactoryTeams.GetRepo();
@@ -65,5 +74,8 @@ internal class Program
         Utility.Print(teamResults);
         */
     }
+
+    
+
 }
 

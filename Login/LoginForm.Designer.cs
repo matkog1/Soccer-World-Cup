@@ -1,6 +1,6 @@
 ﻿namespace Login;
 
-partial class Form1
+partial class LoginForm
 {
     /// <summary>
     ///  Required designer variable.
@@ -102,7 +102,7 @@ partial class Form1
         panel1.Dock = DockStyle.Top;
         panel1.Location = new Point(0, 0);
         panel1.Name = "panel1";
-        panel1.Size = new Size(800, 377);
+        panel1.Size = new Size(800, 350);
         panel1.TabIndex = 7;
         // 
         // pbExit
@@ -164,7 +164,6 @@ partial class Form1
         comboBox1.Name = "comboBox1";
         comboBox1.Size = new Size(121, 23);
         comboBox1.TabIndex = 11;
-        comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
         // 
         // comboBox2
         // 
@@ -174,9 +173,8 @@ partial class Form1
         comboBox2.Name = "comboBox2";
         comboBox2.Size = new Size(121, 23);
         comboBox2.TabIndex = 12;
-        comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
         // 
-        // Form1
+        // LoginForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
@@ -194,9 +192,10 @@ partial class Form1
         Controls.Add(tbPassword);
         Controls.Add(tbUsername);
         FormBorderStyle = FormBorderStyle.FixedDialog;
-        Name = "Form1";
+        Name = "LoginForm";
         StartPosition = FormStartPosition.CenterScreen;
         Text = "Form1";
+        KeyDown += LoginForm_KeyDown;
         pnlTop.ResumeLayout(false);
         panel1.ResumeLayout(false);
         ((System.ComponentModel.ISupportInitialize)pbExit).EndInit();

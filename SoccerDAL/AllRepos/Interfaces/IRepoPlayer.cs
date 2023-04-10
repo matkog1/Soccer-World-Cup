@@ -9,7 +9,8 @@ namespace SoccerDAL.AllRepos.PlayerRepo
 {
     public interface IRepoPlayer
     {
-        List<Player> GetPlayersFromJsonFile();
+        public List<Player> GetPlayersFromJsonFile();
+        public Dictionary<string, List<Player>> GetPlayersByCountryFromJsonFile();
     }
     
 }

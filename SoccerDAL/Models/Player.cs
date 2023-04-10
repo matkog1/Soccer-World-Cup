@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -17,12 +18,18 @@ namespace SoccerDAL.Models
             Position = position;
             Country = country;
         }
-
+        [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
+        [JsonProperty(PropertyName = "captain")]
         public bool Captain { get; set; }
+        [JsonProperty(PropertyName = "s hirt_Number")]
         public int Shirt_Number { get; set; }
+        [JsonProperty(PropertyName = "position")]
         public string Position { get; set; }
+        [JsonProperty(PropertyName = "country")]
         public string Country { get; set; }
+
+        public bool Favorite  { get; set; }
 
         public override string ToString()
         {

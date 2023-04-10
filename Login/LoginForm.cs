@@ -2,33 +2,24 @@ using Microsoft.VisualBasic.ApplicationServices;
 using SoccerDAL.Models;
 using System.Drawing.Text;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Policy;
 using System.Windows.Forms;
 using User = SoccerDAL.Models.User;
 
 namespace Login;
 
-public partial class Form1 : Form
+public partial class LoginForm : Form
 {
     private readonly UserManager userManager;
 
-    public Form1()
+    public LoginForm()
     {
         InitializeComponent();
         IUserRepositoryFactory userRepositoryFactory = new UserFactory();
         IUserFactory userFactory = new UserFactory();
         userManager = new UserManager(userRepositoryFactory, userFactory);
-
-        PictureBox pictureBox = new PictureBox();
-
-        pictureBox = new PictureBox();
-        pictureBox.Location = new Point(50, 50); // Set the location on the form
-        pictureBox.Size = new Size(100, 100); // Set the size of the PictureBox
-        pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-        pictureBox.BringToFront();
-        pbUser.Image = Image.FromFile(Path.Combine(Application.StartupPath, "Images", "User.png"));
-
-        // Add the PictureBox control to the form
-        this.Controls.Add(pictureBox);
+        this.AcceptButton = btnLogin;
+        this.KeyPreview = true;
 
     }
 
@@ -42,7 +33,6 @@ public partial class Form1 : Form
         {
             RegisterUser(username, password);
         }
-        Console.WriteLine("Account not validated!");
     }
 
     private void btnLogin_Click(object sender, EventArgs e)
@@ -60,14 +50,14 @@ public partial class Form1 : Form
 
         if (user != null)
         {
-            MessageBox.Show("Login successful.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Form2 form2 = new Form2();
+            form2.Show();
         }
         else
         {
             MessageBox.Show("Invalid username or password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
-
     private void RegisterUser(string username, string password)
     {
         User newUser = userManager.RegisterUser(username, password);
@@ -97,23 +87,18 @@ public partial class Form1 : Form
         return true;
     }
 
-    private void pbUser_Click(object sender, EventArgs e)
-    {
-
-    }
 
     private void pbExit_Click(object sender, EventArgs e)
     {
         Application.Exit();
     }
 
-    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+    private void LoginForm_KeyDown(object sender, KeyEventArgs e)
     {
 
-    }
-
-    private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
+        if (e.KeyCode == Keys.Escape)
+        {
+            Application.Exit();
+        }
     }
 }
