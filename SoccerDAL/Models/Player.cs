@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -17,12 +18,34 @@ namespace SoccerDAL.Models
             Position = position;
             Country = country;
         }
-
+        [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
+        [JsonProperty(PropertyName = "captain")]
         public bool Captain { get; set; }
+        [JsonProperty(PropertyName = "s hirt_Number")]
         public int Shirt_Number { get; set; }
+        [JsonProperty(PropertyName = "position")]
         public string Position { get; set; }
+        [JsonProperty(PropertyName = "country")]
         public string Country { get; set; }
+
+        public bool Favorite  { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Player player &&
+                   Name == player.Name &&
+                   Captain == player.Captain &&
+                   Shirt_Number == player.Shirt_Number &&
+                   Position == player.Position &&
+                   Country == player.Country &&
+                   Favorite == player.Favorite;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Name, Captain, Shirt_Number, Position, Country, Favorite);
+        }
 
         public override string ToString()
         {
