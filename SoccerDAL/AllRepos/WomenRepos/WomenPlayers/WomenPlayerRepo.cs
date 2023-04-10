@@ -32,7 +32,7 @@ namespace SoccerDAL.AllRepos.WomenRepos.WomenPlayers
 
         public Dictionary<string, List<Player>> GetPlayersByCountryFromJsonFile()
         {
-            List<Player> players = GetPlayersFromJsonFile();
+            HashSet<Player> players = GetPlayersFromJsonFile();
 
             // Group the players by country and create the dictionary
             Dictionary<string, List<Player>> playersByCountry = players.GroupBy(p => p.Country)
@@ -41,7 +41,7 @@ namespace SoccerDAL.AllRepos.WomenRepos.WomenPlayers
             return playersByCountry;
         }
 
-        public List<Player> GetPlayersFromJsonFile()
+        public HashSet<Player> GetPlayersFromJsonFile()
         {
             string dataFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "JsonFiles");
             string jsonFilePath = Path.Combine(dataFolderPath, "WomenMatches.json");
@@ -53,7 +53,7 @@ namespace SoccerDAL.AllRepos.WomenRepos.WomenPlayers
             JArray matches = JArray.Parse(jsonData);
 
             // Extract the players from each match
-            List<Player> players = new List<Player>();
+            HashSet<Player> players = new HashSet<Player>();
             foreach (JObject match in matches)
             {
                 // Get the home and away team data
@@ -76,8 +76,8 @@ namespace SoccerDAL.AllRepos.WomenRepos.WomenPlayers
                 }
 
                 // Create player objects for each team player and add to list
-                players.AddRange(CreatePlayersFromJson(homePlayers));
-                players.AddRange(CreatePlayersFromJson(awayPlayers));
+                players.UnionWith(CreatePlayersFromJson(homePlayers));
+                players.UnionWith(CreatePlayersFromJson(awayPlayers));
             }
 
             return players;

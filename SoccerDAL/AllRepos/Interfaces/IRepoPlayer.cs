@@ -9,7 +9,7 @@ namespace SoccerDAL.AllRepos.PlayerRepo
 {
     public interface IRepoPlayer
     {
-        public List<Player> GetPlayersFromJsonFile();
+        public HashSet<Player> GetPlayersFromJsonFile();
         public Dictionary<string, List<Player>> GetPlayersByCountryFromJsonFile();
     }
     

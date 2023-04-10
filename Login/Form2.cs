@@ -74,7 +74,7 @@ namespace Login
                     e.Value = $"{team.country}, ({team.fifa_code})";
                 }
             };
-            cbTeams.SelectedIndexChanged += cbTeams_SelectedIndexChanged; // Attach the event
+            cbTeams.SelectedIndexChanged += cbTeams_SelectedIndexChanged; 
         }
 
         private void btnSave_Click(object sender, EventArgs e)
