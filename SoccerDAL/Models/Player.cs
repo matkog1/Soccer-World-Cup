@@ -31,6 +31,22 @@ namespace SoccerDAL.Models
 
         public bool Favorite  { get; set; }
 
+        public override bool Equals(object? obj)
+        {
+            return obj is Player player &&
+                   Name == player.Name &&
+                   Captain == player.Captain &&
+                   Shirt_Number == player.Shirt_Number &&
+                   Position == player.Position &&
+                   Country == player.Country &&
+                   Favorite == player.Favorite;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Name, Captain, Shirt_Number, Position, Country, Favorite);
+        }
+
         public override string ToString()
         {
             PropertyInfo[] properties = GetType().GetProperties();

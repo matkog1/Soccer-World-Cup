@@ -31,12 +31,12 @@
             panel1 = new Panel();
             pbExit = new PictureBox();
             panel3 = new Panel();
+            cbCountryPlayers = new ComboBox();
             lbPlayers = new Label();
             btnSave = new Button();
             lbFavoriteTeam = new Label();
             cbTeams = new ComboBox();
             panel2 = new Panel();
-            cbPlayers = new ComboBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbExit).BeginInit();
             panel3.SuspendLayout();
@@ -66,7 +66,7 @@
             // panel3
             // 
             panel3.BackColor = Color.DarkGray;
-            panel3.Controls.Add(cbPlayers);
+            panel3.Controls.Add(cbCountryPlayers);
             panel3.Controls.Add(lbPlayers);
             panel3.Controls.Add(btnSave);
             panel3.Controls.Add(lbFavoriteTeam);
@@ -75,6 +75,14 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(603, 410);
             panel3.TabIndex = 10;
+            // 
+            // cbCountryPlayers
+            // 
+            cbCountryPlayers.FormattingEnabled = true;
+            cbCountryPlayers.Location = new Point(261, 83);
+            cbCountryPlayers.Name = "cbCountryPlayers";
+            cbCountryPlayers.Size = new Size(211, 23);
+            cbCountryPlayers.TabIndex = 7;
             // 
             // lbPlayers
             // 
@@ -123,14 +131,6 @@
             panel2.Size = new Size(194, 400);
             panel2.TabIndex = 9;
             // 
-            // cbPlayers
-            // 
-            cbPlayers.FormattingEnabled = true;
-            cbPlayers.Location = new Point(261, 83);
-            cbPlayers.Name = "cbPlayers";
-            cbPlayers.Size = new Size(211, 23);
-            cbPlayers.TabIndex = 7;
-            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -158,6 +158,6 @@
         private Label lbFavoriteTeam;
         private Button btnSave;
         private Label lbPlayers;
-        private ComboBox cbPlayers;
+        private ComboBox cbCountryPlayers;
     }
 }

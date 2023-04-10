@@ -24,41 +24,28 @@ namespace Login
         {
             InitializeComponent();
             LoadTeams();
-            LoadPlayers();
         }
 
         private async Task LoadPlayers()
         {
-            IRepoPlayer playerRepository = MenRepoFactoryPlayer.GetRepo();
-            var playersDictionary = playerRepository.GetPlayersFromJsonFile();
-
-
-        }
-
-        private void PrintDictionaryToTextBox(Dictionary<string, List<Player>> playersDictionary)
-        {
-
-            StringBuilder sb = new StringBuilder();
-
-            foreach (var entry in playersDictionary)
+            IRepoPlayer repo = MenRepoFactoryPlayer.GetRepo();
+            Dictionary<string, List<Player>> _playersByCountry = repo.GetPlayersByCountryFromJsonFile();
+            if (_playersByCountry != null)
             {
-                string country = entry.Key;
-                List<Player> players = entry.Value;
-
-                sb.AppendLine($"Country: {country}");
-                sb.AppendLine("Players:");
-
-                foreach (Player player in players)
+                Team selectedTeam = (Team)cbTeams.SelectedItem;
+                if (selectedTeam != null)
                 {
-                    sb.AppendLine($"Name: {player.Name}, Captain: {player.Captain}, Shirt Number: {player.Shirt_Number}, Position: {player.Position}, Country: {player.Country}");
+                    string selectedCountry = selectedTeam.country;
+                    if (_playersByCountry.ContainsKey(selectedCountry))
+                    {
+                        List<Player> players = _playersByCountry[selectedCountry];
+                        cbCountryPlayers.DataSource = players;
+                        cbCountryPlayers.DisplayMember = "Name";
+                    }
                 }
-
-                sb.AppendLine();
             }
 
-            cbPlayers.Text = sb.ToString();
         }
-
         private async Task LoadTeams()
         {
             IRepoTeams teamsRepo = MenRepoFactoryTeams.GetRepo();
@@ -66,6 +53,12 @@ namespace Login
             List<Team> teams = teamsList.ToList();
             PrintTeams(teams);
             LoadSelectedCountry();
+        }
+
+
+        private void cbTeams_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadPlayers();
         }
 
         private void PrintTeams(List<Team> teams)
@@ -81,6 +74,7 @@ namespace Login
                     e.Value = $"{team.country}, ({team.fifa_code})";
                 }
             };
+            cbTeams.SelectedIndexChanged += cbTeams_SelectedIndexChanged; // Attach the event
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -123,6 +117,7 @@ namespace Login
         {
             Application.Exit();
         }
+
     }
 
 }
