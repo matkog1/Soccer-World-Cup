@@ -1,4 +1,5 @@
 World Cup Statistics Display Project
+
 This project aims to display statistics from the 2018 Men's World Cup and 2019 Women's World Cup using the provided API: https://worldcup-vua.nullbit.hr/. The project consists of three applications - a Windows Forms application, a Windows Presentation Foundation application, and a Class Library for data manipulation.
 
 Data Layer
