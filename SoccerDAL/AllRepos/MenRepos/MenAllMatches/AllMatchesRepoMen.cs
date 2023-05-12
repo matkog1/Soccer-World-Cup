@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using SoccerDAL.AllRepos.AllMatchesRepo;
+using SoccerDAL.AllRepos.Interfaces;
 using SoccerDAL.Errors;
 using SoccerDAL.Models;
 using System;
@@ -8,14 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoccerDAL.AllRepos.AllMatchesRepo
+namespace SoccerDAL.AllRepos.MenRepos.MenAllMatches
 {
     internal class AllMatchesRepoMen : IRepoAllMatches
     {
 
         private readonly string _apiGetMatches = "https://worldcup-vua.nullbit.hr/men/matches";
         private readonly HttpClient _client;
-    
+
 
         public AllMatchesRepoMen(HttpClient client)
         {

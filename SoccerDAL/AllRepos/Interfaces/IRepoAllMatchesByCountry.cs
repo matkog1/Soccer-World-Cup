@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoccerDAL.AllRepos.AllMatchesByCountryRepo
+namespace SoccerDAL.AllRepos.Interfaces
 {
     public interface IRepoAllMatchesByCountry
     {

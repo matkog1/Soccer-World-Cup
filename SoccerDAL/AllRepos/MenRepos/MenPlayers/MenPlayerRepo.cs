@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SoccerDAL.AllRepos.Interfaces;
 using SoccerDAL.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoccerDAL.AllRepos.PlayerRepo
+namespace SoccerDAL.AllRepos.MenRepos.MenPlayers
 {
     internal class MenPlayerRepo : IRepoPlayer
     {
@@ -70,7 +71,7 @@ namespace SoccerDAL.AllRepos.PlayerRepo
                 {
                     player["country"] = homeTeam["country"]?.ToString()!;
                 }
-              
+
                 foreach (JObject player in awayPlayers)
                 {
                     player["country"] = awayTeam["country"]?.ToString()!;

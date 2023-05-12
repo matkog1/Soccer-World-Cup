@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using SoccerDAL.AllRepos.AllMatchesByCountryRepo;
+using SoccerDAL.AllRepos.Interfaces;
 using SoccerDAL.Errors;
 using SoccerDAL.Models;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoccerDAL.AllRepos.WomenRepos.WomenAllMatchesByCountryRepo
+namespace SoccerDAL.AllRepos.WomenRepos.WomenAllMatchesByCountry
 {
     internal class WomenAllMatchesByCountryRepo : IRepoAllMatchesByCountry
     {

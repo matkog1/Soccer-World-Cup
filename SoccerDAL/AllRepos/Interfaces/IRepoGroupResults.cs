@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoccerDAL.AllRepos.GroupResultsRepo
+namespace SoccerDAL.AllRepos.Interfaces
 {
     public interface IRepoGroupResults
     {

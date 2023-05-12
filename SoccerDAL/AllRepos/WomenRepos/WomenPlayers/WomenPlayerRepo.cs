@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
-using SoccerDAL.AllRepos.PlayerRepo;
+using SoccerDAL.AllRepos.Interfaces;
 using SoccerDAL.Models;
 using System;
 using System.Collections.Generic;

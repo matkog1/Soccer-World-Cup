@@ -1,4 +1,5 @@
-﻿ using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using SoccerDAL.AllRepos.Interfaces;
 using SoccerDAL.Errors;
 using SoccerDAL.Models;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoccerDAL.AllRepos.TeamsResultsRepo
+namespace SoccerDAL.AllRepos.MenRepos.MenTeamsResults
 {
     internal class MenTeamsResultsRepo : IRepoTeamsResults
     {

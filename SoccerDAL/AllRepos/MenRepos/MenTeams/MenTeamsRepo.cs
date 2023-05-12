@@ -8,8 +8,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using SoccerDAL.AllRepos.Interfaces;
 
-namespace SoccerDAL.AllRepos.TeamsRepo
+namespace SoccerDAL.AllRepos.MenRepos.MenTeams
 {
     internal class MenTeamsRepo : IRepoTeams
     {

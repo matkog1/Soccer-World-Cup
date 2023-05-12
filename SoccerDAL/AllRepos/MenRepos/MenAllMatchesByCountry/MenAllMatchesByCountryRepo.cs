@@ -1,14 +1,14 @@
 ﻿using Newtonsoft.Json;
 using SoccerDAL.Errors;
 using SoccerDAL.Models;
-using SoccerDAL.AllRepos.AllMatchesByCountryRepo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SoccerDAL.AllRepos.Interfaces;
 
-namespace SoccerDAL.AllRepos.AllMatchesByCountryRepo
+namespace SoccerDAL.AllRepos.MenRepos.MenAllMatchesByCountry
 {
     internal class MenAllMatchesByCountryRepo : IRepoAllMatchesByCountry
     {

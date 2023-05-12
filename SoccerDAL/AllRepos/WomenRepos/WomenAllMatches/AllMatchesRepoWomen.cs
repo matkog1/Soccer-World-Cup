@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using SoccerDAL.AllRepos.AllMatchesRepo;
+using SoccerDAL.AllRepos.Interfaces;
 using SoccerDAL.Errors;
 using SoccerDAL.Models;
 using System;

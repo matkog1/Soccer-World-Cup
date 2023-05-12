@@ -1,29 +1,27 @@
-﻿using SoccerDAL.AllRepos.PlayerRepo;
-using SoccerDAL.AllRepos.TeamsRepo;
-using SoccerDAL.AllRepos.WomenRepos.WomenPlayers;
-using SoccerDAL.AllRepos.WomenRepos.WomenTeams;
-using SoccerDAL.Comparer;
+using SoccerDAL.AllRepos.Interfaces;
+using SoccerDAL.AllRepos.MenRepos.MenPlayers;
+using System.Numerics;
+using SoccerDAL;
 using SoccerDAL.Models;
-using SoccerDAL.Utility;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using SoccerDAL.AllRepos.MenRepos.MenTeams;
 
-namespace Login
+namespace WinFormsApp1
 {
-    public partial class Form2 : Form
+    public partial class FormCountries : Form
     {
-        public Form2()
+
+        public FormCountries()
         {
             InitializeComponent();
+            LocationSettings();
             LoadTeams();
+        }
+
+
+
+        private void btnSave_Click_1(object sender, EventArgs e)
+        {
+            SaveSelectedCountry();
         }
 
         private async Task LoadPlayers()
@@ -41,6 +39,7 @@ namespace Login
                         List<Player> players = _playersByCountry[selectedCountry];
                         cbCountryPlayers.DataSource = players;
                         cbCountryPlayers.DisplayMember = "Name";
+
                     }
                 }
             }
@@ -74,13 +73,9 @@ namespace Login
                     e.Value = $"{team.country}, ({team.fifa_code})";
                 }
             };
-            cbTeams.SelectedIndexChanged += cbTeams_SelectedIndexChanged; 
+            cbTeams.SelectedIndexChanged += cbTeams_SelectedIndexChanged;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            SaveSelectedCountry();
-        }
 
         private void LoadSelectedCountry()
         {
@@ -113,11 +108,38 @@ namespace Login
             }
         }
 
-        private void pbExit_Click(object sender, EventArgs e)
+        private void LocationSettings()
         {
-            Application.Exit();
+            int centerX = this.Width / 2;
+            int centerY = this.Height / 2;
+
+            int groupBoxX = centerX - (groupboxFavoriteTeams.Width / 2);
+            int groupBoxY = centerY - (groupboxFavoriteTeams.Height / 2);
+
+            groupboxFavoriteTeams.Location = new Point(groupBoxX, groupBoxY);
         }
 
-    }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Player selectedPlayer = (Player)cbCountryPlayers.SelectedItem;
+            selectedPlayer.Favorite = true;
 
+            if (selectedPlayer != null)
+            {
+                dataGridPlayers.Rows.Add(
+                    selectedPlayer.Name,
+                    selectedPlayer.Shirt_Number,
+                    selectedPlayer.Position,
+                    selectedPlayer.Captain,
+                    selectedPlayer.Favorite
+                    );
+            }
+            dataGridPlayers.DefaultCellStyle.ForeColor = Color.Black;
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
