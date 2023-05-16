@@ -36,6 +36,7 @@
             btnSettings = new Button();
             pnl = new Panel();
             pnlMain = new Panel();
+            button1 = new Button();
             pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlLeft.SuspendLayout();
@@ -65,6 +66,7 @@
             // pnlLeft
             // 
             pnlLeft.BackColor = Color.FromArgb(50, 49, 69);
+            pnlLeft.Controls.Add(button1);
             pnlLeft.Controls.Add(button3);
             pnlLeft.Controls.Add(button2);
             pnlLeft.Controls.Add(btnSettings);
@@ -82,7 +84,7 @@
             button3.Name = "button3";
             button3.Size = new Size(130, 45);
             button3.TabIndex = 3;
-            button3.Text = "Ranking";
+            button3.Text = "Ranking Teams";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -128,6 +130,16 @@
             pnlMain.Size = new Size(899, 530);
             pnlMain.TabIndex = 3;
             // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.Location = new Point(0, 190);
+            button1.Name = "button1";
+            button1.Size = new Size(130, 45);
+            button1.TabIndex = 4;
+            button1.Text = "Ranking Players";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -155,5 +167,6 @@
         private PictureBox pictureBox1;
         private Button button2;
         private Button button3;
+        private Button button1;
     }
 }
