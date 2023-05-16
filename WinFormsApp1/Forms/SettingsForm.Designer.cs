@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             groupboxLogin = new GroupBox();
             btnSave = new Button();
             cbLanguage = new ComboBox();
             cbChampionship = new ComboBox();
             lbLanguage = new Label();
             lbChampionship = new Label();
+            contextMenuStrip1 = new ContextMenuStrip(components);
             groupboxLogin.SuspendLayout();
             SuspendLayout();
             // 
@@ -101,6 +103,11 @@
             lbChampionship.TabIndex = 0;
             lbChampionship.Text = "Championship";
             // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(61, 4);
+            // 
             // SettingsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -125,5 +132,6 @@
         private Label lbChampionship;
         private Button button2;
         private Button btnSave;
+        private ContextMenuStrip contextMenuStrip1;
     }
 }

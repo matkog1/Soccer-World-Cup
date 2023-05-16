@@ -1,5 +1,6 @@
 ﻿using Microsoft.CSharp.RuntimeBinder;
 using Microsoft.VisualBasic;
+using SoccerDAL.Comparer;
 using SoccerDAL.Models;
 using System;
 using System.Collections;
@@ -30,6 +31,11 @@ namespace SoccerDAL.Utility
 
                 Console.WriteLine();
             }
+        }
+
+        public static void CompareColumns<T>(List<T> matchesList, string propertyForComparison,bool order)
+        {
+            matchesList.Sort(new PropertyComparer<T>(propertyForComparison, order));
         }
 
     }

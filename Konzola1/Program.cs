@@ -1,39 +1,50 @@
-﻿using SoccerDAL.AllRepos.PlayerRepo;
+﻿
 using Newtonsoft.Json.Linq;
 using SoccerDAL.AllRepos;
 using SoccerDAL.Utility;
 using System;
 using System.Collections.Immutable;
 using System.Reflection;
-using SoccerDAL.AllRepos.AllMatchesRepo;
-using SoccerDAL.AllRepos.GroupResultsRepo;
-using SoccerDAL.AllRepos.TeamsResultsRepo;
 using SoccerDAL.AllRepos.WomenRepos.WomenAllMatches;
-using SoccerDAL.AllRepos.AllMatchesByCountryRepo;
-using SoccerDAL.AllRepos.WomenRepos.WomenAllMatchesByCountryRepo;
 using SoccerDAL.AllRepos.WomenRepos.WomenGroupResults;
 using SoccerDAL.AllRepos.WomenRepos.WomenPlayers;
-using SoccerDAL.AllRepos.TeamsRepo;
 using SoccerDAL.AllRepos.WomenRepos.WomenTeams;
 using SoccerDAL.AllRepos.WomenRepos.WomenTeamsResults;
 using SoccerDAL.Comparer;
 using SoccerDAL.Models;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
+using SoccerDAL.AllRepos.Interfaces;
+using SoccerDAL.AllRepos.MenRepos.MenAllMatches;
+using SoccerDAL.AllRepos.WomenRepos.WomenAllMatchesByCountry;
+using SoccerDAL.AllRepos.MenRepos.MenPlayers;
+using SoccerDAL.AllRepos.MenRepos.MenAllMatchesByCountry;
 
 internal class Program
 {
     private static async Task Main(string[] args)
     {
         /*
-         IRepoAllMatches matchesRepo = WomenRepoFactoryAllMatches.GetRepo(); //MenRepoFactoryAllMatches.GetRepo();
+         IRepoAllMatches matchesRepo = MenRepoFactoryAllMatches.GetRepo(); //MenRepoFactoryAllMatches.GetRepo();
          IList<Matches> matches = await matchesRepo.GetAllMatches();
          Utility.Print(matches);
         */
-
-        /* //Print all matches by country, radi men i women
-        IRepoAllMatchesByCountry matchesRepoByCountry = WomenRepoFactoryMatchesCountry.GetRepo(); //MenRepoFactoryMatchesCountry
+        /*
+         //Print all matches by country, radi men i women
+        IRepoAllMatchesByCountry matchesRepoByCountry = MenRepoFactoryMatchesCountry.GetRepo(); //MenRepoFactoryMatchesCountry
         IList<Matches> matchesCountry = await matchesRepoByCountry.MatchesByCountry("ENG");
+        List<Matches> matchesList  = matchesCountry.ToList();
+
+        foreach (var item in matchesList)
+        {
+            await Console.Out.WriteLineAsync(item.attendance.ToString());
+            await Console.Out.WriteLineAsync(item.venue.ToString());
+            await Console.Out.WriteLineAsync(item.home_team_country.ToString());
+            await Console.Out.WriteLineAsync(item.away_team_country.ToString());
+        }
+        */
+        
+        /*
         Utility.Print(matchesCountry);
        */
 

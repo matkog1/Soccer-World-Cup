@@ -31,6 +31,7 @@
             pnlTop = new Panel();
             pictureBox1 = new PictureBox();
             pnlLeft = new Panel();
+            button3 = new Button();
             button2 = new Button();
             btnSettings = new Button();
             pnl = new Panel();
@@ -64,6 +65,7 @@
             // pnlLeft
             // 
             pnlLeft.BackColor = Color.FromArgb(50, 49, 69);
+            pnlLeft.Controls.Add(button3);
             pnlLeft.Controls.Add(button2);
             pnlLeft.Controls.Add(btnSettings);
             pnlLeft.Dock = DockStyle.Left;
@@ -72,6 +74,17 @@
             pnlLeft.Name = "pnlLeft";
             pnlLeft.Size = new Size(127, 530);
             pnlLeft.TabIndex = 1;
+            // 
+            // button3
+            // 
+            button3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            button3.Location = new Point(0, 139);
+            button3.Name = "button3";
+            button3.Size = new Size(130, 45);
+            button3.TabIndex = 3;
+            button3.Text = "Ranking";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button2
             // 
@@ -141,5 +154,6 @@
         private Button btnSettings;
         private PictureBox pictureBox1;
         private Button button2;
+        private Button button3;
     }
 }

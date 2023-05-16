@@ -15,11 +15,9 @@ namespace WinFormsApp1
 {
     public partial class MainForm : Form
     {
-        private SettingsForm settingsForm;
         public MainForm()
         {
             InitializeComponent();
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -31,14 +29,25 @@ namespace WinFormsApp1
         private void button2_Click(object sender, EventArgs e)
         {
             pnlMain.Controls.Clear();
+            LoadCountriesForm();
+
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            pnlMain.Controls.Clear();
+            LoadRankingForm();
+        }
+
+        private void LoadCountriesForm()
+        {
             FormCountries countries = new FormCountries();
             countries.TopLevel = false;
             countries.FormBorderStyle = FormBorderStyle.None;
             countries.Dock = DockStyle.Fill;
             pnlMain.Controls.Add(countries);
             countries.Show();
-
         }
+
         private void LoadSettings()
         {
             SettingsForm settingsForm = new SettingsForm();
@@ -47,6 +56,16 @@ namespace WinFormsApp1
             settingsForm.Dock = DockStyle.Fill;
             pnlMain.Controls.Add(settingsForm);
             settingsForm.Show();
+        }
+
+        private void LoadRankingForm()
+        {
+            RankingMatchesForm rankingForm = new RankingMatchesForm();
+            rankingForm.TopLevel = false;
+            rankingForm.FormBorderStyle = FormBorderStyle.None;
+            rankingForm.Dock = DockStyle.Fill;
+            pnlMain.Controls.Add(rankingForm);
+            rankingForm.Show();
         }
     }
 }

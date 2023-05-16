@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoccerDAL.Models
 {
-    public class Matches
+    public class Matches :IComparable<Matches>
     {
         public Matches(string venue, string location, string status, string time, string fifa_id, Weather weather, string attendance, string[] officials, string stage_name, string home_team_country, string away_team_country, DateTime datetime, string winner, string winner_code, Home_Team home_team, Away_Team away_team, Home_Team_Events[] home_team_events, Away_Team_Events[] away_team_events, Home_Team_Statistics home_team_statistics, Away_Team_Statistics away_team_statistics, DateTime last_event_update_at, DateTime? last_score_update_at)
         {
@@ -77,6 +77,13 @@ namespace SoccerDAL.Models
         public DateTime last_event_update_at { get; set; }
         [JsonProperty(PropertyName = "last_score_update_at")]
         public DateTime? last_score_update_at { get; set; }
+
+        public int CompareTo(Matches? other)
+        {
+            if (other == null) return 1;
+
+            return attendance.CompareTo(other.attendance);
+        }
 
         public override string ToString()
         {
