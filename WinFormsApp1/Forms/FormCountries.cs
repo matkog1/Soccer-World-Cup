@@ -26,7 +26,7 @@ namespace WinFormsApp1
             string[] language = File.ReadAllLines(filePath);
             string chosenLanguage = language[1];
 
-   
+
             CultureInfo culture;
             switch (chosenLanguage)
             {
@@ -78,11 +78,11 @@ namespace WinFormsApp1
             IRepoPlayer repo;
             if (championship == "Men")
             {
-                repo = MenRepoFactoryPlayer.GetRepo(); 
+                repo = MenRepoFactoryPlayer.GetRepo();
             }
             else if (championship == "Women")
             {
-                repo = WomenRepoFactoryPlayer.GetRepo(); 
+                repo = WomenRepoFactoryPlayer.GetRepo();
             }
             else
             {
@@ -206,7 +206,22 @@ namespace WinFormsApp1
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (dataGridPlayers.RowCount > 0)
+                {
+                    int lastRowIndex = dataGridPlayers.Rows[dataGridPlayers.RowCount - 2].IsNewRow ? dataGridPlayers.RowCount - 3 : dataGridPlayers.RowCount - 2;
+                    dataGridPlayers.Rows.RemoveAt(lastRowIndex);
+                }
+                else
+                {
+                    MessageBox.Show("There are no rows to remove!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Row is empty : nothing to remove!", "Error", MessageBoxButtons.OKCancel,MessageBoxIcon.Exclamation);
+            }
         }
     }
 }
