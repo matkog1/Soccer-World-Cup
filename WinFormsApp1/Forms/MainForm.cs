@@ -1,15 +1,20 @@
-﻿using System;
+﻿using RazorEngine;
+using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Xsl;
+using System.Resources;
 using WinFormsApp1.Forms;
+using System.Globalization;
 
 namespace WinFormsApp1
 {
@@ -18,12 +23,40 @@ namespace WinFormsApp1
         public MainForm()
         {
             InitializeComponent();
+            LoadSettingsForm();
+            SetLanguage();
+        }
+
+        private void SetLanguage()
+        {
+            string filePath = Path.Combine(Application.StartupPath, "options.txt");
+            string[] language = File.ReadAllLines(filePath);
+            string chosenLanguage = language[1];
+
+            // Convert the language to a CultureInfo
+            CultureInfo culture;
+            switch (chosenLanguage)
+            {
+                case "Croatian":
+                    culture = new CultureInfo("hr");
+                    break;
+                default:
+                    culture = new CultureInfo("en");
+                    break;
+            }
+
+            // Change the culture of the current thread
+            Thread.CurrentThread.CurrentUICulture = culture;
+
+            // Reload the form to apply the new culture
+            this.Controls.Clear();
+            this.InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             pnlMain.Controls.Clear();
-            LoadSettings();
+            LoadSettingsForm();
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -63,7 +96,7 @@ namespace WinFormsApp1
             countries.Show();
         }
 
-        private void LoadSettings()
+        private void LoadSettingsForm()
         {
             SettingsForm settingsForm = new SettingsForm();
             settingsForm.TopLevel = false;

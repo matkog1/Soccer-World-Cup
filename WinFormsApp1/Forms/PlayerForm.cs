@@ -1,5 +1,6 @@
 ﻿using SoccerDAL.AllRepos.Interfaces;
 using SoccerDAL.AllRepos.MenRepos.MenAllMatches;
+using SoccerDAL.AllRepos.WomenRepos.WomenAllMatches;
 using SoccerDAL.Comparer;
 using SoccerDAL.Models;
 using SoccerDAL.Utility;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,13 +26,67 @@ namespace WinFormsApp1.Forms
         {
             InitializeComponent();
             LoadAsync();
+            SetLanguage();
         }
+
+        private void SetLanguage()
+        {
+            string filePath = Path.Combine(Application.StartupPath, "options.txt");
+            string[] language = File.ReadAllLines(filePath);
+            string chosenLanguage = language[1];
+
+            CultureInfo culture;
+            switch (chosenLanguage)
+            {
+                case "Croatian":
+                    culture = new CultureInfo("hr");
+                    break;
+                default:
+                    culture = new CultureInfo("en");
+                    break;
+            }
+            Thread.CurrentThread.CurrentUICulture = culture;
+            this.Controls.Clear();
+            this.InitializeComponent();
+        }
+
         private static async Task<List<Matches>> GetMatches()
         {
-            IRepoAllMatches matchesRepo = MenRepoFactoryAllMatches.GetRepo();
+            string championship = GetChampionship();
+            IRepoAllMatches matchesRepo;
+
+            matchesRepo = CheckChampionshipType(championship);
+
             IList<Matches> matches = await matchesRepo.GetAllMatches();
             List<Matches> matches1 = matches.ToList();
             return matches1;
+        }
+
+        private static IRepoAllMatches CheckChampionshipType(string championship)
+        {
+            IRepoAllMatches matchesRepo;
+            if (championship == "Men")
+            {
+                matchesRepo = MenRepoFactoryAllMatches.GetRepo();
+            }
+            else if (championship == "Women")
+            {
+                matchesRepo = WomenRepoFactoryAllMatches.GetRepo();
+            }
+            else
+            {
+                throw new Exception();
+            }
+
+            return matchesRepo;
+        }
+
+        private static string GetChampionship()
+        {
+            string filePath = Path.Combine(Application.StartupPath, "options.txt");
+            string[] lines = File.ReadAllLines(filePath);
+            string chosen = lines[0];
+            return chosen;
         }
 
         private async Task LoadAsync()

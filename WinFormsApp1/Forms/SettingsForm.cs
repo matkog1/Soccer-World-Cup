@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,34 @@ namespace WinFormsApp1.Forms
         {
             InitializeComponent();
             LocationSettings();
+            SetLanguage();
             Load();
+        }
+
+        private void SetLanguage()
+        {
+            string filePath = Path.Combine(Application.StartupPath, "options.txt");
+            string[] language = File.ReadAllLines(filePath);
+            string chosenLanguage = language[1];
+
+            // Convert the language to a CultureInfo
+            CultureInfo culture;
+            switch (chosenLanguage)
+            {
+                case "Croatian":
+                    culture = new CultureInfo("hr");
+                    break;
+                default:
+                    culture = new CultureInfo("en");
+                    break;
+            }
+
+            // Change the culture of the current thread
+            Thread.CurrentThread.CurrentUICulture = culture;
+
+            // Reload the form to apply the new culture
+            this.Controls.Clear();
+            this.InitializeComponent();
         }
 
         private void LocationSettings()
@@ -64,7 +92,7 @@ namespace WinFormsApp1.Forms
                 MessageBox.Show("Options saved to file.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-
+            SetLanguage();
         }
     }
 }
