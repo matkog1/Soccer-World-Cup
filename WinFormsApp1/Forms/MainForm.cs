@@ -25,6 +25,12 @@ namespace WinFormsApp1
             pnlMain.Controls.Clear();
             LoadSettings();
         }
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            pnlMain.Controls.Clear();
+            LoadPlayerRankingForm();
+        }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -36,6 +42,15 @@ namespace WinFormsApp1
         {
             pnlMain.Controls.Clear();
             LoadRankingForm();
+        }
+        private void LoadPlayerRankingForm()
+        {
+            PlayerForm playerRankingForm = new PlayerForm();
+            playerRankingForm.TopLevel = false;
+            playerRankingForm.FormBorderStyle = FormBorderStyle.None;
+            playerRankingForm.Dock = DockStyle.Fill;
+            pnlMain.Controls.Add(playerRankingForm);
+            playerRankingForm.Show();
         }
 
         private void LoadCountriesForm()
@@ -67,5 +82,6 @@ namespace WinFormsApp1
             pnlMain.Controls.Add(rankingForm);
             rankingForm.Show();
         }
+
     }
 }

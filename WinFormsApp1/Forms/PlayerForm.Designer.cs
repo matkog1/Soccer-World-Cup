@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             dataGridPlayers = new DataGridView();
-            btnOrderByGoals = new Button();
-            btnOrderByYellowCards = new Button();
+            lblPlayerRanking = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridPlayers).BeginInit();
             SuspendLayout();
             // 
@@ -43,24 +42,18 @@
             dataGridPlayers.RowTemplate.Height = 25;
             dataGridPlayers.Size = new Size(648, 231);
             dataGridPlayers.TabIndex = 0;
+            dataGridPlayers.ColumnHeaderMouseClick += dataGridPlayers_ColumnHeaderMouseClick;
             // 
-            // btnOrderByGoals
+            // lblPlayerRanking
             // 
-            btnOrderByGoals.Location = new Point(85, 100);
-            btnOrderByGoals.Name = "btnOrderByGoals";
-            btnOrderByGoals.Size = new Size(101, 32);
-            btnOrderByGoals.TabIndex = 1;
-            btnOrderByGoals.Text = "Order by Goals";
-            btnOrderByGoals.UseVisualStyleBackColor = true;
-            // 
-            // btnOrderByYellowCards
-            // 
-            btnOrderByYellowCards.Location = new Point(207, 100);
-            btnOrderByYellowCards.Name = "btnOrderByYellowCards";
-            btnOrderByYellowCards.Size = new Size(101, 32);
-            btnOrderByYellowCards.TabIndex = 2;
-            btnOrderByYellowCards.Text = "Order By Yellow Cards";
-            btnOrderByYellowCards.UseVisualStyleBackColor = true;
+            lblPlayerRanking.AutoSize = true;
+            lblPlayerRanking.Font = new Font("Bitstream Vera Sans", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPlayerRanking.ForeColor = Color.White;
+            lblPlayerRanking.Location = new Point(85, 104);
+            lblPlayerRanking.Name = "lblPlayerRanking";
+            lblPlayerRanking.Size = new Size(216, 29);
+            lblPlayerRanking.TabIndex = 1;
+            lblPlayerRanking.Text = "Player Ranking";
             // 
             // PlayerForm
             // 
@@ -68,19 +61,18 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(44, 43, 60);
             ClientSize = new Size(800, 450);
-            Controls.Add(btnOrderByYellowCards);
-            Controls.Add(btnOrderByGoals);
+            Controls.Add(lblPlayerRanking);
             Controls.Add(dataGridPlayers);
             Name = "PlayerForm";
             Text = "PlayerForm";
             ((System.ComponentModel.ISupportInitialize)dataGridPlayers).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private DataGridView dataGridPlayers;
-        private Button btnOrderByGoals;
-        private Button btnOrderByYellowCards;
+        private Label lblPlayerRanking;
     }
 }

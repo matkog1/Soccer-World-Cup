@@ -17,10 +17,20 @@ namespace WinFormsApp1.Forms
 {
     public partial class PlayerForm : Form
     {
+        //za sortiranje columna na klik
+        int currentColumnIndex = -1;
+        bool ascending = true;
         public PlayerForm()
         {
             InitializeComponent();
             LoadAsync();
+        }
+        private static async Task<List<Matches>> GetMatches()
+        {
+            IRepoAllMatches matchesRepo = MenRepoFactoryAllMatches.GetRepo();
+            IList<Matches> matches = await matchesRepo.GetAllMatches();
+            List<Matches> matches1 = matches.ToList();
+            return matches1;
         }
 
         private async Task LoadAsync()
@@ -28,7 +38,7 @@ namespace WinFormsApp1.Forms
             List<Matches> AllMatches = await GetMatches();
             List<GoalEvents> goalsList = new List<GoalEvents>();
 
-            GetGoalEvents(AllMatches, goalsList);
+            GetEvents(AllMatches, goalsList);
 
             var groupedStats = goalsList.GroupBy(g => g.player).Select(group => new PlayerStats
             {
@@ -36,11 +46,11 @@ namespace WinFormsApp1.Forms
                 Goals = group.Count(g => g.type_of_event == "goal" || g.type_of_event == "goal-penalty"),
                 YellowCards = group.Count(g => g.type_of_event == "yellow-card")
             }).ToList();
+
             dataGridPlayers.DataSource = groupedStats;
-            Utility.CompareColumns(groupedStats, "YellowCards", false);
         }
 
-        private static void GetGoalEvents(List<Matches> AllMatches, List<GoalEvents> goalsList)
+        private static void GetEvents(List<Matches> AllMatches, List<GoalEvents> goalsList)
         {
             foreach (var items in AllMatches)
             {
@@ -74,13 +84,47 @@ namespace WinFormsApp1.Forms
 
             }
         }
-
-        private static async Task<List<Matches>> GetMatches()
+        private void dataGridPlayers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            IRepoAllMatches matchesRepo = MenRepoFactoryAllMatches.GetRepo();
-            IList<Matches> matches = await matchesRepo.GetAllMatches();
-            List<Matches> matches1 = matches.ToList();
-            return matches1;
+
+            var dataSource = dataGridPlayers.DataSource as List<PlayerStats>;
+
+            if (dataSource != null)
+            {
+                // If the same column was clicked again, toggle the sort direction
+                if (e.ColumnIndex == currentColumnIndex)
+                {
+                    ascending = !ascending;
+                }
+                else
+                {
+                    ascending = true;
+                    currentColumnIndex = e.ColumnIndex;
+                }
+
+                dataGridPlayers.DataSource = SortingColumnMethod(e, dataSource);
+            }
+        }
+
+        private List<PlayerStats>? SortingColumnMethod(DataGridViewCellMouseEventArgs e, List<PlayerStats>? dataSource)
+        {
+            switch (e.ColumnIndex)
+            {
+                case 0:
+                    dataSource = ascending ? dataSource.OrderBy(x => x.Player).ToList()
+                    : dataSource.OrderByDescending(x => x.Player).ToList();
+                    break;
+                case 1:
+                    dataSource = ascending ? dataSource.OrderBy(x => x.Goals).ToList()
+                    : dataSource.OrderByDescending(x => x.Goals).ToList();
+                    break;
+                case 2:
+                    dataSource = ascending ? dataSource.OrderBy(x => x.YellowCards).ToList()
+                    : dataSource.OrderByDescending(x => x.YellowCards).ToList();
+                    break;
+            }
+
+            return dataSource;
         }
     }
 }

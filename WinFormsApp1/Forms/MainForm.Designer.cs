@@ -31,12 +31,12 @@
             pnlTop = new Panel();
             pictureBox1 = new PictureBox();
             pnlLeft = new Panel();
+            button1 = new Button();
             button3 = new Button();
             button2 = new Button();
             btnSettings = new Button();
             pnl = new Panel();
             pnlMain = new Panel();
-            button1 = new Button();
             pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlLeft.SuspendLayout();
@@ -76,6 +76,17 @@
             pnlLeft.Name = "pnlLeft";
             pnlLeft.Size = new Size(127, 530);
             pnlLeft.TabIndex = 1;
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.Location = new Point(0, 190);
+            button1.Name = "button1";
+            button1.Size = new Size(130, 45);
+            button1.TabIndex = 4;
+            button1.Text = "Ranking Players";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
             // 
             // button3
             // 
@@ -129,16 +140,6 @@
             pnlMain.Name = "pnlMain";
             pnlMain.Size = new Size(899, 530);
             pnlMain.TabIndex = 3;
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(0, 190);
-            button1.Name = "button1";
-            button1.Size = new Size(130, 45);
-            button1.TabIndex = 4;
-            button1.Text = "Ranking Players";
-            button1.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
