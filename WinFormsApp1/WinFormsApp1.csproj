@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="RazorEngine" Version="3.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SoccerDAL\SoccerDAL.csproj" />
   </ItemGroup>
 

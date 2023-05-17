@@ -28,49 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RankingMatchesForm));
             dataGridRanking = new DataGridView();
             cbTeamsRanking = new ComboBox();
+            lblCountryRanking = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridRanking).BeginInit();
             SuspendLayout();
             // 
             // dataGridRanking
             // 
+            resources.ApplyResources(dataGridRanking, "dataGridRanking");
             dataGridRanking.BackgroundColor = Color.White;
             dataGridRanking.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridRanking.GridColor = SystemColors.ControlText;
-            dataGridRanking.Location = new Point(69, 157);
             dataGridRanking.Name = "dataGridRanking";
             dataGridRanking.RowTemplate.Height = 25;
-            dataGridRanking.Size = new Size(600, 240);
-            dataGridRanking.TabIndex = 0;
             // 
             // cbTeamsRanking
             // 
+            resources.ApplyResources(cbTeamsRanking, "cbTeamsRanking");
             cbTeamsRanking.FormattingEnabled = true;
-            cbTeamsRanking.Location = new Point(69, 63);
             cbTeamsRanking.Name = "cbTeamsRanking";
-            cbTeamsRanking.Size = new Size(600, 23);
-            cbTeamsRanking.TabIndex = 1;
             cbTeamsRanking.SelectedIndexChanged += cbTeamsRanking_SelectedIndexChanged;
+            // 
+            // lblCountryRanking
+            // 
+            resources.ApplyResources(lblCountryRanking, "lblCountryRanking");
+            lblCountryRanking.ForeColor = Color.White;
+            lblCountryRanking.Name = "lblCountryRanking";
             // 
             // RankingMatchesForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(44, 43, 60);
-            ClientSize = new Size(800, 450);
+            Controls.Add(lblCountryRanking);
             Controls.Add(cbTeamsRanking);
             Controls.Add(dataGridRanking);
             ForeColor = SystemColors.ControlText;
             Name = "RankingMatchesForm";
-            Text = "RankingMatchesForm";
             ((System.ComponentModel.ISupportInitialize)dataGridRanking).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private DataGridView dataGridRanking;
         private ComboBox cbTeamsRanking;
+        private Label lblCountryRanking;
     }
 }

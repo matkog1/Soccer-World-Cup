@@ -4,6 +4,9 @@ using System.Numerics;
 using SoccerDAL;
 using SoccerDAL.Models;
 using SoccerDAL.AllRepos.MenRepos.MenTeams;
+using System.Globalization;
+using SoccerDAL.AllRepos.WomenRepos.WomenTeams;
+using SoccerDAL.AllRepos.WomenRepos.WomenPlayers;
 
 namespace WinFormsApp1
 {
@@ -13,11 +16,33 @@ namespace WinFormsApp1
         public FormCountries()
         {
             InitializeComponent();
-            LocationSettings();
+            SetLanguage();
             LoadTeams();
         }
 
+        private void SetLanguage()
+        {
+            string filePath = Path.Combine(Application.StartupPath, "options.txt");
+            string[] language = File.ReadAllLines(filePath);
+            string chosenLanguage = language[1];
 
+   
+            CultureInfo culture;
+            switch (chosenLanguage)
+            {
+                case "Croatian":
+                    culture = new CultureInfo("hr");
+                    break;
+                default:
+                    culture = new CultureInfo("en");
+                    break;
+            }
+
+            Thread.CurrentThread.CurrentUICulture = culture;
+
+            this.Controls.Clear();
+            this.InitializeComponent();
+        }
 
         private void btnSave_Click_1(object sender, EventArgs e)
         {
@@ -26,7 +51,9 @@ namespace WinFormsApp1
 
         private async Task LoadPlayers()
         {
-            IRepoPlayer repo = MenRepoFactoryPlayer.GetRepo();
+            string championship = GetChampionshipType();
+            IRepoPlayer repo;
+            repo = CheckChampionShipType(championship);
             Dictionary<string, List<Player>> _playersByCountry = repo.GetPlayersByCountryFromJsonFile();
             if (_playersByCountry != null)
             {
@@ -45,15 +72,65 @@ namespace WinFormsApp1
             }
 
         }
+
+        private static IRepoPlayer CheckChampionShipType(string championship)
+        {
+            IRepoPlayer repo;
+            if (championship == "Men")
+            {
+                repo = MenRepoFactoryPlayer.GetRepo(); 
+            }
+            else if (championship == "Women")
+            {
+                repo = WomenRepoFactoryPlayer.GetRepo(); 
+            }
+            else
+            {
+                throw new Exception();
+            }
+
+            return repo;
+        }
+
         private async Task LoadTeams()
         {
-            IRepoTeams teamsRepo = MenRepoFactoryTeams.GetRepo();
+            string championship = GetChampionshipType();
+            IRepoTeams teamsRepo; // Declare the variable here
+
+            teamsRepo = LoadChampionship(championship);
+
             IList<Team> teamsList = await teamsRepo.GetAllTeams();
             List<Team> teams = teamsList.ToList();
             PrintTeams(teams);
             LoadSelectedCountry();
         }
 
+        private static IRepoTeams LoadChampionship(string championship)
+        {
+            IRepoTeams teamsRepo;
+            if (championship == "Men")
+            {
+                teamsRepo = MenRepoFactoryTeams.GetRepo(); // Assign the variable here
+            }
+            else if (championship == "Women")
+            {
+                teamsRepo = WomenRepoFactoryTeams.GetRepo(); // Assign the variable here
+            }
+            else
+            {
+                throw new Exception("Invalid championship type");
+            }
+
+            return teamsRepo;
+        }
+
+        private string GetChampionshipType()
+        {
+            string filePath = Path.Combine(Application.StartupPath, "options.txt");
+            string[] language = File.ReadAllLines(filePath);
+            string chosenLanguage = language[0];
+            return chosenLanguage;
+        }
 
         private void cbTeams_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -108,16 +185,6 @@ namespace WinFormsApp1
             }
         }
 
-        private void LocationSettings()
-        {
-            int centerX = this.Width / 2;
-            int centerY = this.Height / 2;
-
-            int groupBoxX = centerX - (groupboxFavoriteTeams.Width / 2);
-            int groupBoxY = centerY - (groupboxFavoriteTeams.Height / 2);
-
-            groupboxFavoriteTeams.Location = new Point(groupBoxX, groupBoxY);
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
