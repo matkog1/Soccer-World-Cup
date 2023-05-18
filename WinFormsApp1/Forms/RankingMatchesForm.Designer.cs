@@ -37,17 +37,17 @@
             // 
             // dataGridRanking
             // 
-            resources.ApplyResources(dataGridRanking, "dataGridRanking");
             dataGridRanking.BackgroundColor = Color.White;
             dataGridRanking.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridRanking.GridColor = SystemColors.ControlText;
+            resources.ApplyResources(dataGridRanking, "dataGridRanking");
             dataGridRanking.Name = "dataGridRanking";
             dataGridRanking.RowTemplate.Height = 25;
             // 
             // cbTeamsRanking
             // 
-            resources.ApplyResources(cbTeamsRanking, "cbTeamsRanking");
             cbTeamsRanking.FormattingEnabled = true;
+            resources.ApplyResources(cbTeamsRanking, "cbTeamsRanking");
             cbTeamsRanking.Name = "cbTeamsRanking";
             cbTeamsRanking.SelectedIndexChanged += cbTeamsRanking_SelectedIndexChanged;
             // 
@@ -62,6 +62,7 @@
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(44, 43, 60);
+            ControlBox = false;
             Controls.Add(lblCountryRanking);
             Controls.Add(cbTeamsRanking);
             Controls.Add(dataGridRanking);

@@ -54,6 +54,7 @@
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(44, 43, 60);
+            ControlBox = false;
             Controls.Add(lblPlayerRanking);
             Controls.Add(dataGridPlayers);
             Name = "PlayerForm";

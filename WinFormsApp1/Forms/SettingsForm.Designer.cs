@@ -42,34 +42,34 @@
             // 
             // groupboxLogin
             // 
-            resources.ApplyResources(groupboxLogin, "groupboxLogin");
             groupboxLogin.Controls.Add(btnSave);
             groupboxLogin.Controls.Add(cbLanguage);
             groupboxLogin.Controls.Add(cbChampionship);
             groupboxLogin.Controls.Add(lbLanguage);
             groupboxLogin.Controls.Add(lbChampionship);
             groupboxLogin.ForeColor = SystemColors.ButtonHighlight;
+            resources.ApplyResources(groupboxLogin, "groupboxLogin");
             groupboxLogin.Name = "groupboxLogin";
             groupboxLogin.TabStop = false;
             // 
             // btnSave
             // 
-            resources.ApplyResources(btnSave, "btnSave");
             btnSave.ForeColor = Color.Black;
+            resources.ApplyResources(btnSave, "btnSave");
             btnSave.Name = "btnSave";
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
             // 
             // cbLanguage
             // 
-            resources.ApplyResources(cbLanguage, "cbLanguage");
             cbLanguage.FormattingEnabled = true;
+            resources.ApplyResources(cbLanguage, "cbLanguage");
             cbLanguage.Name = "cbLanguage";
             // 
             // cbChampionship
             // 
-            resources.ApplyResources(cbChampionship, "cbChampionship");
             cbChampionship.FormattingEnabled = true;
+            resources.ApplyResources(cbChampionship, "cbChampionship");
             cbChampionship.Name = "cbChampionship";
             // 
             // lbLanguage
@@ -86,8 +86,8 @@
             // 
             // contextMenuStrip1
             // 
-            resources.ApplyResources(contextMenuStrip1, "contextMenuStrip1");
             contextMenuStrip1.Name = "contextMenuStrip1";
+            resources.ApplyResources(contextMenuStrip1, "contextMenuStrip1");
             // 
             // SettingsForm
             // 

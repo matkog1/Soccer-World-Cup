@@ -147,6 +147,7 @@
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            ControlBox = false;
             Controls.Add(panel2);
             Name = "FormCountries";
             panel2.ResumeLayout(false);

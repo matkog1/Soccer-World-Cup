@@ -15,6 +15,7 @@ using System.Xml.Xsl;
 using System.Resources;
 using WinFormsApp1.Forms;
 using System.Globalization;
+using RazorEngine.Compilation.ImpromptuInterface.Dynamic;
 
 namespace WinFormsApp1
 {
@@ -22,37 +23,8 @@ namespace WinFormsApp1
     {
         public MainForm()
         {
-            InitializeComponent();
-            LoadSettingsForm();
-            SetLanguage();
+            Reload();
         }
-
-        private void SetLanguage()
-        {
-            string filePath = Path.Combine(Application.StartupPath, "options.txt");
-            string[] language = File.ReadAllLines(filePath);
-            string chosenLanguage = language[1];
-
-            // Convert the language to a CultureInfo
-            CultureInfo culture;
-            switch (chosenLanguage)
-            {
-                case "Croatian":
-                    culture = new CultureInfo("hr");
-                    break;
-                default:
-                    culture = new CultureInfo("en");
-                    break;
-            }
-
-            // Change the culture of the current thread
-            Thread.CurrentThread.CurrentUICulture = culture;
-
-            // Reload the form to apply the new culture
-            this.Controls.Clear();
-            this.InitializeComponent();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             pnlMain.Controls.Clear();
@@ -63,8 +35,6 @@ namespace WinFormsApp1
             pnlMain.Controls.Clear();
             LoadPlayerRankingForm();
         }
-
-
         private void button2_Click(object sender, EventArgs e)
         {
             pnlMain.Controls.Clear();
@@ -115,6 +85,42 @@ namespace WinFormsApp1
             pnlMain.Controls.Add(rankingForm);
             rankingForm.Show();
         }
+        private void SetLanguage()
+        {
+            string filePath = Path.Combine(Application.StartupPath, "options.txt");
+            string[] language = File.ReadAllLines(filePath);
+            string chosenLanguage = language[1];
 
+            // Convert the language to a CultureInfo
+            CultureInfo culture;
+            switch (chosenLanguage)
+            {
+                case "Croatian":
+                    culture = new CultureInfo("hr");
+                    break;
+                default:
+                    culture = new CultureInfo("en");
+                    break;
+            }
+
+            // Change the culture of the current thread
+            Thread.CurrentThread.CurrentUICulture = culture;
+
+            // Reload the form to apply the new culture
+            this.Controls.Clear();
+            this.InitializeComponent();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            Reload();
+        }
+
+        private void Reload()
+        {
+            InitializeComponent();
+            LoadSettingsForm();
+            SetLanguage();
+        }
     }
 }

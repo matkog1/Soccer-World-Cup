@@ -220,7 +220,7 @@ namespace WinFormsApp1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Row is empty : nothing to remove!", "Error", MessageBoxButtons.OKCancel,MessageBoxIcon.Exclamation);
+                MessageBox.Show("Row is empty : nothing to remove!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }
