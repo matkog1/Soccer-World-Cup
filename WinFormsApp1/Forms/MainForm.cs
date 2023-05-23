@@ -48,7 +48,7 @@ namespace WinFormsApp1
         }
         private void LoadPlayerRankingForm()
         {
-            PlayerForm playerRankingForm = new PlayerForm();
+            PlayerRankingForm playerRankingForm = new PlayerRankingForm();
             playerRankingForm.TopLevel = false;
             playerRankingForm.FormBorderStyle = FormBorderStyle.None;
             playerRankingForm.Dock = DockStyle.Fill;
@@ -102,20 +102,11 @@ namespace WinFormsApp1
                     culture = new CultureInfo("en");
                     break;
             }
-
-            // Change the culture of the current thread
             Thread.CurrentThread.CurrentUICulture = culture;
 
-            // Reload the form to apply the new culture
             this.Controls.Clear();
             this.InitializeComponent();
         }
-
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            Reload();
-        }
-
         private void Reload()
         {
             InitializeComponent();

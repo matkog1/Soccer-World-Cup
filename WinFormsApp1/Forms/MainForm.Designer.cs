@@ -46,26 +46,26 @@
             // 
             // pnlTop
             // 
-            resources.ApplyResources(pnlTop, "pnlTop");
             pnlTop.BackColor = Color.FromArgb(76, 75, 105);
             pnlTop.Controls.Add(pictureBox1);
+            resources.ApplyResources(pnlTop, "pnlTop");
             pnlTop.Name = "pnlTop";
             // 
             // pictureBox1
             // 
-            resources.ApplyResources(pictureBox1, "pictureBox1");
             pictureBox1.Image = Properties.Resources.worldcup;
+            resources.ApplyResources(pictureBox1, "pictureBox1");
             pictureBox1.Name = "pictureBox1";
             pictureBox1.TabStop = false;
             // 
             // pnlLeft
             // 
-            resources.ApplyResources(pnlLeft, "pnlLeft");
             pnlLeft.BackColor = Color.FromArgb(50, 49, 69);
             pnlLeft.Controls.Add(button1);
             pnlLeft.Controls.Add(button3);
             pnlLeft.Controls.Add(button2);
             pnlLeft.Controls.Add(btnSettings);
+            resources.ApplyResources(pnlLeft, "pnlLeft");
             pnlLeft.ForeColor = Color.FromArgb(44, 43, 60);
             pnlLeft.Name = "pnlLeft";
             // 
@@ -99,11 +99,11 @@
             // 
             // pnl
             // 
-            resources.ApplyResources(pnl, "pnl");
             pnl.BackColor = Color.FromArgb(44, 43, 60);
             pnl.Controls.Add(pnlMain);
             pnl.Controls.Add(pnlLeft);
             pnl.Controls.Add(pnlTop);
+            resources.ApplyResources(pnl, "pnl");
             pnl.Name = "pnl";
             // 
             // pnlMain

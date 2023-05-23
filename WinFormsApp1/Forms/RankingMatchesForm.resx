@@ -108,7 +108,7 @@
     <value>Bitstream Vera Sans, 18pt</value>
   </data>
   <data name="lblCountryRanking.Location" type="System.Drawing.Point, System.Drawing">
-    <value>69, 60</value>
+    <value>69, 58</value>
   </data>
   <data name="lblCountryRanking.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 29</value>
@@ -131,6 +131,9 @@
   <data name="&gt;&gt;lblCountryRanking.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, System.Private.CoreLib, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>hr</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

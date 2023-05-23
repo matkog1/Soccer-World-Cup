@@ -39,13 +39,7 @@ namespace WinFormsApp1.Forms
                     culture = new CultureInfo("en");
                     break;
             }
-
-            // Change the culture of the current thread
             Thread.CurrentThread.CurrentUICulture = culture;
-
-            // Reload the form to apply the new culture
-            this.Controls.Clear();
-            this.InitializeComponent();
         }
 
         private void LocationSettings()

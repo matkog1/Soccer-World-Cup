@@ -30,71 +30,51 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCountries));
             panel2 = new Panel();
-            dataGridPlayers = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
+            flp2 = new FlowLayoutPanel();
+            flp1 = new FlowLayoutPanel();
+            btnSave = new Button();
             lbTeams = new Label();
             lbPlayers = new Label();
-            btnRemove = new Button();
-            btnSave = new Button();
             cbTeams = new ComboBox();
-            button1 = new Button();
             cbCountryPlayers = new ComboBox();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridPlayers).BeginInit();
             SuspendLayout();
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(44, 43, 60);
-            panel2.Controls.Add(dataGridPlayers);
+            panel2.Controls.Add(flp2);
+            panel2.Controls.Add(flp1);
+            panel2.Controls.Add(btnSave);
             panel2.Controls.Add(lbTeams);
             panel2.Controls.Add(lbPlayers);
-            panel2.Controls.Add(btnRemove);
-            panel2.Controls.Add(btnSave);
             panel2.Controls.Add(cbTeams);
-            panel2.Controls.Add(button1);
             panel2.Controls.Add(cbCountryPlayers);
             resources.ApplyResources(panel2, "panel2");
             panel2.Name = "panel2";
             // 
-            // dataGridPlayers
+            // flp2
             // 
-            dataGridPlayers.BackgroundColor = Color.White;
-            dataGridPlayers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridPlayers.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5 });
-            dataGridPlayers.GridColor = Color.Black;
-            resources.ApplyResources(dataGridPlayers, "dataGridPlayers");
-            dataGridPlayers.Name = "dataGridPlayers";
-            dataGridPlayers.RowTemplate.Height = 25;
+            flp2.AllowDrop = true;
+            flp2.BackColor = Color.White;
+            resources.ApplyResources(flp2, "flp2");
+            flp2.Name = "flp2";
             // 
-            // Column1
+            // flp1
             // 
-            resources.ApplyResources(Column1, "Column1");
-            Column1.Name = "Column1";
+            flp1.AllowDrop = true;
+            resources.ApplyResources(flp1, "flp1");
+            flp1.BackColor = Color.White;
+            flp1.Name = "flp1";
             // 
-            // Column2
+            // btnSave
             // 
-            resources.ApplyResources(Column2, "Column2");
-            Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            resources.ApplyResources(Column3, "Column3");
-            Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            resources.ApplyResources(Column4, "Column4");
-            Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            resources.ApplyResources(Column5, "Column5");
-            Column5.Name = "Column5";
+            resources.ApplyResources(btnSave, "btnSave");
+            btnSave.Name = "btnSave";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // lbTeams
             // 
@@ -108,34 +88,11 @@
             lbPlayers.ForeColor = Color.White;
             lbPlayers.Name = "lbPlayers";
             // 
-            // btnRemove
-            // 
-            resources.ApplyResources(btnRemove, "btnRemove");
-            btnRemove.Name = "btnRemove";
-            btnRemove.UseVisualStyleBackColor = true;
-            btnRemove.Click += btnRemove_Click;
-            // 
-            // btnSave
-            // 
-            btnSave.ForeColor = Color.Black;
-            resources.ApplyResources(btnSave, "btnSave");
-            btnSave.Name = "btnSave";
-            btnSave.UseVisualStyleBackColor = true;
-            btnSave.Click += btnSave_Click_1;
-            // 
             // cbTeams
             // 
             cbTeams.FormattingEnabled = true;
             resources.ApplyResources(cbTeams, "cbTeams");
             cbTeams.Name = "cbTeams";
-            // 
-            // button1
-            // 
-            button1.ForeColor = Color.Black;
-            resources.ApplyResources(button1, "button1");
-            button1.Name = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // cbCountryPlayers
             // 
@@ -152,7 +109,6 @@
             Name = "FormCountries";
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridPlayers).EndInit();
             ResumeLayout(false);
         }
 
@@ -163,13 +119,9 @@
         private Label lbPlayers;
         private Label lbTeams;
         private Button btnSave;
-        private Button button1;
-        private DataGridView dataGridPlayers;
-        private Button btnRemove;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column4;
-        private DataGridViewTextBoxColumn Column5;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2;
+        private FlowLayoutPanel flp1;
+        private FlowLayoutPanel flp2;
     }
 }

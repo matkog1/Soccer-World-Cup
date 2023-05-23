@@ -17,12 +17,12 @@ using System.Windows.Forms;
 
 namespace WinFormsApp1.Forms
 {
-    public partial class PlayerForm : Form
+    public partial class PlayerRankingForm : Form
     {
         //za sortiranje columna na klik
         int currentColumnIndex = -1;
         bool ascending = true;
-        public PlayerForm()
+        public PlayerRankingForm()
         {
             InitializeComponent();
             LoadAsync();

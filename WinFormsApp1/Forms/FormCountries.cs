@@ -7,6 +7,7 @@ using SoccerDAL.AllRepos.MenRepos.MenTeams;
 using System.Globalization;
 using SoccerDAL.AllRepos.WomenRepos.WomenTeams;
 using SoccerDAL.AllRepos.WomenRepos.WomenPlayers;
+using System.Windows.Forms;
 
 namespace WinFormsApp1
 {
@@ -20,6 +21,7 @@ namespace WinFormsApp1
             LoadTeams();
         }
 
+ 
         private void SetLanguage()
         {
             string filePath = Path.Combine(Application.StartupPath, "options.txt");
@@ -39,14 +41,8 @@ namespace WinFormsApp1
             }
 
             Thread.CurrentThread.CurrentUICulture = culture;
-
             this.Controls.Clear();
             this.InitializeComponent();
-        }
-
-        private void btnSave_Click_1(object sender, EventArgs e)
-        {
-            SaveSelectedCountry();
         }
 
         private async Task LoadPlayers()
@@ -67,10 +63,31 @@ namespace WinFormsApp1
                         cbCountryPlayers.DataSource = players;
                         cbCountryPlayers.DisplayMember = "Name";
 
+                        FillLayout(players);
                     }
                 }
             }
 
+
+
+        }
+
+        private void FillLayout(List<Player> players)
+        {
+            flp1.Controls.Clear();
+            foreach (Player player in players)
+            {
+                PlayerControl playerControl = new PlayerControl();
+                if (player != null)
+                {
+                    playerControl.PlayerName = player.Name;
+                    playerControl.PlayerNumber = player.Shirt_Number;
+                    playerControl.PlayerPosition = player.Position;
+                    playerControl.PlayerCaptain = player.Captain;
+                    playerControl.PlayerFavorite = player.Favorite;
+                    flp1.Controls.Add(playerControl);
+                }
+            }
         }
 
         private static IRepoPlayer CheckChampionShipType(string championship)
@@ -110,11 +127,11 @@ namespace WinFormsApp1
             IRepoTeams teamsRepo;
             if (championship == "Men")
             {
-                teamsRepo = MenRepoFactoryTeams.GetRepo(); // Assign the variable here
+                teamsRepo = MenRepoFactoryTeams.GetRepo();
             }
             else if (championship == "Women")
             {
-                teamsRepo = WomenRepoFactoryTeams.GetRepo(); // Assign the variable here
+                teamsRepo = WomenRepoFactoryTeams.GetRepo();
             }
             else
             {
@@ -185,43 +202,9 @@ namespace WinFormsApp1
             }
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            Player selectedPlayer = (Player)cbCountryPlayers.SelectedItem;
-            selectedPlayer.Favorite = true;
-
-            if (selectedPlayer != null)
-            {
-                dataGridPlayers.Rows.Add(
-                    selectedPlayer.Name,
-                    selectedPlayer.Shirt_Number,
-                    selectedPlayer.Position,
-                    selectedPlayer.Captain,
-                    selectedPlayer.Favorite
-                    );
-            }
-            dataGridPlayers.DefaultCellStyle.ForeColor = Color.Black;
-        }
-
-        private void btnRemove_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (dataGridPlayers.RowCount > 0)
-                {
-                    int lastRowIndex = dataGridPlayers.Rows[dataGridPlayers.RowCount - 2].IsNewRow ? dataGridPlayers.RowCount - 3 : dataGridPlayers.RowCount - 2;
-                    dataGridPlayers.Rows.RemoveAt(lastRowIndex);
-                }
-                else
-                {
-                    MessageBox.Show("There are no rows to remove!");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Row is empty : nothing to remove!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+            SaveSelectedCountry();
         }
     }
 }

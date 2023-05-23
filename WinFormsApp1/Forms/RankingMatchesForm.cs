@@ -65,6 +65,7 @@ namespace WinFormsApp1.Forms
 
         private async Task LoadTeamsAsync()
         {
+
             cbTeamsRanking.DataSource = await GetTeams();
             cbTeamsRanking.Format += (s, e) =>
             {
@@ -74,6 +75,8 @@ namespace WinFormsApp1.Forms
                     e.Value = $"{team.country},{team.fifa_code}";
                 }
             };
+
+            LoadSelectedCountry();
         }
 
         private static async Task<List<Team>> GetTeams()
@@ -201,6 +204,23 @@ namespace WinFormsApp1.Forms
             LoadDataAsync(fifaCode);
         }
 
-  
+        private void LoadSelectedCountry()
+        {
+            string filePath = Path.Combine(Application.StartupPath, "favorite_teams.txt");
+            if (File.Exists(filePath))
+            {
+                string lastSavedCountry = File.ReadAllText(filePath);
+                foreach (Team team in cbTeamsRanking.Items)
+                {
+                    if (team.country == lastSavedCountry)
+                    {
+                        cbTeamsRanking.SelectedItem = team;
+                        break;
+                    }
+                }
+            }
+        }
+
+
     }
 }
