@@ -22,37 +22,31 @@ namespace WinFormsApp1
     public partial class MainForm : Form
     {
         private const string optionsFile = "options.txt";
-
-        private SettingsForm settingsForm = new SettingsForm();
-
-        private PlayerRankingForm playerRankingForm= new PlayerRankingForm();
-
-        private FormCountries countriesForm = new FormCountries();
-
-        private RankingMatchesForm rankingMatchesForm = new RankingMatchesForm();
-        
         public MainForm()
         {
             InitializeComponent();
             SetLanguage();
-            LoadForm(settingsForm);
         }
      
         private void button1_Click(object sender, EventArgs e)
         {
+            SettingsForm settingsForm = new SettingsForm();
             LoadForm(settingsForm);
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
+            PlayerRankingForm playerRankingForm = new PlayerRankingForm();
             LoadForm(playerRankingForm);
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            FormCountries countriesForm = new FormCountries();
             LoadForm(countriesForm);
 
         }
         private void button3_Click(object sender, EventArgs e)
         {
+            RankingMatchesForm rankingMatchesForm = new RankingMatchesForm();
             LoadForm(rankingMatchesForm);
         }
 

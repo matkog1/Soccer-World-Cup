@@ -24,6 +24,7 @@ namespace WinFormsApp1.Forms
     public partial class RankingMatchesForm : Form
     {
         private const string optionsFile = "options.txt";
+        private const string favoriteTeams = "favorite_teams.txt";
         public RankingMatchesForm()
         {
             InitializeComponent();
@@ -91,7 +92,7 @@ namespace WinFormsApp1.Forms
 
         private static string GetChampionshipType()
         {
-            string filePath = Path.Combine(Application.StartupPath, "options.txt");
+            string filePath = Path.Combine(Application.StartupPath, optionsFile);
             string[] lines = File.ReadAllLines(filePath);
             string chosen = lines[0];
             return chosen;
@@ -186,7 +187,7 @@ namespace WinFormsApp1.Forms
 
         private void LoadSelectedCountry()
         {
-            string filePath = Path.Combine(Application.StartupPath, "favorite_teams.txt");
+            string filePath = Path.Combine(Application.StartupPath, favoriteTeams);
             if (File.Exists(filePath))
             {
                 string lastSavedCountry = File.ReadAllText(filePath);
