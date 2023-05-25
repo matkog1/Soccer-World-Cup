@@ -23,7 +23,7 @@ namespace WinFormsApp1.Utility
                 File.WriteAllText(filePath, content);
             }
             string[] language = File.ReadAllLines(filePath);
-            string chosenLanguage = language[0];
+            string chosenLanguage = language[1];
 
             CultureInfo culture;
             switch (chosenLanguage)

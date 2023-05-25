@@ -5,6 +5,7 @@ using SoccerDAL.Comparer;
 using SoccerDAL.Models;
 using SoccerDAL.Utility;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -53,20 +54,15 @@ namespace WinFormsApp1.Forms
         private static IRepoAllMatches CheckChampionshipType(string championship)
         {
             IRepoAllMatches matchesRepo;
-            if (championship == "Men")
+            switch (championship)
             {
-                matchesRepo = MenRepoFactoryAllMatches.GetRepo();
+                case "Men":
+                    return matchesRepo = MenRepoFactoryAllMatches.GetRepo();
+                case "Women":
+                    return matchesRepo = WomenRepoFactoryAllMatches.GetRepo();
+                default:
+                    throw new Exception();
             }
-            else if (championship == "Women")
-            {
-                matchesRepo = WomenRepoFactoryAllMatches.GetRepo();
-            }
-            else
-            {
-                throw new Exception();
-            }
-
-            return matchesRepo;
         }
 
         private static string GetChampionship()

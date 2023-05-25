@@ -35,8 +35,6 @@
             flp2 = new FlowLayoutPanel();
             flp1 = new FlowLayoutPanel();
             btnSave = new Button();
-            lbTeams = new Label();
-            lbPlayers = new Label();
             cbTeams = new ComboBox();
             cbCountryPlayers = new ComboBox();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -52,8 +50,6 @@
             panel2.Controls.Add(flp2);
             panel2.Controls.Add(flp1);
             panel2.Controls.Add(btnSave);
-            panel2.Controls.Add(lbTeams);
-            panel2.Controls.Add(lbPlayers);
             panel2.Controls.Add(cbTeams);
             panel2.Controls.Add(cbCountryPlayers);
             resources.ApplyResources(panel2, "panel2");
@@ -93,18 +89,6 @@
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
             // 
-            // lbTeams
-            // 
-            resources.ApplyResources(lbTeams, "lbTeams");
-            lbTeams.ForeColor = Color.White;
-            lbTeams.Name = "lbTeams";
-            // 
-            // lbPlayers
-            // 
-            resources.ApplyResources(lbPlayers, "lbPlayers");
-            lbPlayers.ForeColor = Color.White;
-            lbPlayers.Name = "lbPlayers";
-            // 
             // cbTeams
             // 
             cbTeams.FormattingEnabled = true;
@@ -121,6 +105,7 @@
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            ControlBox = false;
             Controls.Add(panel2);
             Name = "FormCountries";
             panel2.ResumeLayout(false);
@@ -132,8 +117,6 @@
         private Panel panel2;
         private ComboBox cbCountryPlayers;
         private ComboBox cbTeams;
-        private Label lbPlayers;
-        private Label lbTeams;
         private Button btnSave;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;

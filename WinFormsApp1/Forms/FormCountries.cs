@@ -62,7 +62,7 @@ namespace WinFormsApp1
         private void SetLanguage()
         {
             Utility.Utility.SetLanguage(this, optionsFile);
-            
+
         }
 
         private async Task LoadPlayers()
@@ -115,7 +115,7 @@ namespace WinFormsApp1
 
         private static IRepoPlayer CheckChampionShipType(string championship)
         {
-    
+
             IRepoPlayer repo;
             switch (championship)
             {
@@ -203,19 +203,19 @@ namespace WinFormsApp1
             string filePath = Path.Combine(Application.StartupPath, favoriteTeams);
             if (!File.Exists(filePath))
             {
-                    string defaulFavoriteCountry = "Croatia";
-                    File.WriteAllText(filePath, defaulFavoriteCountry);
-             }
-          
-             string lastSavedCountry = File.ReadAllText(filePath);
-             foreach (Team team in cbTeams.Items)
-             {
+                string defaulFavoriteCountry = "Croatia";
+                File.WriteAllText(filePath, defaulFavoriteCountry);
+            }
+
+            string lastSavedCountry = File.ReadAllText(filePath);
+            foreach (Team team in cbTeams.Items)
+            {
                 if (team.country == lastSavedCountry)
                 {
                     cbTeams.SelectedItem = team;
                     break;
                 }
-             }
+            }
         }
 
         private void SaveSelectedCountry()

@@ -58,35 +58,67 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pbMinimize.Location" type="System.Drawing.Point, System.Drawing">
+    <value>933, 0</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="pbMinimize.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>10, 10, 10, 10</value>
+  </data>
+  <data name="pbMinimize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 69</value>
+  </data>
+  <data name="pbMaximize.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="pbExit.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>10, 10, 10, 10</value>
+  </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>132, 64</value>
   </data>
-  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 185</value>
+  <data name="pnlLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 530</value>
   </data>
-  <data name="button1.Text" xml:space="preserve">
-    <value>Rangiranje igrača</value>
+  <data name="btnPlayerRanking.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
   </data>
-  <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="btnPlayerRanking.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 45</value>
+  </data>
+  <data name="btnPlayerRanking.Text" xml:space="preserve">
+    <value>Ranking igrača</value>
+  </data>
+  <data name="btnrankingMatches.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
+  <data name="btnrankingMatches.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 124</value>
   </data>
-  <data name="button3.Text" xml:space="preserve">
-    <value>Rangiranje timova</value>
+  <data name="btnrankingMatches.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 45</value>
   </data>
-  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 62</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnrankingMatches.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>Omiljena momčad</value>
+  <data name="btnrankingMatches.Text" xml:space="preserve">
+    <value>Ranking utakmica</value>
+  </data>
+  <data name="btnFavorite.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
+  <data name="btnFavorite.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 45</value>
+  </data>
+  <data name="btnFavorite.Text" xml:space="preserve">
+    <value>Favoriti</value>
   </data>
   <data name="btnSettings.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 245</value>
   </data>
   <data name="btnSettings.Text" xml:space="preserve">
     <value>Postavke</value>
-  </data>
-  <data name="pnlLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 530</value>
   </data>
   <data name="pnlMain.Location" type="System.Drawing.Point, System.Drawing">
     <value>133, 69</value>

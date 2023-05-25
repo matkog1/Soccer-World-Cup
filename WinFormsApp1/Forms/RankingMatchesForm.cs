@@ -34,9 +34,7 @@ namespace WinFormsApp1.Forms
 
         private void SetLanguage()
         {
-            Utility.Utility.SetLanguage(this,optionsFile);
-            this.Controls.Clear();
-            this.InitializeComponent();
+            Utility.Utility.SetLanguage(this, optionsFile);
         }
 
         private async void LoadDataAsync(string fifaCode)
@@ -46,7 +44,6 @@ namespace WinFormsApp1.Forms
 
         private async Task LoadTeamsAsync()
         {
-
             cbTeamsRanking.DataSource = await GetTeams();
             cbTeamsRanking.Format += (s, e) =>
             {

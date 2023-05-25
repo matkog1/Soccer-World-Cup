@@ -18,7 +18,6 @@ namespace WinFormsApp1.Forms
         public SettingsForm()
         {
             InitializeComponent();
-            LocationSettings();
             SetLanguage();
             Load();
         }
@@ -27,18 +26,6 @@ namespace WinFormsApp1.Forms
         {
             Utility.Utility.SetLanguage(this, optionsFile);
         }
-
-        private void LocationSettings()
-        {
-            int centerX = this.Width / 2;
-            int centerY = this.Height / 2;
-
-            int groupBoxX = centerX - (groupboxLogin.Width / 2);
-            int groupBoxY = centerY - (groupboxLogin.Height / 2);
-
-            groupboxLogin.Location = new Point(groupBoxX, groupBoxY);
-        }
-
 
         private void Load()
         {
@@ -84,7 +71,7 @@ namespace WinFormsApp1.Forms
             MessageBox.Show("Options saved to file.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void SaveToFile(string selectedChampionship,string selectedLanguage,string optionsFile)
+        private void SaveToFile(string selectedChampionship, string selectedLanguage, string optionsFile)
         {
             string filePath = Path.Combine(Application.StartupPath, optionsFile);
             using (StreamWriter writer = new StreamWriter(filePath))
@@ -93,5 +80,7 @@ namespace WinFormsApp1.Forms
                 writer.WriteLine(selectedLanguage);
             }
         }
+
+
     }
 }

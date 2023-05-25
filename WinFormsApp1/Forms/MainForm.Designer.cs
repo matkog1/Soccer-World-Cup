@@ -30,15 +30,22 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             pnlTop = new Panel();
+            btnRefresh = new Button();
+            pbMinimize = new PictureBox();
+            pbMaximize = new PictureBox();
+            pbExit = new PictureBox();
             pictureBox1 = new PictureBox();
             pnlLeft = new Panel();
-            button1 = new Button();
-            button3 = new Button();
-            button2 = new Button();
+            btnPlayerRanking = new Button();
+            btnrankingMatches = new Button();
+            btnFavorite = new Button();
             btnSettings = new Button();
             pnl = new Panel();
             pnlMain = new Panel();
             pnlTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbMinimize).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbMaximize).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbExit).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlLeft.SuspendLayout();
             pnl.SuspendLayout();
@@ -48,8 +55,43 @@
             // 
             resources.ApplyResources(pnlTop, "pnlTop");
             pnlTop.BackColor = Color.FromArgb(76, 75, 105);
+            pnlTop.Controls.Add(btnRefresh);
+            pnlTop.Controls.Add(pbMinimize);
+            pnlTop.Controls.Add(pbMaximize);
+            pnlTop.Controls.Add(pbExit);
             pnlTop.Controls.Add(pictureBox1);
             pnlTop.Name = "pnlTop";
+            // 
+            // btnRefresh
+            // 
+            resources.ApplyResources(btnRefresh, "btnRefresh");
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
+            // pbMinimize
+            // 
+            resources.ApplyResources(pbMinimize, "pbMinimize");
+            pbMinimize.Image = Properties.Resources.minimize;
+            pbMinimize.Name = "pbMinimize";
+            pbMinimize.TabStop = false;
+            pbMinimize.Click += pictureBox2_Click_2;
+            // 
+            // pbMaximize
+            // 
+            resources.ApplyResources(pbMaximize, "pbMaximize");
+            pbMaximize.Image = Properties.Resources.maximize;
+            pbMaximize.Name = "pbMaximize";
+            pbMaximize.TabStop = false;
+            pbMaximize.Click += pbMaximize_Click;
+            // 
+            // pbExit
+            // 
+            resources.ApplyResources(pbExit, "pbExit");
+            pbExit.Image = Properties.Resources.cancel;
+            pbExit.Name = "pbExit";
+            pbExit.TabStop = false;
+            pbExit.Click += pictureBox2_Click_1;
             // 
             // pictureBox1
             // 
@@ -62,40 +104,40 @@
             // 
             resources.ApplyResources(pnlLeft, "pnlLeft");
             pnlLeft.BackColor = Color.FromArgb(50, 49, 69);
-            pnlLeft.Controls.Add(button1);
-            pnlLeft.Controls.Add(button3);
-            pnlLeft.Controls.Add(button2);
+            pnlLeft.Controls.Add(btnPlayerRanking);
+            pnlLeft.Controls.Add(btnrankingMatches);
+            pnlLeft.Controls.Add(btnFavorite);
             pnlLeft.Controls.Add(btnSettings);
             pnlLeft.ForeColor = Color.FromArgb(44, 43, 60);
             pnlLeft.Name = "pnlLeft";
             // 
-            // button1
+            // btnPlayerRanking
             // 
-            resources.ApplyResources(button1, "button1");
-            button1.Name = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_1;
+            resources.ApplyResources(btnPlayerRanking, "btnPlayerRanking");
+            btnPlayerRanking.Name = "btnPlayerRanking";
+            btnPlayerRanking.UseVisualStyleBackColor = true;
+            btnPlayerRanking.Click += btnPlayerRanking_Click;
             // 
-            // button3
+            // btnrankingMatches
             // 
-            resources.ApplyResources(button3, "button3");
-            button3.Name = "button3";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            resources.ApplyResources(btnrankingMatches, "btnrankingMatches");
+            btnrankingMatches.Name = "btnrankingMatches";
+            btnrankingMatches.UseVisualStyleBackColor = true;
+            btnrankingMatches.Click += btnRankingMatches_Click;
             // 
-            // button2
+            // btnFavorite
             // 
-            resources.ApplyResources(button2, "button2");
-            button2.Name = "button2";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            resources.ApplyResources(btnFavorite, "btnFavorite");
+            btnFavorite.Name = "btnFavorite";
+            btnFavorite.UseVisualStyleBackColor = true;
+            btnFavorite.Click += btnFavorite_Click;
             // 
             // btnSettings
             // 
             resources.ApplyResources(btnSettings, "btnSettings");
             btnSettings.Name = "btnSettings";
             btnSettings.UseVisualStyleBackColor = true;
-            btnSettings.Click += button1_Click;
+            btnSettings.Click += btnSettings_Click;
             // 
             // pnl
             // 
@@ -115,10 +157,14 @@
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            ControlBox = false;
             Controls.Add(pnl);
             ForeColor = Color.FromArgb(44, 43, 60);
             Name = "MainForm";
             pnlTop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pbMinimize).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbMaximize).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbExit).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnlLeft.ResumeLayout(false);
             pnl.ResumeLayout(false);
@@ -133,8 +179,12 @@
         private Panel pnlMain;
         private Button btnSettings;
         private PictureBox pictureBox1;
-        private Button button2;
-        private Button button3;
-        private Button button1;
+        private Button btnFavorite;
+        private Button btnrankingMatches;
+        private Button btnPlayerRanking;
+        private Button btnRefresh;
+        private PictureBox pbMinimize;
+        private PictureBox pbMaximize;
+        private PictureBox pbExit;
     }
 }
