@@ -21,97 +21,63 @@ namespace WinFormsApp1
 {
     public partial class MainForm : Form
     {
+        private const string optionsFile = "options.txt";
+
+        private SettingsForm settingsForm = new SettingsForm();
+
+        private PlayerRankingForm playerRankingForm= new PlayerRankingForm();
+
+        private FormCountries countriesForm = new FormCountries();
+
+        private RankingMatchesForm rankingMatchesForm = new RankingMatchesForm();
+        
         public MainForm()
         {
-            Reload();
+            InitializeComponent();
+            SetLanguage();
+            LoadForm(settingsForm);
         }
+     
         private void button1_Click(object sender, EventArgs e)
         {
-            pnlMain.Controls.Clear();
-            LoadSettingsForm();
+            LoadForm(settingsForm);
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
-            pnlMain.Controls.Clear();
-            LoadPlayerRankingForm();
+            LoadForm(playerRankingForm);
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            pnlMain.Controls.Clear();
-            LoadCountriesForm();
+            LoadForm(countriesForm);
 
         }
         private void button3_Click(object sender, EventArgs e)
         {
+            LoadForm(rankingMatchesForm);
+        }
+
+        private void LoadForm(Form form)
+        {
             pnlMain.Controls.Clear();
-            LoadRankingForm();
-        }
-        private void LoadPlayerRankingForm()
-        {
-            PlayerRankingForm playerRankingForm = new PlayerRankingForm();
-            playerRankingForm.TopLevel = false;
-            playerRankingForm.FormBorderStyle = FormBorderStyle.None;
-            playerRankingForm.Dock = DockStyle.Fill;
-            pnlMain.Controls.Add(playerRankingForm);
-            playerRankingForm.Show();
+            if (form == null) return;
+            EditFormSettings(form);
+            pnlMain.Controls.Add(form);
+            form.Show();
         }
 
-        private void LoadCountriesForm()
+        private Form EditFormSettings(Form form)
         {
-            FormCountries countries = new FormCountries();
-            countries.TopLevel = false;
-            countries.FormBorderStyle = FormBorderStyle.None;
-            countries.Dock = DockStyle.Fill;
-            pnlMain.Controls.Add(countries);
-            countries.Show();
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+            return form;
         }
 
-        private void LoadSettingsForm()
-        {
-            SettingsForm settingsForm = new SettingsForm();
-            settingsForm.TopLevel = false;
-            settingsForm.FormBorderStyle = FormBorderStyle.None;
-            settingsForm.Dock = DockStyle.Fill;
-            pnlMain.Controls.Add(settingsForm);
-            settingsForm.Show();
-        }
-
-        private void LoadRankingForm()
-        {
-            RankingMatchesForm rankingForm = new RankingMatchesForm();
-            rankingForm.TopLevel = false;
-            rankingForm.FormBorderStyle = FormBorderStyle.None;
-            rankingForm.Dock = DockStyle.Fill;
-            pnlMain.Controls.Add(rankingForm);
-            rankingForm.Show();
-        }
+    
         private void SetLanguage()
         {
-            string filePath = Path.Combine(Application.StartupPath, "options.txt");
-            string[] language = File.ReadAllLines(filePath);
-            string chosenLanguage = language[1];
-
-            // Convert the language to a CultureInfo
-            CultureInfo culture;
-            switch (chosenLanguage)
-            {
-                case "Croatian":
-                    culture = new CultureInfo("hr");
-                    break;
-                default:
-                    culture = new CultureInfo("en");
-                    break;
-            }
-            Thread.CurrentThread.CurrentUICulture = culture;
-
-            this.Controls.Clear();
-            this.InitializeComponent();
+            Utility.Utility.SetLanguage(this, optionsFile);
         }
-        private void Reload()
-        {
-            InitializeComponent();
-            LoadSettingsForm();
-            SetLanguage();
-        }
+
     }
 }

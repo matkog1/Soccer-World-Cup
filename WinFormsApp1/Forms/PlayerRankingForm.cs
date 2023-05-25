@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace WinFormsApp1.Forms
 {
     public partial class PlayerRankingForm : Form
     {
+        private const string optionsFile = "options.txt";
         //za sortiranje columna na klik
         int currentColumnIndex = -1;
         bool ascending = true;
@@ -31,21 +33,7 @@ namespace WinFormsApp1.Forms
 
         private void SetLanguage()
         {
-            string filePath = Path.Combine(Application.StartupPath, "options.txt");
-            string[] language = File.ReadAllLines(filePath);
-            string chosenLanguage = language[1];
-
-            CultureInfo culture;
-            switch (chosenLanguage)
-            {
-                case "Croatian":
-                    culture = new CultureInfo("hr");
-                    break;
-                default:
-                    culture = new CultureInfo("en");
-                    break;
-            }
-            Thread.CurrentThread.CurrentUICulture = culture;
+            Utility.Utility.SetLanguage(this, optionsFile);
             this.Controls.Clear();
             this.InitializeComponent();
         }
@@ -181,6 +169,49 @@ namespace WinFormsApp1.Forms
             }
 
             return dataSource;
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            PrintDocument();
+        }
+
+        private void PrintDocument()
+        {
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.PrintPage += PrintDocument_PrintPage;
+            PrintDialog printDialog = new PrintDialog();
+            printDialog.Document = printDocument;
+
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                printDocument.Print();
+            }
+        }
+
+        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            DataGridView dataGridView = dataGridPlayers; // Your DataGridView
+            float currentY = 40; // The y coordinate of the current line
+
+            // Header
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                e.Graphics.DrawString(column.HeaderText, dataGridView.Font, Brushes.Black, column.DisplayIndex * 150, currentY);
+            }
+
+            currentY += 50;
+
+            // Rows
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    e.Graphics.DrawString(Convert.ToString(cell.Value), dataGridView.Font, Brushes.Black, cell.ColumnIndex * 150, currentY);
+                }
+
+                currentY += 50;
+            }
         }
     }
 }

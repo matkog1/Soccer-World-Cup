@@ -14,6 +14,7 @@ namespace WinFormsApp1.Forms
 {
     public partial class SettingsForm : Form
     {
+        private const string optionsFile = "options.txt";
         public SettingsForm()
         {
             InitializeComponent();
@@ -24,22 +25,7 @@ namespace WinFormsApp1.Forms
 
         private void SetLanguage()
         {
-            string filePath = Path.Combine(Application.StartupPath, "options.txt");
-            string[] language = File.ReadAllLines(filePath);
-            string chosenLanguage = language[1];
-
-            // Convert the language to a CultureInfo
-            CultureInfo culture;
-            switch (chosenLanguage)
-            {
-                case "Croatian":
-                    culture = new CultureInfo("hr");
-                    break;
-                default:
-                    culture = new CultureInfo("en");
-                    break;
-            }
-            Thread.CurrentThread.CurrentUICulture = culture;
+            Utility.Utility.SetLanguage(this, optionsFile);
         }
 
         private void LocationSettings()
@@ -70,23 +56,42 @@ namespace WinFormsApp1.Forms
 
             if (string.IsNullOrEmpty(selectedChampionship) || string.IsNullOrEmpty(selectedLanguage))
             {
-                MessageBox.Show("Please select options in both ComboBoxes.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowErrorMessage();
                 return;
             }
-            else
+            DialogResult result = ConfirmSaveMessage();
+
+            if (result == DialogResult.Yes)
             {
-                string filePath = Path.Combine(Application.StartupPath, "options.txt");
-
-                using (StreamWriter writer = new StreamWriter(filePath))
-                {
-                    writer.WriteLine(selectedChampionship);
-                    writer.WriteLine(selectedLanguage);
-                }
-
-                MessageBox.Show("Options saved to file.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                SaveToFile(selectedChampionship, selectedLanguage, optionsFile);
+                ShowPrintMessage();
+                SetLanguage();
             }
+        }
 
-            SetLanguage();
+        private static DialogResult ConfirmSaveMessage()
+        {
+            return MessageBox.Show("Are you sure you want to save?", "Saving...", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+        }
+
+        private void ShowErrorMessage()
+        {
+            MessageBox.Show("Please select options in both ComboBoxes.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void ShowPrintMessage()
+        {
+            MessageBox.Show("Options saved to file.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void SaveToFile(string selectedChampionship,string selectedLanguage,string optionsFile)
+        {
+            string filePath = Path.Combine(Application.StartupPath, optionsFile);
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                writer.WriteLine(selectedChampionship);
+                writer.WriteLine(selectedLanguage);
+            }
         }
     }
 }

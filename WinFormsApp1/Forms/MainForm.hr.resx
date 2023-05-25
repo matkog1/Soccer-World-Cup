@@ -57,16 +57,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 64</value>
+  </data>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 185</value>
+  </data>
   <data name="button1.Text" xml:space="preserve">
     <value>Rangiranje igrača</value>
+  </data>
+  <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 124</value>
   </data>
   <data name="button3.Text" xml:space="preserve">
     <value>Rangiranje timova</value>
   </data>
+  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 62</value>
+  </data>
   <data name="button2.Text" xml:space="preserve">
     <value>Omiljena momčad</value>
   </data>
+  <data name="btnSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 245</value>
+  </data>
   <data name="btnSettings.Text" xml:space="preserve">
     <value>Postavke</value>
+  </data>
+  <data name="pnlLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 530</value>
+  </data>
+  <data name="pnlMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>133, 69</value>
+  </data>
+  <data name="pnlMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>893, 530</value>
   </data>
 </root>

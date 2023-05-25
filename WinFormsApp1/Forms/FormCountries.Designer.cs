@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCountries));
             panel2 = new Panel();
+            lblFavoritePlayers = new Label();
+            lblAllPlayers = new Label();
             flp2 = new FlowLayoutPanel();
             flp1 = new FlowLayoutPanel();
             btnSave = new Button();
@@ -45,6 +47,8 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(44, 43, 60);
+            panel2.Controls.Add(lblFavoritePlayers);
+            panel2.Controls.Add(lblAllPlayers);
             panel2.Controls.Add(flp2);
             panel2.Controls.Add(flp1);
             panel2.Controls.Add(btnSave);
@@ -54,6 +58,19 @@
             panel2.Controls.Add(cbCountryPlayers);
             resources.ApplyResources(panel2, "panel2");
             panel2.Name = "panel2";
+            panel2.ContextMenuStripChanged += btnSave_Click;
+            // 
+            // lblFavoritePlayers
+            // 
+            resources.ApplyResources(lblFavoritePlayers, "lblFavoritePlayers");
+            lblFavoritePlayers.ForeColor = Color.White;
+            lblFavoritePlayers.Name = "lblFavoritePlayers";
+            // 
+            // lblAllPlayers
+            // 
+            resources.ApplyResources(lblAllPlayers, "lblAllPlayers");
+            lblAllPlayers.ForeColor = Color.White;
+            lblAllPlayers.Name = "lblAllPlayers";
             // 
             // flp2
             // 
@@ -104,7 +121,6 @@
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            ControlBox = false;
             Controls.Add(panel2);
             Name = "FormCountries";
             panel2.ResumeLayout(false);
@@ -123,5 +139,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private FlowLayoutPanel flp1;
         private FlowLayoutPanel flp2;
+        private Label lblFavoritePlayers;
+        private Label lblAllPlayers;
     }
 }

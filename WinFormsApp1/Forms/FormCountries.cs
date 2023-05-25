@@ -8,68 +8,78 @@ using System.Globalization;
 using SoccerDAL.AllRepos.WomenRepos.WomenTeams;
 using SoccerDAL.AllRepos.WomenRepos.WomenPlayers;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
+using System.CodeDom;
 
 namespace WinFormsApp1
 {
     public partial class FormCountries : Form
     {
-
+        string favoriteTeams = "favorite_teams.txt";
+        string optionsFile = "options.txt";
         public FormCountries()
         {
             InitializeComponent();
             SetLanguage();
             LoadTeams();
+            DragAndDrop();
         }
 
- 
+        private void DragAndDrop()
+        {
+            flp1.AllowDrop = true;
+            flp2.AllowDrop = true;
+
+            // Attach event handlers for drag and drop events
+            flp1.DragEnter += FlowLayoutPanel_DragEnter;
+            flp1.DragDrop += FlowLayoutPanel_DragDrop;
+
+            flp2.DragEnter += FlowLayoutPanel_DragEnter;
+            flp2.DragDrop += FlowLayoutPanel_DragDrop;
+        }
+        private void FlowLayoutPanel_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(PlayerControl)))
+            {
+                e.Effect = DragDropEffects.Move;
+            }
+        }
+
+        private void FlowLayoutPanel_DragDrop(object sender, DragEventArgs e)
+        {
+            PlayerControl playerControl = (PlayerControl)e.Data.GetData(typeof(PlayerControl));
+            FlowLayoutPanel destination = (FlowLayoutPanel)sender;
+            FlowLayoutPanel source = (FlowLayoutPanel)playerControl.Parent;
+
+            // Perform the drag and drop operation
+            source.Controls.Remove(playerControl);
+            destination.Controls.Add(playerControl);
+
+            // Update the ContextMenuStrip of the PlayerControl
+            playerControl.ContextMenuStrip.Items[0].Enabled = destination == flp1;
+        }
+
         private void SetLanguage()
         {
-            string filePath = Path.Combine(Application.StartupPath, "options.txt");
-            string[] language = File.ReadAllLines(filePath);
-            string chosenLanguage = language[1];
-
-
-            CultureInfo culture;
-            switch (chosenLanguage)
-            {
-                case "Croatian":
-                    culture = new CultureInfo("hr");
-                    break;
-                default:
-                    culture = new CultureInfo("en");
-                    break;
-            }
-
-            Thread.CurrentThread.CurrentUICulture = culture;
-            this.Controls.Clear();
-            this.InitializeComponent();
+            Utility.Utility.SetLanguage(this, optionsFile);
+            
         }
 
         private async Task LoadPlayers()
         {
             string championship = GetChampionshipType();
-            IRepoPlayer repo;
-            repo = CheckChampionShipType(championship);
+            IRepoPlayer repo = CheckChampionShipType(championship);
+
             Dictionary<string, List<Player>> _playersByCountry = repo.GetPlayersByCountryFromJsonFile();
-            if (_playersByCountry != null)
+            if (_playersByCountry == null) return;
+
+            Team selectedTeam = cbTeams.SelectedItem as Team;
+            if (selectedTeam?.country is string selectedCountry && _playersByCountry.TryGetValue(selectedCountry, out List<Player> players))
             {
-                Team selectedTeam = (Team)cbTeams.SelectedItem;
-                if (selectedTeam != null)
-                {
-                    string selectedCountry = selectedTeam.country;
-                    if (_playersByCountry.ContainsKey(selectedCountry))
-                    {
-                        List<Player> players = _playersByCountry[selectedCountry];
-                        cbCountryPlayers.DataSource = players;
-                        cbCountryPlayers.DisplayMember = "Name";
-
-                        FillLayout(players);
-                    }
-                }
+                cbCountryPlayers.DataSource = players;
+                cbCountryPlayers.DisplayMember = "Name";
+                FillLayout(players);
             }
-
-
-
         }
 
         private void FillLayout(List<Player> players)
@@ -85,65 +95,82 @@ namespace WinFormsApp1
                     playerControl.PlayerPosition = player.Position;
                     playerControl.PlayerCaptain = player.Captain;
                     playerControl.PlayerFavorite = player.Favorite;
+
                     flp1.Controls.Add(playerControl);
                 }
             }
         }
 
+        private void PlayerControl_RequestMove(object sender, EventArgs e)
+        {
+            PlayerControl playerControl = sender as PlayerControl;
+
+            FlowLayoutPanel source = (FlowLayoutPanel)playerControl.Parent;
+            FlowLayoutPanel destination = source == flp1 ? flp2 : flp1;
+
+            // Perform the move operation
+            source.Controls.Remove(playerControl);
+            destination.Controls.Add(playerControl);
+        }
+
         private static IRepoPlayer CheckChampionShipType(string championship)
         {
+    
             IRepoPlayer repo;
-            if (championship == "Men")
+            switch (championship)
             {
-                repo = MenRepoFactoryPlayer.GetRepo();
+                case "Men":
+                    repo = MenRepoFactoryPlayer.GetRepo();
+                    break;
+                case "Women":
+                    repo = WomenRepoFactoryPlayer.GetRepo();
+                    break;
+                default:
+                    throw new Exception("Invalid championship type");
             }
-            else if (championship == "Women")
-            {
-                repo = WomenRepoFactoryPlayer.GetRepo();
-            }
-            else
-            {
-                throw new Exception();
-            }
-
             return repo;
         }
 
         private async Task LoadTeams()
         {
-            string championship = GetChampionshipType();
-            IRepoTeams teamsRepo; // Declare the variable here
+            try
+            {
+                string championship = GetChampionshipType();
+                IRepoTeams teamsRepo;
 
-            teamsRepo = LoadChampionship(championship);
+                teamsRepo = LoadChampionship(championship);
 
-            IList<Team> teamsList = await teamsRepo.GetAllTeams();
-            List<Team> teams = teamsList.ToList();
-            PrintTeams(teams);
-            LoadSelectedCountry();
+                IList<Team> teamsList = await teamsRepo.GetAllTeams();
+                List<Team> teams = teamsList.ToList();
+                PrintTeams(teams);
+                LoadSelectedCountry();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private static IRepoTeams LoadChampionship(string championship)
         {
             IRepoTeams teamsRepo;
-            if (championship == "Men")
+            switch (championship)
             {
-                teamsRepo = MenRepoFactoryTeams.GetRepo();
+                case "Men":
+                    teamsRepo = MenRepoFactoryTeams.GetRepo();
+                    break;
+                case "Women":
+                    teamsRepo = WomenRepoFactoryTeams.GetRepo();
+                    break;
+                default:
+                    throw new Exception("Invalid championship type");
             }
-            else if (championship == "Women")
-            {
-                teamsRepo = WomenRepoFactoryTeams.GetRepo();
-            }
-            else
-            {
-                throw new Exception("Invalid championship type");
-            }
-
             return teamsRepo;
         }
 
         private string GetChampionshipType()
         {
-            string filePath = Path.Combine(Application.StartupPath, "options.txt");
+            string filePath = Path.Combine(Application.StartupPath, optionsFile);
             string[] language = File.ReadAllLines(filePath);
             string chosenLanguage = language[0];
             return chosenLanguage;
@@ -173,7 +200,7 @@ namespace WinFormsApp1
 
         private void LoadSelectedCountry()
         {
-            string filePath = Path.Combine(Application.StartupPath, "favorite_teams.txt");
+            string filePath = Path.Combine(Application.StartupPath, favoriteTeams);
             if (File.Exists(filePath))
             {
                 string lastSavedCountry = File.ReadAllText(filePath);
@@ -190,15 +217,12 @@ namespace WinFormsApp1
 
         private void SaveSelectedCountry()
         {
-            string filePath = Path.Combine(Application.StartupPath, "favorite_teams.txt");
-            Team selectedTeam = (Team)cbTeams.SelectedItem;
-            if (selectedTeam != null)
+            string filePath = Path.Combine(Application.StartupPath, favoriteTeams);
+            Team selectedTeam = cbTeams.SelectedItem as Team;
+
+            if (selectedTeam?.country is string country)
             {
-                string country = selectedTeam.country;
-                using (StreamWriter writer = new StreamWriter(filePath))
-                {
-                    writer.Write(country);
-                }
+                File.WriteAllText(filePath, country);
             }
         }
 
@@ -206,5 +230,6 @@ namespace WinFormsApp1
         {
             SaveSelectedCountry();
         }
+
     }
 }

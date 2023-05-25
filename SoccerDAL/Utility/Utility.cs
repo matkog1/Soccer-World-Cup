@@ -3,12 +3,15 @@ using Microsoft.VisualBasic;
 using SoccerDAL.Comparer;
 using SoccerDAL.Models;
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SoccerDAL.Utility
 {
@@ -31,11 +34,6 @@ namespace SoccerDAL.Utility
 
                 Console.WriteLine();
             }
-        }
-
-        public static void CompareColumns<T>(List<T> matchesList, string propertyForComparison,bool order)
-        {
-            matchesList.Sort(new PropertyComparer<T>(propertyForComparison, order));
         }
 
     }
