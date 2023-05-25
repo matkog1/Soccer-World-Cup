@@ -36,6 +36,11 @@ namespace SoccerDAL.Utility
             }
         }
 
+        public static void CompareColumns<T>(List<T> matchesList, string propertyForComparison, bool order)
+        {
+            matchesList.Sort(new PropertyComparer<T>(propertyForComparison, order));
+        }
+
     }
 
 

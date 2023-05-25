@@ -66,11 +66,11 @@ namespace WinFormsApp1
             form.Dock = DockStyle.Fill;
             return form;
         }
-
-    
         private void SetLanguage()
         {
             Utility.Utility.SetLanguage(this, optionsFile);
+            this.Controls.Clear();
+            this.InitializeComponent();
         }
 
     }

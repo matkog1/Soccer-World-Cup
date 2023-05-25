@@ -201,18 +201,21 @@ namespace WinFormsApp1
         private void LoadSelectedCountry()
         {
             string filePath = Path.Combine(Application.StartupPath, favoriteTeams);
-            if (File.Exists(filePath))
+            if (!File.Exists(filePath))
             {
-                string lastSavedCountry = File.ReadAllText(filePath);
-                foreach (Team team in cbTeams.Items)
+                    string defaulFavoriteCountry = "Croatia";
+                    File.WriteAllText(filePath, defaulFavoriteCountry);
+             }
+          
+             string lastSavedCountry = File.ReadAllText(filePath);
+             foreach (Team team in cbTeams.Items)
+             {
+                if (team.country == lastSavedCountry)
                 {
-                    if (team.country == lastSavedCountry)
-                    {
-                        cbTeams.SelectedItem = team;
-                        break;
-                    }
+                    cbTeams.SelectedItem = team;
+                    break;
                 }
-            }
+             }
         }
 
         private void SaveSelectedCountry()

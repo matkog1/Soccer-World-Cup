@@ -1,4 +1,5 @@
-﻿using RazorEngine.Compilation.ImpromptuInterface.Dynamic;
+﻿using RazorEngine;
+using RazorEngine.Compilation.ImpromptuInterface.Dynamic;
 using SoccerDAL.Comparer;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,15 @@ namespace WinFormsApp1.Utility
         public static void SetLanguage(Form form, string optionsFile)
         {
             string filePath = Path.Combine(Application.StartupPath, optionsFile);
+            if (!File.Exists(filePath))
+            {
+                string defaultLanguage = "English";
+                string defaultChampionship = "Men";
+                string content = defaultChampionship + Environment.NewLine + defaultLanguage;
+                File.WriteAllText(filePath, content);
+            }
             string[] language = File.ReadAllLines(filePath);
-            string chosenLanguage = language[1];
+            string chosenLanguage = language[0];
 
             CultureInfo culture;
             switch (chosenLanguage)
@@ -29,9 +37,9 @@ namespace WinFormsApp1.Utility
             }
             Thread.CurrentThread.CurrentUICulture = culture;
         }
-        public static void CompareColumns<T>(List<T> list, string propertyForComparison, bool order)
+        public static void CompareColumns<T>(List<T> matchesList, string propertyForComparison, bool order)
         {
-            list.Sort(new PropertyComparer<T>(propertyForComparison, order));
+            matchesList.Sort(new PropertyComparer<T>(propertyForComparison, order));
         }
     }
 }
