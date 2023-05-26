@@ -15,106 +15,125 @@ using System.Xml.Xsl;
 using System.Resources;
 using WinFormsApp1.Forms;
 using System.Globalization;
+using RazorEngine.Compilation.ImpromptuInterface.Dynamic;
 
 namespace WinFormsApp1
 {
     public partial class MainForm : Form
     {
+        private const string optionsFile = "options.txt";
         public MainForm()
         {
             InitializeComponent();
-            LoadSettingsForm();
+            Settings();
             SetLanguage();
         }
 
-        private void SetLanguage()
+        private void Settings()
         {
-            string filePath = Path.Combine(Application.StartupPath, "options.txt");
-            string[] language = File.ReadAllLines(filePath);
-            string chosenLanguage = language[1];
-
-            // Convert the language to a CultureInfo
-            CultureInfo culture;
-            switch (chosenLanguage)
-            {
-                case "Croatian":
-                    culture = new CultureInfo("hr");
-                    break;
-                default:
-                    culture = new CultureInfo("en");
-                    break;
-            }
-
-            // Change the culture of the current thread
-            Thread.CurrentThread.CurrentUICulture = culture;
-
-            // Reload the form to apply the new culture
-            this.Controls.Clear();
-            this.InitializeComponent();
+            pnlLeft.Location = new Point(0, 69);
+            pnlLeft.Size = new Size(133, 530);
+            pnlLeft.Dock = DockStyle.Left; pnlLeft.TabIndex = 0;
+            btnFavorite.Size = new Size(130, 45);
+            btnFavorite.Location = new Point(3, 62);
+            btnrankingMatches.Location = new Point(3, 124);
+            btnPlayerRanking.Location = new Point(3, 185);
+            btnSettings.Location = new Point(3, 245);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Reload()
         {
-            pnlMain.Controls.Clear();
-            LoadSettingsForm();
-        }
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            pnlMain.Controls.Clear();
-            LoadPlayerRankingForm();
+            InitializeComponent();
+            SetLanguage();
         }
 
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            pnlMain.Controls.Clear();
-            LoadCountriesForm();
-
-        }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            pnlMain.Controls.Clear();
-            LoadRankingForm();
-        }
-        private void LoadPlayerRankingForm()
-        {
-            PlayerForm playerRankingForm = new PlayerForm();
-            playerRankingForm.TopLevel = false;
-            playerRankingForm.FormBorderStyle = FormBorderStyle.None;
-            playerRankingForm.Dock = DockStyle.Fill;
-            pnlMain.Controls.Add(playerRankingForm);
-            playerRankingForm.Show();
-        }
-
-        private void LoadCountriesForm()
-        {
-            FormCountries countries = new FormCountries();
-            countries.TopLevel = false;
-            countries.FormBorderStyle = FormBorderStyle.None;
-            countries.Dock = DockStyle.Fill;
-            pnlMain.Controls.Add(countries);
-            countries.Show();
-        }
-
-        private void LoadSettingsForm()
+        private void btnSettings_Click(object sender, EventArgs e)
         {
             SettingsForm settingsForm = new SettingsForm();
-            settingsForm.TopLevel = false;
-            settingsForm.FormBorderStyle = FormBorderStyle.None;
-            settingsForm.Dock = DockStyle.Fill;
-            pnlMain.Controls.Add(settingsForm);
-            settingsForm.Show();
+            LoadForm(settingsForm);
         }
-
-        private void LoadRankingForm()
+        private void btnPlayerRanking_Click(object sender, EventArgs e)
         {
-            RankingMatchesForm rankingForm = new RankingMatchesForm();
-            rankingForm.TopLevel = false;
-            rankingForm.FormBorderStyle = FormBorderStyle.None;
-            rankingForm.Dock = DockStyle.Fill;
-            pnlMain.Controls.Add(rankingForm);
-            rankingForm.Show();
+            PlayerRankingForm playerRankingForm = new PlayerRankingForm();
+            LoadForm(playerRankingForm);
+        }
+        private void btnFavorite_Click(object sender, EventArgs e)
+        {
+            FavoritesForm countriesForm = new FavoritesForm();
+            LoadForm(countriesForm);
+
+        }
+        private void btnRankingMatches_Click(object sender, EventArgs e)
+        {
+            RankingMatchesForm rankingMatchesForm = new RankingMatchesForm();
+            LoadForm(rankingMatchesForm);
         }
 
+        private void LoadForm(Form form)
+        {
+            pnlMain.Controls.Clear();
+            if (form == null) return;
+            EditFormSettings(form);
+            pnlMain.Controls.Add(form);
+            form.Show();
+        }
+
+        private Form EditFormSettings(Form form)
+        {
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+            return form;
+        }
+        private void SetLanguage()
+        {
+            Utility.Utility.SetLanguage(this, optionsFile);
+            this.Controls.Clear();
+            this.InitializeComponent();
+            Settings();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void pictureBox2_Click_1(object sender, EventArgs e)
+        {
+            DialogResult result = CheckResult();
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private DialogResult CheckResult()
+        {
+            return MessageBox.Show("Are you sure you want to exit?", "Confirm", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+        }
+
+        private void pbMaximize_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+
+        }
+        private void pictureBox2_Click_2(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void pictureBox2_Click_3(object sender, EventArgs e)
+        {
+            Reload();
+        }
     }
 }

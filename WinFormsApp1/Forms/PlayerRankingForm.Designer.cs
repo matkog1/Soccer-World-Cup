@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp1.Forms
 {
-    partial class PlayerForm
+    partial class PlayerRankingForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayerForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayerRankingForm));
             dataGridPlayers = new DataGridView();
             lblPlayerRanking = new Label();
+            btnPrint = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridPlayers).BeginInit();
             SuspendLayout();
             // 
@@ -49,14 +50,23 @@
             lblPlayerRanking.ForeColor = Color.White;
             lblPlayerRanking.Name = "lblPlayerRanking";
             // 
-            // PlayerForm
+            // btnPrint
+            // 
+            resources.ApplyResources(btnPrint, "btnPrint");
+            btnPrint.Name = "btnPrint";
+            btnPrint.UseVisualStyleBackColor = true;
+            btnPrint.Click += btnPrint_Click;
+            // 
+            // PlayerRankingForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(44, 43, 60);
+            ControlBox = false;
+            Controls.Add(btnPrint);
             Controls.Add(lblPlayerRanking);
             Controls.Add(dataGridPlayers);
-            Name = "PlayerForm";
+            Name = "PlayerRankingForm";
             ((System.ComponentModel.ISupportInitialize)dataGridPlayers).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -66,5 +76,6 @@
 
         private DataGridView dataGridPlayers;
         private Label lblPlayerRanking;
+        private Button btnPrint;
     }
 }

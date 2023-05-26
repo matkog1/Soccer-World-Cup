@@ -14,16 +14,17 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace WinFormsApp1.Forms
 {
     public partial class RankingMatchesForm : Form
     {
+        private const string optionsFile = "options.txt";
+        private const string favoriteTeams = "favorite_teams.txt";
         public RankingMatchesForm()
         {
             InitializeComponent();
@@ -33,28 +34,7 @@ namespace WinFormsApp1.Forms
 
         private void SetLanguage()
         {
-            string filePath = Path.Combine(Application.StartupPath, "options.txt");
-            string[] language = File.ReadAllLines(filePath);
-            string chosenLanguage = language[1];
-
-            // Convert the language to a CultureInfo
-            CultureInfo culture;
-            switch (chosenLanguage)
-            {
-                case "Croatian":
-                    culture = new CultureInfo("hr");
-                    break;
-                default:
-                    culture = new CultureInfo("en");
-                    break;
-            }
-
-            // Change the culture of the current thread
-            Thread.CurrentThread.CurrentUICulture = culture;
-
-            // Reload the form to apply the new culture
-            this.Controls.Clear();
-            this.InitializeComponent();
+            Utility.Utility.SetLanguage(this, optionsFile);
         }
 
         private async void LoadDataAsync(string fifaCode)
@@ -73,6 +53,8 @@ namespace WinFormsApp1.Forms
                     e.Value = $"{team.country},{team.fifa_code}";
                 }
             };
+
+            LoadSelectedCountry();
         }
 
         private static async Task<List<Team>> GetTeams()
@@ -107,7 +89,7 @@ namespace WinFormsApp1.Forms
 
         private static string GetChampionshipType()
         {
-            string filePath = Path.Combine(Application.StartupPath, "options.txt");
+            string filePath = Path.Combine(Application.StartupPath, optionsFile);
             string[] lines = File.ReadAllLines(filePath);
             string chosen = lines[0];
             return chosen;
@@ -190,7 +172,7 @@ namespace WinFormsApp1.Forms
         }
         private void SortColumns(List<Matches> matchesList, string columnForSorting, bool order)
         {
-            Utility.CompareColumns(matchesList, columnForSorting, false);
+            Utility.Utility.CompareColumns(matchesList, columnForSorting, false);
         }
 
         private void cbTeamsRanking_SelectedIndexChanged(object sender, EventArgs e)
@@ -198,6 +180,66 @@ namespace WinFormsApp1.Forms
             Team countryCode = (Team)cbTeamsRanking.SelectedItem;
             string fifaCode = countryCode.fifa_code;
             LoadDataAsync(fifaCode);
+        }
+
+        private void LoadSelectedCountry()
+        {
+            string filePath = Path.Combine(Application.StartupPath, favoriteTeams);
+            if (File.Exists(filePath))
+            {
+                string lastSavedCountry = File.ReadAllText(filePath);
+                foreach (Team team in cbTeamsRanking.Items)
+                {
+                    if (team.country == lastSavedCountry)
+                    {
+                        cbTeamsRanking.SelectedItem = team;
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            PrintDocument();
+        }
+
+        private void PrintDocument()
+        {
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.PrintPage += PrintDocument_PrintPage;
+            PrintDialog printDialog = new PrintDialog();
+            printDialog.Document = printDocument;
+
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                printDocument.Print();
+            }
+        }
+
+        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            DataGridView dataGridView = dataGridRanking; // Your DataGridView
+            float currentY = 40; // The y coordinate of the current line
+
+            // Header
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                e.Graphics.DrawString(column.HeaderText, dataGridView.Font, Brushes.Black, column.DisplayIndex * 150, currentY);
+            }
+
+            currentY += 50;
+
+            // Rows
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    e.Graphics.DrawString(Convert.ToString(cell.Value), dataGridView.Font, Brushes.Black, cell.ColumnIndex * 150, currentY);
+                }
+
+                currentY += 50;
+            }
         }
     }
 }

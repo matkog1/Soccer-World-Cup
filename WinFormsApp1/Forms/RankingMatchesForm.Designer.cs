@@ -32,6 +32,7 @@
             dataGridRanking = new DataGridView();
             cbTeamsRanking = new ComboBox();
             lblCountryRanking = new Label();
+            btnPrint = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridRanking).BeginInit();
             SuspendLayout();
             // 
@@ -57,11 +58,20 @@
             lblCountryRanking.ForeColor = Color.White;
             lblCountryRanking.Name = "lblCountryRanking";
             // 
+            // btnPrint
+            // 
+            resources.ApplyResources(btnPrint, "btnPrint");
+            btnPrint.Name = "btnPrint";
+            btnPrint.UseVisualStyleBackColor = true;
+            btnPrint.Click += btnPrint_Click;
+            // 
             // RankingMatchesForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(44, 43, 60);
+            ControlBox = false;
+            Controls.Add(btnPrint);
             Controls.Add(lblCountryRanking);
             Controls.Add(cbTeamsRanking);
             Controls.Add(dataGridRanking);
@@ -77,5 +87,6 @@
         private DataGridView dataGridRanking;
         private ComboBox cbTeamsRanking;
         private Label lblCountryRanking;
+        private Button btnPrint;
     }
 }
