@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             pnlTop = new Panel();
-            btnRefresh = new Button();
+            pictureBox2 = new PictureBox();
             pbMinimize = new PictureBox();
             pbMaximize = new PictureBox();
-            pbExit = new PictureBox();
             pictureBox1 = new PictureBox();
+            pbExit = new PictureBox();
             pnlLeft = new Panel();
             btnPlayerRanking = new Button();
             btnrankingMatches = new Button();
@@ -43,10 +43,11 @@
             pnl = new Panel();
             pnlMain = new Panel();
             pnlTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbMinimize).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbMaximize).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pbExit).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbExit).BeginInit();
             pnlLeft.SuspendLayout();
             pnl.SuspendLayout();
             SuspendLayout();
@@ -55,19 +56,20 @@
             // 
             resources.ApplyResources(pnlTop, "pnlTop");
             pnlTop.BackColor = Color.FromArgb(76, 75, 105);
-            pnlTop.Controls.Add(btnRefresh);
+            pnlTop.Controls.Add(pictureBox2);
             pnlTop.Controls.Add(pbMinimize);
             pnlTop.Controls.Add(pbMaximize);
-            pnlTop.Controls.Add(pbExit);
             pnlTop.Controls.Add(pictureBox1);
+            pnlTop.Controls.Add(pbExit);
             pnlTop.Name = "pnlTop";
             // 
-            // btnRefresh
+            // pictureBox2
             // 
-            resources.ApplyResources(btnRefresh, "btnRefresh");
-            btnRefresh.Name = "btnRefresh";
-            btnRefresh.UseVisualStyleBackColor = true;
-            btnRefresh.Click += btnRefresh_Click;
+            resources.ApplyResources(pictureBox2, "pictureBox2");
+            pictureBox2.Image = Properties.Resources.reload;
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click_3;
             // 
             // pbMinimize
             // 
@@ -85,6 +87,13 @@
             pbMaximize.TabStop = false;
             pbMaximize.Click += pbMaximize_Click;
             // 
+            // pictureBox1
+            // 
+            resources.ApplyResources(pictureBox1, "pictureBox1");
+            pictureBox1.Image = Properties.Resources.worldcup;
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.TabStop = false;
+            // 
             // pbExit
             // 
             resources.ApplyResources(pbExit, "pbExit");
@@ -92,13 +101,6 @@
             pbExit.Name = "pbExit";
             pbExit.TabStop = false;
             pbExit.Click += pictureBox2_Click_1;
-            // 
-            // pictureBox1
-            // 
-            resources.ApplyResources(pictureBox1, "pictureBox1");
-            pictureBox1.Image = Properties.Resources.worldcup;
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.TabStop = false;
             // 
             // pnlLeft
             // 
@@ -162,10 +164,11 @@
             ForeColor = Color.FromArgb(44, 43, 60);
             Name = "MainForm";
             pnlTop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbMinimize).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbMaximize).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pbExit).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbExit).EndInit();
             pnlLeft.ResumeLayout(false);
             pnl.ResumeLayout(false);
             ResumeLayout(false);
@@ -182,9 +185,9 @@
         private Button btnFavorite;
         private Button btnrankingMatches;
         private Button btnPlayerRanking;
-        private Button btnRefresh;
         private PictureBox pbMinimize;
         private PictureBox pbMaximize;
         private PictureBox pbExit;
+        private PictureBox pictureBox2;
     }
 }

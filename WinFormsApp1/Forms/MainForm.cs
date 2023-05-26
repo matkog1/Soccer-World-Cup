@@ -60,7 +60,7 @@ namespace WinFormsApp1
         }
         private void btnFavorite_Click(object sender, EventArgs e)
         {
-            FormCountries countriesForm = new FormCountries();
+            FavoritesForm countriesForm = new FavoritesForm();
             LoadForm(countriesForm);
 
         }
@@ -131,7 +131,7 @@ namespace WinFormsApp1
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void pictureBox2_Click_3(object sender, EventArgs e)
         {
             Reload();
         }

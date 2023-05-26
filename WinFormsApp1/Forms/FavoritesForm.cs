@@ -13,11 +13,11 @@ using System.CodeDom;
 
 namespace WinFormsApp1
 {
-    public partial class FormCountries : Form
+    public partial class FavoritesForm : Form
     {
         string favoriteTeams = "favorite_teams.txt";
         string optionsFile = "options.txt";
-        public FormCountries()
+        public FavoritesForm()
         {
             InitializeComponent();
             SetLanguage();

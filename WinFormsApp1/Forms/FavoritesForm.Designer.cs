@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp1
 {
-    partial class FormCountries
+    partial class FavoritesForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCountries));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FavoritesForm));
             panel2 = new Panel();
             lblFavoritePlayers = new Label();
             lblAllPlayers = new Label();
