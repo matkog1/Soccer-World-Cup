@@ -1,4 +1,4 @@
-This project is part of school program
+This project is part of school program /*NOT FINISHED*/
 
 World Cup Statistics Display Project
 
