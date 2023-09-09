@@ -19,6 +19,16 @@ namespace WinFormsApp1
             this.MouseDown += PlayerControl_MouseDown;
         }
 
+        public PlayerControl(string playerName, bool playerCaptain, int playerNumber, string playerPosition, bool playerFavorite, Image icon)
+        {
+            _playerName = playerName;
+            _playerCaptain = playerCaptain;
+            _playerNumber = playerNumber;
+            _playerPosition = playerPosition;
+            _playerFavorite = playerFavorite;
+            _icon = icon;
+        }
+
         private string _playerName;
         private bool _playerCaptain;
         private int _playerNumber;
@@ -51,7 +61,7 @@ namespace WinFormsApp1
 
         public override string ToString()
         {
-            return $"{PlayerName},{PlayerCaptain},{PlayerNumber},{PlayerPosition},{PlayerFavorite}";
+            return $"Name:{PlayerName},Captain:{PlayerCaptain},Shirt number:{PlayerNumber},Position:{PlayerPosition},Favorite:{PlayerFavorite}";
         }
     }
 }
