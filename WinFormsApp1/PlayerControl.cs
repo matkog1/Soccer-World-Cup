@@ -63,5 +63,10 @@ namespace WinFormsApp1
         {
             return $"Name:{PlayerName},Captain:{PlayerCaptain},Shirt number:{PlayerNumber},Position:{PlayerPosition},Favorite:{PlayerFavorite}";
         }
+
+        private void lblFavorite_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
