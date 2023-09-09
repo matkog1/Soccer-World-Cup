@@ -37,6 +37,7 @@ namespace WinFormsApp1.Utility
             }
             Thread.CurrentThread.CurrentUICulture = culture;
         }
+
         public static void CompareColumns<T>(List<T> matchesList, string propertyForComparison, bool order)
         {
             matchesList.Sort(new PropertyComparer<T>(propertyForComparison, order));
