@@ -36,7 +36,7 @@
                     HorizontalAlignment= "Stretch"
                     VerticalAlignment="Center"
                     FontSize="20"
-                    Width="200">
+                    Width="200" Click="btnExit_Click">
             </Button>
 
             <Button Name="btnLogin"
@@ -70,7 +70,8 @@
                 VerticalAlignment="Stretch"
                 Width="150"
                 Height="50"
-                FontSize="24">
+                FontSize="24"
+                SelectionChanged="OnResolutionChanged">
 
                 <ComboBoxItem Content="960x720"></ComboBoxItem>
                 <ComboBoxItem Content="1280x920"></ComboBoxItem>
@@ -99,7 +100,8 @@
                 VerticalAlignment="Stretch"
                 Width="150"
                 Height="50"
-                FontSize="24">
+                FontSize="24"
+                SelectionChanged="OnChampionshipChanged">
 
                 <ComboBoxItem Content="Men"></ComboBoxItem>
                 <ComboBoxItem Content="Women"></ComboBoxItem>

@@ -13,5 +13,6 @@ namespace WPF_WorldCup
     /// </summary>
     public partial class App : Application
     {
+
     }
 }
