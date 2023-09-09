@@ -9,15 +9,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="MVVM\**" />
+    <Compile Remove="Theme\**" />
+    <EmbeddedResource Remove="MVVM\**" />
+    <EmbeddedResource Remove="Theme\**" />
+    <None Remove="MVVM\**" />
+    <None Remove="Theme\**" />
+    <Page Remove="MVVM\**" />
+    <Page Remove="Theme\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SoccerDAL\SoccerDAL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Images\" />
-    <Folder Include="MVVM\Model\" />
-    <Folder Include="MVVM\View\" />
-    <Folder Include="MVVM\ViewModel\" />
-    <Folder Include="Theme\" />
   </ItemGroup>
 
 </Project>
