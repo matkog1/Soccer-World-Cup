@@ -1,9 +1,11 @@
 ﻿using SoccerDAL.Utility;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +15,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Resources;
+
+
 
 namespace WPF_WorldCup
 {
@@ -24,14 +29,16 @@ namespace WPF_WorldCup
         
         private const string resolutionFile = "resolution.txt";
         private const string championshipFile = "championship.txt";
+        private const string languageFile = "language.txt";
+        
         public LoginWindow()
         {
             InitializeComponent();
             LoadLastUsedResolution();
             LoadLastUsedChampionship();
+            LoadLastUsedLanguage();
 
         }
-
 
         private void OnChampionshipChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -127,6 +134,55 @@ namespace WPF_WorldCup
                     }
                 }
             }
+        }
+
+        private void ChangeLanguage(string language)
+        {
+            CultureInfo culture;
+            switch (language)
+            {
+                case "Croatian":
+                    culture = new CultureInfo("hr");
+                    break;
+                default:
+                    culture = new CultureInfo("en-US");
+                    break;
+            }
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+        }
+
+        private void LoadLastUsedLanguage()
+        {
+            string filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, languageFile);
+            if (File.Exists(filePath))
+            {
+                string lastUsedLanguage = File.ReadAllText(filePath);
+                foreach (ComboBoxItem item in cbLanguage.Items)
+                {
+                    if (item.Content.ToString() == lastUsedLanguage)
+                    {
+                        cbLanguage.SelectedItem = item;
+                        break;
+                    }
+                }
+                ChangeLanguage(lastUsedLanguage);
+            }
+        }
+
+        private void OnLanguageChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string selectedLanguage = (cbLanguage.SelectedItem as ComboBoxItem).Content.ToString();
+            string filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, languageFile);
+            File.WriteAllText(filePath, selectedLanguage);
+            ChangeLanguage(selectedLanguage);
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            PlayerWindow playerWindow = new PlayerWindow();
+            playerWindow.Show();
         }
     }
 }

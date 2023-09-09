@@ -1,0 +1,179 @@
+﻿<Window x:Class="WPF_WorldCup.PlayerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_WorldCup"
+        mc:Ignorable="d"
+        Title="PlayerWindow" Height="600" Width="920"
+        ResizeMode="CanResizeWithGrip"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        BorderBrush="#272537">
+    <Border Background="#272537"
+         CornerRadius="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="65"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+
+            <Label
+                Name="lbPlayerName"
+                Grid.Row="1"
+                Grid.Column="0"
+                Content="Player Name"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                FontSize="25"
+                Foreground="White" Height="50" Width="228"/>
+
+            <Label
+                 Name="lbShirtNumber"
+                 Grid.Row="2"
+                 Grid.Column="0"
+                 Content="Shirt Number"
+                 HorizontalAlignment="Center" 
+                 VerticalAlignment="Center"
+                 FontSize="25"
+                 Foreground="White" Height="50" Width="228"/>
+
+            <Label
+                 Name="lbPosition"
+                 Grid.Row="3"
+                 Grid.Column="0"
+                 Content="Position"
+                 HorizontalAlignment="Center" 
+                 VerticalAlignment="Center"
+                 FontSize="25"
+                 Foreground="White" Height="50" Width="228"/>
+
+            <Label
+                 Name="lbGoals"
+                 Grid.Row="4"
+                 Grid.Column="0"
+                 Content="Goals"
+                 HorizontalAlignment="Center" 
+                 VerticalAlignment="Center"
+                 FontSize="25"
+                 Foreground="White" Height="50" Width="228"/>
+
+            <Label
+                 Name="lbYellowCards"
+                 Grid.Row="5"
+                 Grid.Column="0"
+                 Content="YellowCards"
+                 HorizontalAlignment="Center" 
+                 VerticalAlignment="Center"
+                 FontSize="25"
+                 Foreground="White" Height="50" Width="228"/>
+
+            <Label
+                 Name="lbCaptain"
+                 Grid.Row="6"
+                 Grid.Column="0"
+                 Content="Captain"
+                 HorizontalAlignment="Center" 
+                 VerticalAlignment="Center"
+                 FontSize="25"
+                 Foreground="White" Height="50" Width="228"/>
+            
+            <Label
+                Name="lbShowPlayerName"
+                Grid.Row="1"
+                Grid.Column="1"
+                Content="Player Name"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                FontSize="25"
+                Foreground="White" Height="56" Width="228"/>
+
+            <Label
+                 Name="lbShowShirtNumber"
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 Content="Shirt Number"
+                 HorizontalAlignment="Center" 
+                 VerticalAlignment="Center"
+                 FontSize="25"
+                 Foreground="White" Height="56" Width="228"/>
+
+            <Label
+                 Name="lbShowPosition"
+                 Grid.Row="3"
+                 Grid.Column="1"
+                 Content="Position"
+                 HorizontalAlignment="Center" 
+                 VerticalAlignment="Center"
+                 FontSize="25"
+                 Foreground="White" Height="56" Width="228"/>
+
+            <Label
+                 Name="lbShowGoals"
+                 Grid.Row="4"
+                 Grid.Column="1"
+                 Content="Goals"
+                 HorizontalAlignment="Center" 
+                 VerticalAlignment="Center"
+                 FontSize="25"
+                 Foreground="White" Height="56" Width="228"/>
+
+            <Label
+                 Name="lbShowYellowCards"
+                 Grid.Row="5"
+                 Grid.Column="1"
+                 Content="YellowCards"
+                 HorizontalAlignment="Center" 
+                 VerticalAlignment="Center"
+                 FontSize="25"
+                 Foreground="White" Height="56" Width="228"/>
+
+            <Label
+                 Name="lbShowCaptain"
+                 Grid.Row="6"
+                 Grid.Column="1"
+                 Content="Captain"
+                 HorizontalAlignment="Center" 
+                 VerticalAlignment="Center"
+                 FontSize="25"
+                 Foreground="White" Height="50" Width="228"/>
+
+            <Button
+                Name="btnExit"
+                Grid.Row="0"
+                Grid.Column="1"
+                Height="30"
+                Width="100"
+                Content="Exit"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top" Click="btnExit_Click"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </Grid>
+
+    </Border>
+</Window>
