@@ -232,6 +232,8 @@ namespace WinFormsApp1
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveSelectedCountry();
+            MessageBox.Show("Country has been successfully saved.", "Save Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
 
     }
