@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestConsole", "Konzola1\Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsApp1", "WinFormsApp1\WinFormsApp1.csproj", "{201DB0C8-74A0-4894-83BF-E083E19D9FF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF-WorldCup", "WPF-WorldCup\WPF-WorldCup.csproj", "{8F5ADC74-75C2-4E13-84F4-EE325DAA6A91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF-WorldCup", "WPF-WorldCup\WPF-WorldCup.csproj", "{8F5ADC74-75C2-4E13-84F4-EE325DAA6A91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

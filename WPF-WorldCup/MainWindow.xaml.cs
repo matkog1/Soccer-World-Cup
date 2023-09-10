@@ -11,11 +11,15 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Interop;
+using System.Reflection;
+using System.Globalization;
+using System.Threading;
 
 namespace WPF_WorldCup
 {
@@ -26,7 +30,9 @@ namespace WPF_WorldCup
     {
         private const string resolutionFile = "resolution.txt";
         private const string championship = "championship.txt";
+        private const string language = "language.txt";
         public ObservableCollection<Matches> Matches { get; set; }
+        ResourceManager? resourceManager;
         public MainWindow()
         {
             InitializeComponent();
@@ -34,6 +40,34 @@ namespace WPF_WorldCup
             this.DataContext = this;
             CheckResolutionAsync();
             LoadTeamsAsync();
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            switch (LoadLastUsedLanguage())
+            {
+                case "English":
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+                    resourceManager = new ResourceManager("WPF_WorldCup.Resources.en-MainWindow", typeof(MainWindow).Assembly);
+                    break;
+                case "Croatian":
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo("hr-HR");
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("hr-HR");
+                    resourceManager = new ResourceManager("WPF_WorldCup.Resources.hr-MainWindow", typeof(MainWindow).Assembly);
+                    break;
+                default:
+                    break;
+            }
+
+            if (resourceManager != null)
+            {
+
+                btnExit.Content = resourceManager.GetString("btnExit");
+                btnSettings.Content = resourceManager.GetString("btnSettings");
+                lbLogo.Content = resourceManager.GetString("lbLogo");
+            }
         }
 
         private async Task CheckResolutionAsync()
@@ -41,9 +75,36 @@ namespace WPF_WorldCup
             while (true)
             {
                 LoadLastUsedResolution();
+                LoadData();
                 await Task.Delay(1);
             }
         }
+
+        private string LoadLastUsedLanguage()
+        {
+            string filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, language);
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    string lastUsedLanguage = File.ReadAllText(filePath);
+                    return lastUsedLanguage;
+                }
+                else
+                {
+                    return "Croatian";
+                }
+            }
+            catch (Exception e)
+            {
+                // Log or display the exception message
+                MessageBox.Show("No language");
+                return "Croatian";
+            }
+
+        }
+
+
 
         private async void cbTeams_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
