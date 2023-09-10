@@ -41,6 +41,20 @@ namespace WPF_WorldCup
             CheckResolutionAsync();
             LoadTeamsAsync();
             LoadData();
+            LoadPlayersToField();
+        }
+
+        private void LoadPlayersToField()
+        {
+            // Instantiate the Player control
+            var player = new Player();
+
+            // Set the row and column where the player should appear
+            Grid.SetRow(player, 4); // Row index starts from 0
+            Grid.SetColumn(player, 5); // Column index starts from 0
+
+            // Add the player to the grid
+            field.Children.Add(player);
         }
 
         private void LoadData()
@@ -308,5 +322,7 @@ namespace WPF_WorldCup
             teamsOverview.Show();
 
         }
+
+
     }
 }

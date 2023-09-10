@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_WorldCup"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="600" Width="920"
+        Title="LoginWindow"
+        Width="1200"
+        Height="600"
         ResizeMode="CanResizeWithGrip"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
@@ -14,7 +16,7 @@
 
     <Border Background="#272537"
             CornerRadius="20">
-        <Grid>
+        <Grid Margin="0,0,10,0">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
