@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <None Remove="Images\Soccer-field.png" />
+    <None Remove="Images\Soccer-player.png" />
   </ItemGroup>
 
   <ItemGroup>

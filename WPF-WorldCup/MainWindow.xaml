@@ -97,11 +97,8 @@
                 Height="800"
                 Margin="5,5,5,5"></Image>
 
-            
-
-
-
-
+            <local:Player Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,100,0,0"/>
+            <local:Player Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,200,0,0"/>
 
         </Grid>
 
