@@ -119,10 +119,7 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>127, 12</value>
-  </data>
-  <data name="pictureBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 50</value>
+    <value>133, 12</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="pictureBox2.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
@@ -132,13 +129,13 @@
     <value>Segoe UI, 9pt, style=Bold</value>
   </data>
   <data name="btnPlayerRanking.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 164</value>
+    <value>1, 164</value>
   </data>
   <data name="btnPlayerRanking.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 45</value>
   </data>
   <data name="btnPlayerRanking.Text" xml:space="preserve">
-    <value>Ranking igraca</value>
+    <value>Ranking players</value>
   </data>
   <data name="btnrankingMatches.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt, style=Bold</value>
@@ -150,7 +147,7 @@
     <value>130, 45</value>
   </data>
   <data name="btnrankingMatches.Text" xml:space="preserve">
-    <value>Ranking utakmica</value>
+    <value>Ranking matches</value>
   </data>
   <data name="btnFavorite.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt, style=Bold</value>
@@ -162,9 +159,9 @@
     <value>130, 45</value>
   </data>
   <data name="btnFavorite.Text" xml:space="preserve">
-    <value>Favoriti</value>
+    <value>Favorite</value>
   </data>
   <data name="btnSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 220</value>
+    <value>0, 215</value>
   </data>
 </root>
