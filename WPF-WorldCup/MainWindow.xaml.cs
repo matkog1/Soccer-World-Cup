@@ -32,8 +32,17 @@ namespace WPF_WorldCup
             InitializeComponent();
             Matches = new ObservableCollection<Matches>();
             this.DataContext = this;
-            LoadLastUsedResolution();
+            CheckResolutionAsync();
             LoadTeamsAsync();
+        }
+
+        private async Task CheckResolutionAsync()
+        {
+            while (true)
+            {
+                LoadLastUsedResolution();
+                await Task.Delay(1);
+            }
         }
 
         private async void cbTeams_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -86,8 +95,6 @@ namespace WPF_WorldCup
                     this.Top = (SystemParameters.WorkArea.Height - newHeight) / 2;
                 }
             }
-
-            InitializeComponent();
         }
 
         private async Task LoadTeamsAsync()
@@ -202,7 +209,25 @@ namespace WPF_WorldCup
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            MessageBoxResult result = MessageBox.Show(
+                       "Are you sure you want to quit?",
+                       "Confirmation",
+                       MessageBoxButton.YesNoCancel,
+                       MessageBoxImage.Question,
+                       MessageBoxResult.Cancel);
+
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    this.Close();
+                    break;
+                case MessageBoxResult.No:
+                    // Do nothing
+                    break;
+                case MessageBoxResult.Cancel:
+                    // Do nothing
+                    break;
+            }
         }
 
         private async void DisplayButton_ClickAsync(object sender, RoutedEventArgs e)

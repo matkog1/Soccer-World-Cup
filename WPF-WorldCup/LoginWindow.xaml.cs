@@ -67,28 +67,28 @@ namespace WPF_WorldCup
                         break;
                     }
                 }
-
-                // Set window dimensions
-                string[] dimensions = lastUsedResolution.Split('x');
-                if (dimensions.Length == 2)
-                {
-                    int newWidth = int.Parse(dimensions[0]);
-                    int newHeight = int.Parse(dimensions[1]);
-
-                    // Set new size
-                    this.Width = newWidth;
-                    this.Height = newHeight;
-
-                    // Center window
-                    this.Left = (SystemParameters.WorkArea.Width - newWidth) / 2;
-                    this.Top = (SystemParameters.WorkArea.Height - newHeight) / 2;
-                }
             }
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+             MessageBoxResult result = MessageBox.Show(
+               "Are you sure you want to quit?",
+               "Confirmation",
+               MessageBoxButton.YesNoCancel,
+               MessageBoxImage.Question,
+               MessageBoxResult.Cancel);
+
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    this.Close();
+                    break;
+                case MessageBoxResult.No:
+                    break;
+                case MessageBoxResult.Cancel:
+                    break;
+            }
         }
 
         private void OnResolutionChanged(object sender, SelectionChangedEventArgs e)
@@ -99,7 +99,7 @@ namespace WPF_WorldCup
             // Write to a text file
             string filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, resolutionFile);
             File.WriteAllText(filePath, selectedResolution);
-
+            /*
             // Update window size
             string[] dimensions = selectedResolution.Split('x');
             if (dimensions.Length == 2)
@@ -115,6 +115,7 @@ namespace WPF_WorldCup
                 this.Left = (SystemParameters.WorkArea.Width - newWidth) / 2;
                 this.Top = (SystemParameters.WorkArea.Height - newHeight) / 2;
             }
+            */
         }
 
         private void LoadLastUsedChampionship()
