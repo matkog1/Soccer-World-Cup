@@ -50,8 +50,14 @@
                     <GridView>
                         <GridViewColumn Header="Country" DisplayMemberBinding="{Binding country}" />
                         <GridViewColumn Header="FIFA Code" DisplayMemberBinding="{Binding fifa_code}" />
+                        <GridViewColumn Header="Group" DisplayMemberBinding="{Binding group_letter}" />
                         <GridViewColumn Header="Wins" DisplayMemberBinding="{Binding wins}" />
                         <GridViewColumn Header="Draws" DisplayMemberBinding="{Binding draws}" />
+                        <GridViewColumn Header="Losses" DisplayMemberBinding="{Binding losses}" />
+                        <GridViewColumn Header="Draws" DisplayMemberBinding="{Binding draws}" />
+                        <GridViewColumn Header="Goals for" DisplayMemberBinding="{Binding goals_for}" />
+                        <GridViewColumn Header="Goals against" DisplayMemberBinding="{Binding goals_against}" />
+                        <GridViewColumn Header="Goals differential" DisplayMemberBinding="{Binding goal_differential}" />
                         <GridViewColumn Header="Games played" DisplayMemberBinding="{Binding games_played}" />
                         <GridViewColumn Header="Points" DisplayMemberBinding="{Binding points}" />
                     </GridView>
@@ -60,11 +66,11 @@
             <Button
                 Name="btnExit"
                 Content="Exit"
-                Grid.Row="1"
+                Grid.Row="0"
                 Height="20"
                 Width="100"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Top"
+                VerticalAlignment="Center"
                 Margin="0,5,0,5" 
                 Click="btnExit_Click"
                 />
