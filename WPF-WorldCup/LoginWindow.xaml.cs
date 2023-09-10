@@ -180,9 +180,10 @@ namespace WPF_WorldCup
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
             this.Hide();
-            PlayerWindow playerWindow = new PlayerWindow();
-            playerWindow.Show();
         }
     }
 }

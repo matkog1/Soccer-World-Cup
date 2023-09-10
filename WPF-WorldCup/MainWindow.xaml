@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_WorldCup"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="920"
+        Title="MainWindow" Height="900" Width="1200"
         ResizeMode="CanResizeWithGrip"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
@@ -15,38 +15,34 @@
         CornerRadius="20">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+
             </Grid.ColumnDefinitions>
 
-            <Button Name="btnSettings"
+            <Button Name="btnExit"
                 Grid.Column="3"
                 Grid.Row="0"
                 Content="Exit"
                 HorizontalAlignment= "Stretch"
                 VerticalAlignment="Center"
                 FontSize="20"
-                Margin="100,20,0,0"
+                Margin="250,35,0,0"
                 Width="200" Click="btnExit_Click">
             </Button>
 
-            <Button Name="btnExit"
+            <Button Name="btnSettings"
                 Grid.Column="3"
                 Grid.Row="0"
                 Content="Settings"
                 HorizontalAlignment= "Stretch"
                 VerticalAlignment="Center"
                 FontSize="20"
-                Margin="100,0,0,50"
+                Margin="250,0,0,35"
                 Width="200" Click="btnSettings_Click">
             </Button>
 
@@ -64,13 +60,27 @@
 
             <ComboBox
                 Name="cbTeams"
-                Grid.Column="1"
+                Grid.Column="0"
                 Grid.Row="0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Width="250"
-                Height="50"/>
+                Height="50"
+                Margin="200,0,0,0"/>
 
+            <ListView
+                Name="Teams"
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="20,20,20,20"/>
+
+            <Image
+                Source="Images/Soccer-field.png"
+                Grid.Row="1"
+                Grid.Column="1"
+                Width="500"
+                Height="800"
+                Margin="5,5,5,5"></Image>
 
 
 
