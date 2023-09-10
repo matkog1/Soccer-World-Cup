@@ -1,5 +1,4 @@
-﻿using SoccerDAL.Utility;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -17,22 +16,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Resources;
 
-
-
 namespace WPF_WorldCup
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for SettingsWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class SettingsWindow : Window
     {
-        
         private const string resolutionFile = "resolution.txt";
         private const string championshipFile = "championship.txt";
         private const string languageFile = "language.txt";
         ResourceManager? resourceManager;
 
-        public LoginWindow()
+        public SettingsWindow()
         {
             InitializeComponent();
             LoadLastUsedResolution();
@@ -66,7 +62,6 @@ namespace WPF_WorldCup
                 lbChampionship.Content = resourceManager.GetString("lbChampionship");
                 lbResolution.Content = resourceManager.GetString("lbResolution");
                 lblanguage.Content = resourceManager.GetString("lblanguage");
-                btnLogin.Content = resourceManager.GetString("btnLogin");
             }
         }
 
@@ -125,12 +120,12 @@ namespace WPF_WorldCup
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-             MessageBoxResult result = MessageBox.Show(
-               "Are you sure you want to quit?",
-               "Confirmation",
-               MessageBoxButton.YesNoCancel,
-               MessageBoxImage.Question,
-               MessageBoxResult.Cancel);
+            MessageBoxResult result = MessageBox.Show(
+              "Are you sure you want to quit?",
+              "Confirmation",
+              MessageBoxButton.YesNoCancel,
+              MessageBoxImage.Question,
+              MessageBoxResult.Cancel);
 
             switch (result)
             {
@@ -216,12 +211,5 @@ namespace WPF_WorldCup
             LoadData();
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Hide();
-        }
     }
 }

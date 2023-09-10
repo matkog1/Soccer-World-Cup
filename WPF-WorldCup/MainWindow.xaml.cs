@@ -264,8 +264,8 @@ namespace WPF_WorldCup
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow loginWindow = new LoginWindow();
-            loginWindow.Show();
+            SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.Show();
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
