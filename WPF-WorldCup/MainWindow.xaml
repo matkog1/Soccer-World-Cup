@@ -66,13 +66,21 @@
                 VerticalAlignment="Center"
                 Width="250"
                 Height="50"
-                Margin="200,0,0,0"/>
+                Margin="200,0,0,0"
+                FontSize="25"
+                SelectionChanged="cbTeams_SelectionChanged"></ComboBox>
 
-            <ListView
-                Name="Teams"
-                Grid.Row="1"
-                Grid.Column="0"
-                Margin="20,20,20,20"/>
+            <ListView Name="listViewTeams" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Matches}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Venue" DisplayMemberBinding="{Binding venue}" />
+                        <GridViewColumn Header="Home Team" DisplayMemberBinding="{Binding home_team_country}" />
+                        <GridViewColumn Header="Away Team" DisplayMemberBinding="{Binding away_team_country}" />
+                        <GridViewColumn Header="Winner" DisplayMemberBinding="{Binding winner}" />
+                        <!-- Add other columns here -->
+                    </GridView>
+                </ListView.View>
+            </ListView>
 
             <Image
                 Source="Images/Soccer-field.png"
@@ -82,7 +90,7 @@
                 Height="800"
                 Margin="5,5,5,5"></Image>
 
-
+            
 
 
 

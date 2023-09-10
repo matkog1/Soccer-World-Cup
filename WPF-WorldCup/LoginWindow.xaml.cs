@@ -183,7 +183,6 @@ namespace WPF_WorldCup
             
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
-            this.Hide();
         }
     }
 }

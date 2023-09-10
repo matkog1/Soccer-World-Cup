@@ -25,7 +25,7 @@ internal class Program
 {
     private static async Task Main(string[] args)
     {
-
+        /*
         IRepoAllMatches matchesRepo = MenRepoFactoryAllMatches.GetRepo();
         IList<Matches> matches = await matchesRepo.GetAllMatches();
         List<Matches> matches1 = matches.ToList();
@@ -44,7 +44,7 @@ internal class Program
             {
                 await Console.Out.WriteLineAsync(items.ToString());
             }
-
+        */
 
             /*
              //Print all matches by country, radi men i women
@@ -105,5 +105,4 @@ internal class Program
 
 
     }
-}
 
