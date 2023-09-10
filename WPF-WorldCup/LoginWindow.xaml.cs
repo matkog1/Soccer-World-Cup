@@ -30,14 +30,67 @@ namespace WPF_WorldCup
         private const string resolutionFile = "resolution.txt";
         private const string championshipFile = "championship.txt";
         private const string languageFile = "language.txt";
-        
+        ResourceManager? resourceManager;
+
         public LoginWindow()
         {
             InitializeComponent();
             LoadLastUsedResolution();
             LoadLastUsedChampionship();
             LoadLastUsedLanguage();
+            LoadData();
+        }
 
+        private void LoadData()
+        {
+            switch (GetLanguage())
+            {
+                case "English":
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+                    resourceManager = new ResourceManager("WPF_WorldCup.Resources.en-LoginWindow", typeof(MainWindow).Assembly);
+                    break;
+                case "Croatian":
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo("hr-HR");
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("hr-HR");
+                    resourceManager = new ResourceManager("WPF_WorldCup.Resources.hr-LoginWindow", typeof(MainWindow).Assembly);
+                    break;
+                default:
+                    break;
+            }
+
+            if (resourceManager != null)
+            {
+
+                btnExit.Content = resourceManager.GetString("btnExit");
+                lbChampionship.Content = resourceManager.GetString("lbChampionship");
+                lbResolution.Content = resourceManager.GetString("lbResolution");
+                lblanguage.Content = resourceManager.GetString("lblanguage");
+                btnLogin.Content = resourceManager.GetString("btnLogin");
+            }
+        }
+
+        private string GetLanguage()
+        {
+            string filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, languageFile);
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    string lastUsedLanguage = File.ReadAllText(filePath);
+                    return lastUsedLanguage;
+                }
+                else
+                {
+                    return "Croatian";
+                }
+            }
+            catch (Exception e)
+            {
+                // Log or display the exception message
+                MessageBox.Show("No language");
+                return "Croatian";
+            }
         }
 
         private void OnChampionshipChanged(object sender, SelectionChangedEventArgs e)
@@ -137,21 +190,6 @@ namespace WPF_WorldCup
             }
         }
 
-        private void ChangeLanguage(string language)
-        {
-            CultureInfo culture;
-            switch (language)
-            {
-                case "Croatian":
-                    culture = new CultureInfo("hr");
-                    break;
-                default:
-                    culture = new CultureInfo("en-US");
-                    break;
-            }
-            Thread.CurrentThread.CurrentCulture = culture;
-            Thread.CurrentThread.CurrentUICulture = culture;
-        }
 
         private void LoadLastUsedLanguage()
         {
@@ -167,7 +205,6 @@ namespace WPF_WorldCup
                         break;
                     }
                 }
-                ChangeLanguage(lastUsedLanguage);
             }
         }
 
@@ -176,7 +213,7 @@ namespace WPF_WorldCup
             string selectedLanguage = (cbLanguage.SelectedItem as ComboBoxItem).Content.ToString();
             string filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, languageFile);
             File.WriteAllText(filePath, selectedLanguage);
-            ChangeLanguage(selectedLanguage);
+            LoadData();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
