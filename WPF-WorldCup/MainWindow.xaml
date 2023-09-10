@@ -69,18 +69,25 @@
                 Margin="200,0,0,0"
                 FontSize="25"
                 SelectionChanged="cbTeams_SelectionChanged"></ComboBox>
-
-            <ListView Name="listViewTeams" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Matches}">
+            
+                <ListView Name="listViewTeams" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Matches}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Venue" DisplayMemberBinding="{Binding venue}" />
                         <GridViewColumn Header="Home Team" DisplayMemberBinding="{Binding home_team_country}" />
                         <GridViewColumn Header="Away Team" DisplayMemberBinding="{Binding away_team_country}" />
                         <GridViewColumn Header="Winner" DisplayMemberBinding="{Binding winner}" />
-                        <!-- Add other columns here -->
+                        <!-- Add a column for the display button -->
+                        <GridViewColumn Header="Actions" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Display" Click="DisplayButton_ClickAsync"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
-            </ListView>
+                </ListView>
 
             <Image
                 Source="Images/Soccer-field.png"

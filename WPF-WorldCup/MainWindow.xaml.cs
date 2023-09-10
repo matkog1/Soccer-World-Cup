@@ -1,24 +1,21 @@
 ﻿using SoccerDAL.AllRepos.Interfaces;
 using SoccerDAL.AllRepos.MenRepos.MenAllMatchesByCountry;
 using SoccerDAL.AllRepos.MenRepos.MenTeams;
+using SoccerDAL.AllRepos.MenRepos.MenTeamsResults;
 using SoccerDAL.AllRepos.WomenRepos.WomenAllMatchesByCountry;
 using SoccerDAL.AllRepos.WomenRepos.WomenTeams;
+using SoccerDAL.AllRepos.WomenRepos.WomenTeamsResults;
 using SoccerDAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Interop;
 
 namespace WPF_WorldCup
 {
@@ -119,6 +116,17 @@ namespace WPF_WorldCup
             return teams;
         }
 
+        private static async Task<List<TeamResults>> GetTeamsResults()
+        {
+            string championship = GetChampionshipType();
+            IRepoTeamsResults teamsResults;
+
+            teamsResults = CheckTeamResults(championship);
+            IList<TeamResults> teamsList = await teamsResults.GetTeamsResults();
+            List<TeamResults> teams = teamsList.ToList();
+            return teams;
+        }
+
         private static IRepoTeams CheckChampionshipType(string championship)
         {
             IRepoTeams teamsRepo;
@@ -146,7 +154,26 @@ namespace WPF_WorldCup
             return chosen;
         }
 
-       
+
+        private static IRepoTeamsResults CheckTeamResults(string championship)
+        {
+            IRepoTeamsResults teamsResults;
+            if (championship == "Men")
+            {
+                teamsResults = MenRepoFactoryTeamsResults.GetRepo();
+            }
+            else if (championship == "Women")
+            {
+                teamsResults = WomenRepoFactoryTeamsResults.GetRepo();
+            }
+            else
+            {
+                throw new Exception();
+            }
+
+            return teamsResults;
+        }
+
 
         private static IRepoAllMatchesByCountry Check(string championship)
         {
@@ -178,5 +205,21 @@ namespace WPF_WorldCup
             this.Close();
         }
 
+        private async void DisplayButton_ClickAsync(object sender, RoutedEventArgs e)
+        {
+            // Get the current button.
+            Button button = sender as Button;
+
+            // Get the match associated with this button.
+            Matches match = button.DataContext as Matches;
+
+            // Await the asynchronous GetTeamsResults method
+            List<TeamResults> teamsResults = await GetTeamsResults();
+
+            // Pass the awaited results to the TeamsOverview constructor
+            TeamsOverview teamsOverview = new TeamsOverview(teamsResults);
+            teamsOverview.Show();
+
+        }
     }
 }
