@@ -22,12 +22,21 @@ namespace WPF_WorldCup
     public partial class TeamsOverview : Window
     {
         public ObservableCollection<TeamResults> TeamResults { get; set; }
-        
 
-        public TeamsOverview(List<TeamResults> teamsResults)
+
+        public TeamsOverview(List<TeamResults> teamsResults, Matches match)
         {
+            string home_team = match.home_team_country;
+            string away_team = match.away_team_country;
+
             InitializeComponent();
-            TeamResults = new ObservableCollection<TeamResults>(teamsResults);
+
+            // Filter the team results based on the home_team and away_team countries from match
+            var filteredTeamResults = teamsResults
+                .Where(tr => tr.country == home_team || tr.country == away_team)
+                .ToList();
+
+            TeamResults = new ObservableCollection<TeamResults>(filteredTeamResults);
             this.DataContext = this;
             listViewTeamOverview.ItemsSource = TeamResults;
         }

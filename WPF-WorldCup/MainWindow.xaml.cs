@@ -214,10 +214,11 @@ namespace WPF_WorldCup
             Matches match = button.DataContext as Matches;
 
             // Await the asynchronous GetTeamsResults method
-            List<TeamResults> teamsResults = await GetTeamsResults();
+            List<TeamResults> allTeamsResults = await GetTeamsResults();
 
-            // Pass the awaited results to the TeamsOverview constructor
-            TeamsOverview teamsOverview = new TeamsOverview(teamsResults);
+
+            // Pass the filtered results to the TeamsOverview constructor
+            TeamsOverview teamsOverview = new TeamsOverview(allTeamsResults,match);
             teamsOverview.Show();
 
         }
