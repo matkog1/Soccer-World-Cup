@@ -47,6 +47,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>en-MainWindow.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\en-SettingsWindow.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en-SettingsWindow.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\en-TeamsOverview.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -61,6 +66,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>hr-MainWindow.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\hr-SettingsWindow.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>hr-SettingsWindow.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\hr-TeamsOverview.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -78,6 +88,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>en-MainWindow.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\en-SettingsWindow.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>en-SettingsWindow.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\en-TeamsOverview.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>en-TeamsOverview.Designer.cs</LastGenOutput>
@@ -89,6 +103,10 @@
     <EmbeddedResource Update="Resources\hr-MainWindow.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>hr-MainWindow.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\hr-SettingsWindow.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>hr-SettingsWindow.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\hr-TeamsOverview.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

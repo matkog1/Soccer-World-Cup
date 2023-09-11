@@ -1,13 +1,11 @@
-﻿<Window x:Class="WPF_WorldCup.LoginWindow"
+﻿<Window x:Class="WPF_WorldCup.SettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_WorldCup"
         mc:Ignorable="d"
-        Title="LoginWindow"
-        Width="1200"
-        Height="600"
+        Title="SettingsWindow" Height="600" Width="920"
         ResizeMode="CanResizeWithGrip"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
@@ -16,7 +14,7 @@
 
     <Border Background="#272537"
             CornerRadius="20">
-        <Grid Margin="0,0,10,0">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -30,7 +28,7 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            
+
             <Button Name="btnExit"
                     Grid.Column="3"
                     Grid.Row="0"
@@ -39,16 +37,6 @@
                     VerticalAlignment="Center"
                     FontSize="20"
                     Width="200" Click="btnExit_Click">
-            </Button>
-
-            <Button Name="btnLogin"
-                    Grid.Column="1"
-                    Grid.Row="4"
-                    Content="Login"
-                    HorizontalAlignment= "Stretch"
-                    VerticalAlignment="Center"
-                    FontSize="20"
-                    Width="200" Click="btnLogin_Click">
             </Button>
 
             <Label
@@ -137,14 +125,9 @@
                 <ComboBoxItem Content="Croatian"></ComboBoxItem>
             </ComboBox>
 
-
-
-
-
-
-
         </Grid>
-        
+
     </Border>
 
 </Window>
+
