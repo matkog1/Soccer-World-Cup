@@ -339,15 +339,19 @@ namespace WPF_WorldCup
             int defenderIndex = 0, midfielderIndex = 0, forwardIndex = 0;
 
             // Initialize the grid coordinates for each type of player
-            int[] defenderRowsHome = { 2 };
-            int[] defenderColumnsHome = { 0, 1, 2,3 ,4,5, 6,7 };
-            int[] midfielderRowsHome = { 3 };
-            int[] midfielderColumnsHome = { 0, 1, 2, 3, 4, 5, 6, 7 };
-            int[] forwardRowsHome = { 4 };
-            int[] forwardColumnsHome = { 0, 1, 2, 3, 4, 5, 6, 7 };
+            int[] defenderRowsHome = { 1 };
+            int[] defenderColumnsHome = {1, 2,3 ,4,5, 6,7 };
+            int[] midfielderRowsHome = { 2 };
+            int[] midfielderColumnsHome = {1, 2, 3, 4, 5, 6, 7 };
+            int[] forwardRowsHome = { 3 };
+            int[] forwardColumnsHome = {1, 2, 3, 4, 5, 6, 7 };
 
             int totalRows = 8;  // Total rows in the grid
             int totalCols = 8;  // Total columns in the grid
+
+            int defenderIndexHome = 0;
+            int midfielderIndexHome = 0;
+            int forwardIndexHome = 0;
 
             foreach (var playerInfo in startingElevenHomeTeam)
             {
@@ -364,26 +368,26 @@ namespace WPF_WorldCup
                 switch (player.Position)
                 {
                     case "Goalie":
-                        Grid.SetRow(playerIcon, 0);  // Place the goalie at the top
+                        Grid.SetRow(playerIcon, 0);
                         Grid.SetColumn(playerIcon, 4);
                         break;
 
                     case "Defender":
-                        Grid.SetRow(playerIcon, defenderIndex / totalCols);
-                        Grid.SetColumn(playerIcon, defenderIndex % totalCols);
-                        defenderIndex++;
+                        Grid.SetRow(playerIcon, defenderRowsHome[defenderIndexHome / defenderColumnsHome.Length]);
+                        Grid.SetColumn(playerIcon, defenderColumnsHome[defenderIndexHome % defenderColumnsHome.Length]);
+                        defenderIndexHome++;
                         break;
 
                     case "Midfield":
-                        Grid.SetRow(playerIcon, midfielderIndex / totalCols);
-                        Grid.SetColumn(playerIcon, midfielderIndex % totalCols);
-                        midfielderIndex++;
+                        Grid.SetRow(playerIcon, midfielderRowsHome[midfielderIndexHome / midfielderColumnsHome.Length]);
+                        Grid.SetColumn(playerIcon, midfielderColumnsHome[midfielderIndexHome % midfielderColumnsHome.Length]);
+                        midfielderIndexHome++;
                         break;
 
                     case "Forward":
-                        Grid.SetRow(playerIcon, forwardIndex / totalCols);
-                        Grid.SetColumn(playerIcon, forwardIndex % totalCols);
-                        forwardIndex++;
+                        Grid.SetRow(playerIcon, forwardRowsHome[forwardIndexHome / forwardColumnsHome.Length]);
+                        Grid.SetColumn(playerIcon, forwardColumnsHome[forwardIndexHome % forwardColumnsHome.Length]);
+                        forwardIndexHome++;
                         break;
                 }
 
@@ -393,17 +397,17 @@ namespace WPF_WorldCup
 
 
 
-            int goalkeeperRowAway = 7;  // Last row for Away Team
+            int goalkeeperRowAway = 6;  // Last row for Away Team
             int goalkeeperColumnAway = 3;  // Middle column
 
-            int[] defenderRowsAway = { 6 };
-            int[] defenderColumnsAway = { 0, 1, 2, 3, 4, 5, 6, 7 };
+            int[] defenderRowsAway = { 5 };
+            int[] defenderColumnsAway = {1, 2, 3, 4, 5, 6, 7 };
 
-            int[] midfielderRowsAway = { 5 };
-            int[] midfielderColumnsAway = { 0, 1, 2, 3, 4, 5, 6, 7 };
+            int[] midfielderRowsAway = { 4 };
+            int[] midfielderColumnsAway = {1, 2, 3, 4, 5, 6, 7 };
 
-            int[] forwardRowsAway = { 4 };
-            int[] forwardColumnsAway = { 0, 1, 2, 3, 4, 5, 6, 7 };
+            int[] forwardRowsAway = { 3 };
+            int[] forwardColumnsAway = {1, 2, 3, 4, 5, 6, 7 };
 
             int defenderIndexAway = 0, midfielderIndexAway = 0, forwardIndexAway = 0;
 
