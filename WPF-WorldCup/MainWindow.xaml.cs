@@ -20,6 +20,8 @@ using System.Windows.Interop;
 using System.Reflection;
 using System.Globalization;
 using System.Threading;
+using System.Windows.Input;
+using System.Numerics;
 
 namespace WPF_WorldCup
 {
@@ -362,6 +364,8 @@ namespace WPF_WorldCup
                 player.Position = playerInfo.position;
 
                 PlayerIcon playerIcon = new PlayerIcon();
+                playerIcon.Tag = player;
+                playerIcon.MouseLeftButtonUp += PlayerIcon_MouseLeftButtonUp;
                 playerIcon.lbName.Content = player.Name;
 
                 // Place player in grid according to their position
@@ -415,6 +419,7 @@ namespace WPF_WorldCup
             {
                 PlayerIcon playerIcon = new PlayerIcon();
                 playerIcon.lbName.Content = playerInfo.name;
+                playerIcon.MouseLeftButtonUp += PlayerIcon_MouseLeftButtonUp;
 
                 // (set other properties here)
 
@@ -450,6 +455,26 @@ namespace WPF_WorldCup
 
             }
         }
+        private void PlayerIcon_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is PlayerIcon playerIcon)
+            {
+                // Retrieve the Player object from the Tag property
+                if (playerIcon.Tag is Player player)
+                {
+                    // Create and populate the PlayerWindow
+                    PlayerWindow playerWindow = new PlayerWindow();
+                    playerWindow.lbShowPlayerName.Content = player.Name;
+                    playerWindow.lbShowShirtNumber.Content = player.Shirt_Number;
+                    playerWindow.lbShowPosition.Content = player.Position;
+                    playerWindow.lbShowCaptain.Content = player.Captain ? "Yes" : "No";
+
+                    // Show the window
+                    playerWindow.ShowDialog();
+                }
+            }
+        }
+
     }
 } 
 
