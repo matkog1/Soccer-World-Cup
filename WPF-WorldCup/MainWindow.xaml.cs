@@ -308,6 +308,18 @@ namespace WPF_WorldCup
             // Pass the filtered results to the TeamsOverview constructor
             TeamsOverview teamsOverview = new TeamsOverview(allTeamsResults, match);
             teamsOverview.Show();
+            
+
+        }
+
+        private async void FormationButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the current button.
+            Button button = sender as Button;
+
+            // Get the match associated with this button.
+            Matches match = button.DataContext as Matches;
+
             AddPlayersToField(match);
 
         }
@@ -321,17 +333,17 @@ namespace WPF_WorldCup
             Starting_Eleven1[] startingElevenAwayTeam = match.away_team_statistics.starting_eleven;
 
             // Remove old players from the grid first, if necessary.
-            field.Children.Clear();
+            //field.Children.Clear();
 
             // Declare a counter variable outside the foreach loop
             int defenderIndex = 0, midfielderIndex = 0, forwardIndex = 0;
 
             // Initialize the grid coordinates for each type of player
-            int[] defenderRowsHome = { 1 };
+            int[] defenderRowsHome = { 2 };
             int[] defenderColumnsHome = { 0, 1, 2,3 ,4,5, 6,7 };
-            int[] midfielderRowsHome = { 2 };
+            int[] midfielderRowsHome = { 3 };
             int[] midfielderColumnsHome = { 0, 1, 2, 3, 4, 5, 6, 7 };
-            int[] forwardRowsHome = { 3 };
+            int[] forwardRowsHome = { 4 };
             int[] forwardColumnsHome = { 0, 1, 2, 3, 4, 5, 6, 7 };
 
             int totalRows = 8;  // Total rows in the grid
@@ -405,7 +417,7 @@ namespace WPF_WorldCup
                 // Place player in grid according to their position
                 switch (playerInfo.position)
                 {
-                    case "Goalkeeper":
+                    case "Goalie":
                         Grid.SetRow(playerIcon, goalkeeperRowAway);
                         Grid.SetColumn(playerIcon, goalkeeperColumnAway);
                         break;
@@ -416,7 +428,7 @@ namespace WPF_WorldCup
                         defenderIndexAway++;
                         break;
 
-                    case "Midfielder":
+                    case "Midfield":
                         Grid.SetRow(playerIcon, midfielderRowsAway[midfielderIndexAway / midfielderColumnsAway.Length]);
                         Grid.SetColumn(playerIcon, midfielderColumnsAway[midfielderIndexAway % midfielderColumnsAway.Length]);
                         midfielderIndexAway++;

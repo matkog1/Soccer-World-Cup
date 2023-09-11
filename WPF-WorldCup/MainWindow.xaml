@@ -111,10 +111,13 @@
                         <GridViewColumn Header="Away Team" DisplayMemberBinding="{Binding away_team_country}" />
                         <GridViewColumn Header="Winner" DisplayMemberBinding="{Binding winner}" />
 
-                        <GridViewColumn Header="Actions" Width="100">
+                        <GridViewColumn Header="Actions" Width="200">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Display" Click="DisplayButton_ClickAsync"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Display" Click="DisplayButton_ClickAsync" Margin="5"/>
+                                        <Button Content="Formation" Click="FormationButton_Click" Margin="5"/>
+                                    </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
