@@ -43,7 +43,17 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+
+                <Image
+                     Source="Images/Soccer-field.png"
+                     Grid.RowSpan="8"
+                     Grid.ColumnSpan="8"
+                     Width="500"
+                     Height="800"
+                     Margin="5,5,5,5">
+                </Image>
 
             </Grid>
 
@@ -111,16 +121,6 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-
-            <Image
-                Source="Images/Soccer-field.png"
-                Grid.Row="1"
-                Grid.Column="1"
-                Width="500"
-                Height="800"
-                Margin="5,5,5,5">
-            </Image>
- 
         </Grid>
     </Border>
 </Window>

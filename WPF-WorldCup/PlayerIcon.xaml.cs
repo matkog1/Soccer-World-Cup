@@ -18,9 +18,9 @@ namespace WPF_WorldCup
     /// <summary>
     /// Interaction logic for Player.xaml
     /// </summary>
-    public partial class Player : UserControl
+    public partial class PlayerIcon : UserControl
     {
-        public Player()
+        public PlayerIcon()
         {
             InitializeComponent();
         }

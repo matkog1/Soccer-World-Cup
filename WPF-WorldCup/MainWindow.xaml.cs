@@ -41,21 +41,9 @@ namespace WPF_WorldCup
             CheckResolutionAsync();
             LoadTeamsAsync();
             LoadData();
-            LoadPlayersToField();
         }
 
-        private void LoadPlayersToField()
-        {
-            // Instantiate the Player control
-            var player = new Player();
 
-            // Set the row and column where the player should appear
-            Grid.SetRow(player, 4); // Row index starts from 0
-            Grid.SetColumn(player, 5); // Column index starts from 0
-
-            // Add the player to the grid
-            field.Children.Add(player);
-        }
 
         private void LoadData()
         {
@@ -318,11 +306,135 @@ namespace WPF_WorldCup
 
 
             // Pass the filtered results to the TeamsOverview constructor
-            TeamsOverview teamsOverview = new TeamsOverview(allTeamsResults,match);
+            TeamsOverview teamsOverview = new TeamsOverview(allTeamsResults, match);
             teamsOverview.Show();
+            AddPlayersToField(match);
 
         }
 
 
+        private void AddPlayersToField(Matches match)
+        {
+            // Assuming match.home_team_statistics.starting_eleven is an array
+            // of a class that contains player information.
+            Starting_Eleven[] startingElevenHomeTeam = match.home_team_statistics.starting_eleven;
+            Starting_Eleven1[] startingElevenAwayTeam = match.away_team_statistics.starting_eleven;
+
+            // Remove old players from the grid first, if necessary.
+            field.Children.Clear();
+
+            // Declare a counter variable outside the foreach loop
+            int defenderIndex = 0, midfielderIndex = 0, forwardIndex = 0;
+
+            // Initialize the grid coordinates for each type of player
+            int[] defenderRowsHome = { 1 };
+            int[] defenderColumnsHome = { 0, 1, 2,3 ,4,5, 6,7 };
+            int[] midfielderRowsHome = { 2 };
+            int[] midfielderColumnsHome = { 0, 1, 2, 3, 4, 5, 6, 7 };
+            int[] forwardRowsHome = { 3 };
+            int[] forwardColumnsHome = { 0, 1, 2, 3, 4, 5, 6, 7 };
+
+            int totalRows = 8;  // Total rows in the grid
+            int totalCols = 8;  // Total columns in the grid
+
+            foreach (var playerInfo in startingElevenHomeTeam)
+            {
+                Player player = new Player();
+                player.Name = playerInfo.name;
+                player.Shirt_Number = playerInfo.shirt_number;
+                player.Captain = playerInfo.captain;
+                player.Position = playerInfo.position;
+
+                PlayerIcon playerIcon = new PlayerIcon();
+                playerIcon.lbName.Content = player.Name;
+
+                // Place player in grid according to their position
+                switch (player.Position)
+                {
+                    case "Goalie":
+                        Grid.SetRow(playerIcon, 0);  // Place the goalie at the top
+                        Grid.SetColumn(playerIcon, 4);
+                        break;
+
+                    case "Defender":
+                        Grid.SetRow(playerIcon, defenderIndex / totalCols);
+                        Grid.SetColumn(playerIcon, defenderIndex % totalCols);
+                        defenderIndex++;
+                        break;
+
+                    case "Midfield":
+                        Grid.SetRow(playerIcon, midfielderIndex / totalCols);
+                        Grid.SetColumn(playerIcon, midfielderIndex % totalCols);
+                        midfielderIndex++;
+                        break;
+
+                    case "Forward":
+                        Grid.SetRow(playerIcon, forwardIndex / totalCols);
+                        Grid.SetColumn(playerIcon, forwardIndex % totalCols);
+                        forwardIndex++;
+                        break;
+                }
+
+                // Add the player to the grid
+                field.Children.Add(playerIcon);
+            }
+
+
+
+            int goalkeeperRowAway = 7;  // Last row for Away Team
+            int goalkeeperColumnAway = 3;  // Middle column
+
+            int[] defenderRowsAway = { 6 };
+            int[] defenderColumnsAway = { 0, 1, 2, 3, 4, 5, 6, 7 };
+
+            int[] midfielderRowsAway = { 5 };
+            int[] midfielderColumnsAway = { 0, 1, 2, 3, 4, 5, 6, 7 };
+
+            int[] forwardRowsAway = { 4 };
+            int[] forwardColumnsAway = { 0, 1, 2, 3, 4, 5, 6, 7 };
+
+            int defenderIndexAway = 0, midfielderIndexAway = 0, forwardIndexAway = 0;
+
+            foreach (var playerInfo in startingElevenAwayTeam)
+            {
+                PlayerIcon playerIcon = new PlayerIcon();
+                playerIcon.lbName.Content = playerInfo.name;
+
+                // (set other properties here)
+
+                // Place player in grid according to their position
+                switch (playerInfo.position)
+                {
+                    case "Goalkeeper":
+                        Grid.SetRow(playerIcon, goalkeeperRowAway);
+                        Grid.SetColumn(playerIcon, goalkeeperColumnAway);
+                        break;
+
+                    case "Defender":
+                        Grid.SetRow(playerIcon, defenderRowsAway[defenderIndexAway / defenderColumnsAway.Length]);
+                        Grid.SetColumn(playerIcon, defenderColumnsAway[defenderIndexAway % defenderColumnsAway.Length]);
+                        defenderIndexAway++;
+                        break;
+
+                    case "Midfielder":
+                        Grid.SetRow(playerIcon, midfielderRowsAway[midfielderIndexAway / midfielderColumnsAway.Length]);
+                        Grid.SetColumn(playerIcon, midfielderColumnsAway[midfielderIndexAway % midfielderColumnsAway.Length]);
+                        midfielderIndexAway++;
+                        break;
+
+                    case "Forward":
+                        Grid.SetRow(playerIcon, forwardRowsAway[forwardIndexAway / forwardColumnsAway.Length]);
+                        Grid.SetColumn(playerIcon, forwardColumnsAway[forwardIndexAway % forwardColumnsAway.Length]);
+                        forwardIndexAway++;
+                        break;
+                }
+
+                // Add the player to the grid
+                field.Children.Add(playerIcon);
+
+            }
+        }
     }
-}
+} 
+
+ 

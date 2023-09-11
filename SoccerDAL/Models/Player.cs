@@ -10,6 +10,10 @@ namespace SoccerDAL.Models
 {
     public class Player
     {
+        public Player()
+        {
+        }
+
         public Player(string name, bool captain, int shirt_number, string position, string country)
         {
             Name = name;

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WPF_WorldCup.Player"
+﻿<UserControl x:Class="WPF_WorldCup.PlayerIcon"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -24,11 +24,11 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Name="lbName"
-                Content="Player Name"
+                Content="Name"
                 Foreground="White"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                FontSize="5"
+                FontSize="10"
                 FontWeight ="Bold" 
                 />
         </Grid>
