@@ -20,6 +20,7 @@ using System.Windows.Interop;
 using System.Reflection;
 using System.Globalization;
 using System.Threading;
+using System.Windows.Input;
 
 namespace WPF_WorldCup
 {
@@ -346,7 +347,9 @@ namespace WPF_WorldCup
                 player.Position = playerInfo.position;
 
                 PlayerIcon playerIcon = new PlayerIcon();
+                playerIcon.Tag = player;
                 playerIcon.lbName.Content = player.Name;
+                playerIcon.MouseLeftButtonUp += PlayerIcon_MouseLeftButtonUp;
 
                 // Place player in grid according to their position
                 switch (player.Position)
@@ -397,12 +400,17 @@ namespace WPF_WorldCup
 
             foreach (var playerInfo in startingElevenAwayTeam)
             {
+                Player player = new Player();
+                player.Name = playerInfo.name;
+                player.Shirt_Number = playerInfo.shirt_number;
+                player.Captain = playerInfo.captain;
+                player.Position = playerInfo.position;
+
                 PlayerIcon playerIcon = new PlayerIcon();
-                playerIcon.lbName.Content = playerInfo.name;
+                playerIcon.Tag = player;
+                playerIcon.lbName.Content = player.Name;
+                playerIcon.MouseLeftButtonUp += PlayerIcon_MouseLeftButtonUp;
 
-                // (set other properties here)
-
-                // Place player in grid according to their position
                 switch (playerInfo.position)
                 {
                     case "Goalkeeper":
@@ -428,10 +436,29 @@ namespace WPF_WorldCup
                         forwardIndexAway++;
                         break;
                 }
-
-                // Add the player to the grid
                 field.Children.Add(playerIcon);
 
+            }
+
+        }
+
+        private void PlayerIcon_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is PlayerIcon playerIcon)
+            {
+                // Retrieve the Player object from the Tag property
+                if (playerIcon.Tag is Player player)
+                {
+                    // Create and populate the PlayerWindow
+                    PlayerWindow playerWindow = new PlayerWindow();
+                    playerWindow.lbShowPlayerName.Content = player.Name;
+                    playerWindow.lbShowPosition.Content = player.Position;
+                    playerWindow.lbShowShirtNumber.Content = player.Shirt_Number;
+                    playerWindow.lbShowCaptain.Content = player.Captain ? "Yes" : "No";
+
+                    // Show the window
+                    playerWindow.ShowDialog();
+                }
             }
         }
     }
