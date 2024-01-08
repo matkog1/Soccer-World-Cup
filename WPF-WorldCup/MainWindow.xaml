@@ -47,13 +47,34 @@
                 </Grid.ColumnDefinitions>
 
                 <Image
-                     Source="Images/Soccer-field.png"
-                     Grid.RowSpan="8"
-                     Grid.ColumnSpan="8"
-                     Width="500"
-                     Height="800"
-                     Margin="5,5,5,5">
+                    Source="Images/Soccer-field.png"
+                    Grid.RowSpan="8"
+                    Grid.ColumnSpan="8"
+                    Stretch="UniformToFill">
                 </Image>
+
+                <Grid Grid.RowSpan="8" Grid.ColumnSpan="8" Name="playerGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
 
             </Grid>
 
@@ -85,7 +106,7 @@
                 Grid.Row="0"
                 Content="WORLD CUP"
                 HorizontalAlignment="Left"
-                Margin="20,0,0,0"
+                Margin="20,0,100,0"
                 VerticalAlignment="Center"
                 FontSize="25"
                 Foreground="White"
@@ -95,9 +116,9 @@
                 Name="cbTeams"
                 Grid.Column="0"
                 Grid.Row="0"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Right"
                 VerticalAlignment="Center"
-                Width="250"
+                Width="200"
                 Height="50"
                 Margin="200,0,0,0"
                 FontSize="25"

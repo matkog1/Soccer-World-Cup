@@ -15,13 +15,11 @@
          CornerRadius="20">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="200"></RowDefinition>
-                <RowDefinition Height="70"></RowDefinition>
-                <RowDefinition Height="70"></RowDefinition>
-                <RowDefinition Height="70"></RowDefinition>
-                <RowDefinition Height="70"></RowDefinition>
-                <RowDefinition Height="65"></RowDefinition>
-                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="200*"></RowDefinition>
+                <RowDefinition Height="70*"></RowDefinition>
+                <RowDefinition Height="70*"></RowDefinition>
+                <RowDefinition Height="70*"></RowDefinition>
+                <RowDefinition Height="70*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
@@ -54,26 +52,6 @@
                  Grid.Row="3"
                  Grid.Column="0"
                  Content="Position"
-                 HorizontalAlignment="Center" 
-                 VerticalAlignment="Center"
-                 FontSize="25"
-                 Foreground="White" Height="50" Width="228"/>
-
-            <Label
-                 Name="lbGoals"
-                 Grid.Row="4"
-                 Grid.Column="0"
-                 Content="Goals"
-                 HorizontalAlignment="Center" 
-                 VerticalAlignment="Center"
-                 FontSize="25"
-                 Foreground="White" Height="50" Width="228"/>
-
-            <Label
-                 Name="lbYellowCards"
-                 Grid.Row="5"
-                 Grid.Column="0"
-                 Content="YellowCards"
                  HorizontalAlignment="Center" 
                  VerticalAlignment="Center"
                  FontSize="25"
@@ -120,26 +98,6 @@
                  Foreground="White" Height="56" Width="228"/>
 
             <Label
-                 Name="lbShowGoals"
-                 Grid.Row="4"
-                 Grid.Column="1"
-                 Content="Goals"
-                 HorizontalAlignment="Center" 
-                 VerticalAlignment="Center"
-                 FontSize="25"
-                 Foreground="White" Height="56" Width="228"/>
-
-            <Label
-                 Name="lbShowYellowCards"
-                 Grid.Row="5"
-                 Grid.Column="1"
-                 Content="YellowCards"
-                 HorizontalAlignment="Center" 
-                 VerticalAlignment="Center"
-                 FontSize="25"
-                 Foreground="White" Height="56" Width="228"/>
-
-            <Label
                  Name="lbShowCaptain"
                  Grid.Row="6"
                  Grid.Column="1"
@@ -158,20 +116,6 @@
                 Content="Exit"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top" Click="btnExit_Click"/>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         </Grid>
 

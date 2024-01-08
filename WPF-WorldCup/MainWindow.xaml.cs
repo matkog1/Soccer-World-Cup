@@ -42,6 +42,7 @@ namespace WPF_WorldCup
             this.DataContext = this;
             CheckResolutionAsync();
             LoadTeamsAsync();
+            LoadTeams();
             LoadData();
         }
 
@@ -79,6 +80,15 @@ namespace WPF_WorldCup
             while (true)
             {
                 LoadLastUsedResolution();
+                LoadData();
+                await Task.Delay(1000);
+            }
+        }
+        private async Task LoadTeams()
+        {
+            while (true)
+            {
+                LoadTeamsAsync();
                 LoadData();
                 await Task.Delay(1);
             }
@@ -164,6 +174,7 @@ namespace WPF_WorldCup
 
         private async Task LoadTeamsAsync()
         {
+            cbTeams.Items.Clear();
             var teams = await GetTeams();
             cbTeams.ItemsSource = teams;
 
@@ -335,18 +346,18 @@ namespace WPF_WorldCup
             Starting_Eleven1[] startingElevenAwayTeam = match.away_team_statistics.starting_eleven;
 
             // Remove old players from the grid first, if necessary.
-            //field.Children.Clear();
+            RemovePlayerIcons();
 
             // Declare a counter variable outside the foreach loop
             int defenderIndex = 0, midfielderIndex = 0, forwardIndex = 0;
 
             // Initialize the grid coordinates for each type of player
             int[] defenderRowsHome = { 1 };
-            int[] defenderColumnsHome = {1, 2,3 ,4,5, 6,7 };
+            int[] defenderColumnsHome = {2, 3 ,4,5, 6,7 };
             int[] midfielderRowsHome = { 2 };
-            int[] midfielderColumnsHome = {1, 2, 3, 4, 5, 6, 7 };
+            int[] midfielderColumnsHome = {2, 3, 4, 5, 6, 7 };
             int[] forwardRowsHome = { 3 };
-            int[] forwardColumnsHome = {1, 2, 3, 4, 5, 6, 7 };
+            int[] forwardColumnsHome = {2, 3, 4, 5, 6, 7 };
 
             int totalRows = 8;  // Total rows in the grid
             int totalCols = 8;  // Total columns in the grid
@@ -364,6 +375,8 @@ namespace WPF_WorldCup
                 player.Position = playerInfo.position;
 
                 PlayerIcon playerIcon = new PlayerIcon();
+                playerIcon.Width = 50; // or whatever dimensions you want
+                playerIcon.Height = 50;
                 playerIcon.Tag = player;
                 playerIcon.MouseLeftButtonUp += PlayerIcon_MouseLeftButtonUp;
                 playerIcon.lbName.Content = player.Name;
@@ -396,30 +409,39 @@ namespace WPF_WorldCup
                 }
 
                 // Add the player to the grid
-                field.Children.Add(playerIcon);
+                playerGrid.Children.Add(playerIcon);
             }
 
 
 
-            int goalkeeperRowAway = 6;  // Last row for Away Team
+            int goalkeeperRowAway = 8;  // Last row for Away Team
             int goalkeeperColumnAway = 3;  // Middle column
 
-            int[] defenderRowsAway = { 5 };
-            int[] defenderColumnsAway = {1, 2, 3, 4, 5, 6, 7 };
+            int[] defenderRowsAway = { 6 };
+            int[] defenderColumnsAway = {2, 3, 4, 5, 6, 7 };
 
-            int[] midfielderRowsAway = { 4 };
-            int[] midfielderColumnsAway = {1, 2, 3, 4, 5, 6, 7 };
+            int[] midfielderRowsAway = { 5 };
+            int[] midfielderColumnsAway = {2, 3, 4, 5, 6, 7 };
 
-            int[] forwardRowsAway = { 3 };
-            int[] forwardColumnsAway = {1, 2, 3, 4, 5, 6, 7 };
+            int[] forwardRowsAway = { 4 };
+            int[] forwardColumnsAway = {2,3, 4, 5, 6, 7 };
 
             int defenderIndexAway = 0, midfielderIndexAway = 0, forwardIndexAway = 0;
 
             foreach (var playerInfo in startingElevenAwayTeam)
             {
+                Player player = new Player();
+                player.Name = playerInfo.name;
+                player.Shirt_Number = playerInfo.shirt_number;
+                player.Captain = playerInfo.captain;
+                player.Position = playerInfo.position;
+
                 PlayerIcon playerIcon = new PlayerIcon();
-                playerIcon.lbName.Content = playerInfo.name;
+                playerIcon.Width = 50; // or whatever dimensions you want
+                playerIcon.Height = 50;
+                playerIcon.Tag = player;
                 playerIcon.MouseLeftButtonUp += PlayerIcon_MouseLeftButtonUp;
+                playerIcon.lbName.Content = player.Name;
 
                 // (set other properties here)
 
@@ -451,7 +473,7 @@ namespace WPF_WorldCup
                 }
 
                 // Add the player to the grid
-                field.Children.Add(playerIcon);
+                playerGrid.Children.Add(playerIcon);
 
             }
         }
@@ -475,6 +497,26 @@ namespace WPF_WorldCup
             }
         }
 
+        private void RemovePlayerIcons()
+        {
+            // Create a list to store elements that need to be removed.
+            List<UIElement> elementsToRemove = new List<UIElement>();
+
+            foreach (UIElement element in playerGrid.Children)
+            {
+                // Check if the element is of type PlayerIcon.
+                if (element is PlayerIcon)
+                {
+                    elementsToRemove.Add(element);
+                }
+            }
+
+            // Remove elements.
+            foreach (UIElement element in elementsToRemove)
+            {
+                playerGrid.Children.Remove(element);
+            }
+        }
     }
 } 
 
