@@ -1,7 +1,6 @@
 
 # **World Cup Statistics Display Project**
 
-**This project is part of a school program.**
 
 ## **Overview**
 
